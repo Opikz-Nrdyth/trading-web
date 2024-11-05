@@ -1,0 +1,124 @@
+@import url("./baseColor.css");
+
+table {
+  width: 95%;
+  margin-left: 2.5%;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  color: #fff;
+  display: block;
+  overflow-y: auto;
+  margin-top: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  table-layout: fixed;
+}
+
+thead {
+  font-size: 0.9em;
+  height: 40px;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
+  background-color: var(--primary);
+}
+
+thead th {
+  vertical-align: middle;
+  text-align: start;
+  padding-left: 10px;
+}
+
+thead tr {
+  height: 40px;
+}
+
+tbody,
+thead {
+  width: 100%;
+}
+
+tbody {
+  font-size: 0.7em;
+}
+
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+tbody td {
+  vertical-align: middle;
+  padding: 10px 0px;
+  padding-left: 10px;
+  word-wrap: break-word;
+}
+
+thead th:nth-child(1) {
+  width: 7%;
+}
+
+thead th:nth-child(3) {
+  width: 7%;
+}
+
+thead th:nth-child(5) {
+  width: 18%;
+}
+
+tbody td:nth-child(1) {
+  width: 7%;
+}
+
+tbody td:nth-child(3) {
+  width: 7%;
+}
+
+tbody td:nth-child(5) {
+  width: 18%;
+}
+
+/* Striped rows */
+tbody tr:nth-child(even) {
+  background-color: var(--darker); /* Darker color for even rows */
+}
+
+/* Hover effect */
+tbody tr:hover {
+  background-color: #1c2948; /* Lighter color on hover */
+}
+
+thead tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.client {
+  padding: 5px 10px;
+  background-color: var(--primary);
+  text-align: center;
+  border-radius: 4px;
+}
+
+.admin {
+  padding: 5px 10px;
+  background-color: var(--fourd);
+  text-align: center;
+  border-radius: 4px;
+}
+
+@media only screen and (max-width: 900px) {
+}
+@media only screen and (max-width: 450px) {
+  .container-table {
+    overflow: auto;
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  table {
+    width: 250%;
+  }
+}

@@ -1,0 +1,101 @@
+@import url("./baseColor.css");
+
+.container-data {
+  overflow: auto;
+  position: relative;
+}
+.bg-foto-profile {
+  width: 100%;
+  height: 250px;
+  position: relative;
+  overflow: hidden; /* Agar shape tidak keluar dari kontainer */
+}
+
+.bg-foto-profile div {
+  position: absolute;
+}
+
+.bg-foto-profile div:nth-child(1) {
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  opacity: 0.3;
+  transform: scaleY(-1);
+}
+
+.bg-foto-profile div:nth-child(2) {
+  bottom: -250px;
+  left: -350px;
+  width: 700px;
+  height: 700px;
+  opacity: 0.3;
+  transform: scaleX(-1);
+}
+
+.bg-profile {
+  position: absolute;
+  width: 98%;
+  height: 250px;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.profile {
+  width: 85px;
+  height: 85px;
+  border-radius: 9999px;
+  border: 3px solid white;
+}
+.profile img {
+  width: 85px;
+  height: 85px;
+  border-radius: 9999px;
+}
+.nama {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white;
+  margin-top: 5px;
+}
+
+.member {
+  font-size: 1em;
+  color: white;
+  text-decoration: underline;
+  margin-top: 5px;
+}
+
+.data-diri {
+  padding: 20px 40px;
+}
+
+.item {
+  margin-bottom: 40px;
+}
+
+.item .title-key {
+  font-size: 0.9em;
+  opacity: 0.8;
+}
+
+.item .value {
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.btn-logout {
+  width: 60%;
+  height: 40px;
+  background-color: var(--fourd);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  margin-left: 20%;
+}

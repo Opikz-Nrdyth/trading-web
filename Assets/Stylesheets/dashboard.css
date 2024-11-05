@@ -1,0 +1,116 @@
+@import url("./baseColor.css");
+
+.table-mobile {
+  max-height: calc(100vh - 255px);
+  overflow: auto;
+}
+
+.table-desktop {
+  max-height: calc(100vh - 200px);
+  overflow: auto;
+}
+
+table {
+  width: 95%;
+  margin-left: 2.5%;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  color: #fff;
+  display: block;
+  overflow-y: auto;
+  margin-top: 15px;
+  border-radius: 8px;
+  border: 1px solid var(--primary);
+  table-layout: fixed;
+}
+
+thead {
+  font-size: 0.9em;
+  height: 40px;
+  position: sticky;
+  top: -1px;
+  z-index: 10;
+}
+
+thead th {
+  vertical-align: middle;
+  text-align: center;
+}
+
+thead tr {
+  height: 40px;
+}
+
+tbody,
+thead {
+  width: 100%;
+}
+
+tbody {
+  font-size: 0.7em;
+}
+
+tbody tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+tbody td {
+  vertical-align: middle;
+  padding-left: 10px;
+}
+
+/* Striped rows */
+tbody tr:nth-child(even) {
+  background-color: var(--darker); /* Darker color for even rows */
+}
+
+/* Hover effect */
+tbody tr:hover {
+  background-color: #1c2948; /* Lighter color on hover */
+}
+
+thead tr {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.rank-item {
+  text-align: center;
+}
+
+.coin-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.coin-icon {
+  color: white;
+}
+
+.positive-change {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.negative-change {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+tr td:nth-child(1) {
+  display: flex;
+  hyphens: auto;
+  text-transform: uppercase;
+}
+tr td:nth-child(2) {
+  text-align: center;
+}
+
+tr td {
+  min-height: 40px;
+}

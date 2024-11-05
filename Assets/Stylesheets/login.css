@@ -1,0 +1,65 @@
+@import url("./baseColor.css");
+
+body {
+  background-color: var(--base);
+}
+.lottie-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+lottie-player {
+  width: 230px;
+  height: 230px;
+}
+
+.container-login {
+  background-color: var(--primary);
+  height: 65vh;
+  margin-top: -28px;
+  border-top-left-radius: 60px;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 40px;
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid white;
+}
+
+.form-input {
+  margin-top: 30px;
+}
+
+.form-input input {
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid white;
+  margin-bottom: 30px;
+  color: white;
+  font-size: 1.2em;
+}
+
+.form-input input:focus {
+  border-bottom: 2px solid var(--secondary);
+}
+
+button {
+  width: 80%;
+  margin-left: 10%;
+  height: 40px;
+  font-size: 1.2em;
+  border: none;
+  border-radius: 10px 3px 10px 3px;
+  transition: all 0.3s ease-in-out;
+  font-weight: bolder;
+  background-color: var(--secondary);
+  color: white;
+}
+
+button:hover {
+  border-radius: 3px 10px 3px 10px;
+  scale: 1.1;
+}
