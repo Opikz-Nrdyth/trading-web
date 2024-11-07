@@ -59,24 +59,15 @@ if (isset($_POST["logout"])) {
         </div>
 
         <nav class="container-data desktop">
-            <div class="bg-foto-profile">
-                <div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#C05DC2" d="M41.2,-18.5C52.8,-3.8,61.1,18.1,53.7,25.8C46.3,33.4,23.1,26.8,4.7,24.1C-13.7,21.3,-27.4,22.5,-39,12.5C-50.6,2.4,-60.1,-18.9,-53.2,-30.9C-46.4,-42.9,-23.2,-45.6,-4.2,-43.2C14.8,-40.7,29.7,-33.2,41.2,-18.5Z" transform="translate(100 100)" />
-                    </svg>
-                </div>
-                <div>
-                    <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#C05DC2" d="M23.7,-17.2C29.1,-4.2,31,7.4,26.4,12.5C21.9,17.7,10.9,16.4,-0.2,16.5C-11.4,16.7,-22.8,18.2,-30,11.5C-37.3,4.8,-40.3,-10.1,-34.6,-23.3C-28.9,-36.4,-14.5,-47.8,-2.7,-46.2C9.1,-44.7,18.2,-30.2,23.7,-17.2Z" transform="translate(100 100)" />
-                    </svg>
-                </div>
+            <div class="bg-image-profile">
+
             </div>
             <div class="bg-profile">
                 <div class="profile">
                     <img src="<?php echo $data["profile_picture"] ?>" alt="Foto Profile">
                 </div>
                 <p class="nama"><?php echo $data["name"] ?></p>
-                <p class="member">Member Terdaftar <i class="fa-solid fa-circle-check"></i></p>
+                <p class="member">Member Terdaftar <span class="check"><i class="fa-solid fa-circle-check"></i></span></p>
             </div>
 
             <div class="data-diri text-white">

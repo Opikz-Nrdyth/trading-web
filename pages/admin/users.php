@@ -29,6 +29,8 @@ if (isset($_POST["addData"])) {
     $work = $_POST["work"];
     $address = $_POST["address"];
     $email = $_POST["email"];
+    $quotes = $_POST["quotes"];
+    $status_account = $_POST["status_account"];
     $password = $_POST["password"];
     $capital_amount = $_POST["capital_amount"];
     $profile = $_FILES["profile"];
@@ -63,7 +65,7 @@ if (isset($_POST["addData"])) {
 
     if ($address != "" && $password != "") {
         if (move_uploaded_file($profile["tmp_name"], $target_file)) {
-            $query = "INSERT INTO `users`(`id`, `email`, `password`, `role`, `name`, `address`, `gender`, `phone_number`, `work`, `capital_amount`, `profile_picture` ) VALUES ('$id','$email','$password','$role','$name','$address','$gander','$phone_number','$work','$capital_amount','/$target_file')";
+            $query = "INSERT INTO `users`(`id`, `email`, `password`, `role`, `name`, `address`, `gender`, `phone_number`, `work`, `capital_amount`, `profile_picture`, account_status, quotes ) VALUES ('$id','$email','$password','$role','$name','$address','$gander','$phone_number','$work','$capital_amount','/$target_file', '$capital_amount', '$quotes')";
             $sql = mysqli_query($conn, $query);
             if ($sql) {
                 echo '<div class="alert check"> <i class="far fa-check-circle color"></i> &nbsp; &nbsp; <span>Berhasil Menambah Users Baru!</span> </div>';
@@ -85,6 +87,9 @@ if (isset($_POST["editData"])) {
     $email = $_POST["email"];
     $capital_amount = $_POST["capital_amount"];
     $profile = $_FILES["profile"];
+    $quotes = $_POST["quotes"];
+    $status_account = $_POST["status_account"];
+    $password = $_POST["password"];
 
     // Check if a new profile photo is uploaded
     if ($profile['name'] != '') {
@@ -125,11 +130,11 @@ if (isset($_POST["editData"])) {
             }
 
             // Update query with the new profile picture
-            $query = "UPDATE `users` SET `email`='$email', `role`='$role', `name`='$name', `address`='$address', `gender`='$gander', `phone_number`='$phone_number', `work`='$work', `capital_amount`='$capital_amount', `profile_picture`='/$target_file' WHERE `id`='$id'";
+            $query = "UPDATE `users` SET `email`='$email', `role`='$role', `name`='$name', `address`='$address', `gender`='$gander', `phone_number`='$phone_number', `work`='$work', `capital_amount`='$capital_amount', `profile_picture`='/$target_file', `quotes`='$query', `account_status`='$status_account', `password`='$password' WHERE `id`='$id'";
         }
     } else {
         // Update without changing the profile picture
-        $query = "UPDATE `users` SET `email`='$email', `role`='$role', `name`='$name', `address`='$address', `gender`='$gander', `phone_number`='$phone_number', `work`='$work', `capital_amount`='$capital_amount' WHERE `id`='$id'";
+        $query = "UPDATE `users` SET `email`='$email', `role`='$role', `name`='$name', `address`='$address', `gender`='$gander', `phone_number`='$phone_number', `work`='$work', `capital_amount`='$capital_amount', `quotes`='$quotes', `account_status`='$status_account', `password`='$password' WHERE `id`='$id'";
     }
 
     $sql = mysqli_query($conn, $query);
@@ -229,7 +234,7 @@ $result = fetchData();
                             <td><?php echo $data["work"] ?></td>
                             <td><?php echo $data["phone_number"] ?></td>
                             <td>
-                                <button class="btn-edit" onclick="editUser('<?php echo $data['id'] ?>', '<?php echo $data['name'] ?>', '<?php echo $data['role'] ?>', '<?php echo $data['gender'] ?>', '<?php echo $data['address'] ?>', '<?php echo $data['email'] ?>', '<?php echo $data['password'] ?>', '<?php echo $data['work'] ?>', '<?php echo $data['phone_number'] ?>', '<?php echo $data['capital_amount'] ?>')"><i class="fa-solid fa-pen"></i></button>
+                                <button class="btn-edit" onclick="editUser('<?php echo $data['id'] ?>', '<?php echo $data['name'] ?>', '<?php echo $data['role'] ?>', '<?php echo $data['gender'] ?>', '<?php echo $data['address'] ?>', '<?php echo $data['email'] ?>', '<?php echo $data['password'] ?>', '<?php echo $data['work'] ?>', '<?php echo $data['phone_number'] ?>', '<?php echo $data['capital_amount'] ?>', '<?php echo $data['account_status'] ?>', '<?php echo $data['quotes'] ?>')"><i class="fa-solid fa-pen"></i></button>
                                 <button class="btn-delete" onclick="deleteUser(`<?php echo $data['id'] ?>`)"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
@@ -261,6 +266,11 @@ $result = fetchData();
                     <input type="email" name="email" placeholder="Email">
                     <input type="text" name="password" placeholder="Password">
                     <input type="number" name="capital_amount" placeholder="Saldo">
+                    <textarea name="quotes"></textarea>
+                    <select name="status_account">
+                        <option value="notactive">Tidak Aktif</option>
+                        <option value="active">Aktif</option>
+                    </select>
                     <input type="file" accept="image/*" name="profile" placeholder="profile">
                     <div class="conatiner-button">
                         <button type="button" onclick="closeModal()">Batal</button>
@@ -302,17 +312,43 @@ $result = fetchData();
             }
         }
 
-        function editUser(id, name, role, gender, address, email, password, work, phone_number, capital_amount) {
+        function editUser(id, name, role, gender, address, email, password, work, phone_number, capital_amount, status, quotes) {
             document.querySelector('input[name="userId"]').value = id;
             document.querySelector('input[name="name"]').value = name;
-            document.querySelector('select[name="role"]').value = role;
-            document.querySelector('select[name="gander"]').value = gender;
+            const selectRole = document.querySelector('select[name="role"]')
+            const selectGender = document.querySelector('select[name="gander"]')
+            const selectStatus = document.querySelector('select[name="status_account"]')
             document.querySelector('input[name="phone_number"]').value = phone_number;
             document.querySelector('input[name="work"]').value = work;
             document.querySelector('textarea[name="address"]').value = address;
             document.querySelector('input[name="email"]').value = email;
             document.querySelector('input[name="password"]').value = password;
             document.querySelector('input[name="capital_amount"]').value = capital_amount;
+            document.querySelector('textarea[name="quotes"]').innerHTML = quotes;
+            const optionsRole = selectRole.options;
+            for (let i = 0; i < optionsRole.length; i++) {
+                if (optionsRole[i].value === role) {
+                    optionsRole[i].selected = true;
+                    break;
+                }
+            }
+            const optionGender = selectGender.options;
+
+            for (let i = 0; i < optionGender.length; i++) {
+                if (optionGender[i].value === gender) {
+                    optionGender[i].selected = true;
+                    break;
+                }
+            }
+
+            const optionStatus = selectStatus.options;
+
+            for (let i = 0; i < optionStatus.length; i++) {
+                if (optionStatus[i].value === status) {
+                    optionStatus[i].selected = true;
+                    break;
+                }
+            }
 
             // Change form button and action for editing
             document.querySelector('.conatiner-button button[type="submit"]').innerText = "Update";

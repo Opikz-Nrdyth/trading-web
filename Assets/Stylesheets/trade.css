@@ -1,3 +1,40 @@
+.account-type {
+  color: white;
+  text-align: center;
+  font-weight: bold;
+  padding: 10px 0px;
+}
 #tradingview-widget-container div {
-  height: calc(100vh - 200px) !important;
+  height: calc(90vh - 180px) !important;
+}
+
+.dots-active {
+  margin-right: 10px;
+  animation: dots-active-animation 1s infinite;
+  transition: all 1s ease-in-out;
+}
+.dots-inactive {
+  margin-right: 10px;
+  animation: dots-inactive-animation 1s infinite;
+  transition: all 1s ease-in-out;
+}
+
+@keyframes dots-active-animation {
+  0%,
+  100% {
+    color: var(--base);
+  }
+  50% {
+    color: green;
+  }
+}
+
+@keyframes dots-inactive-animation {
+  0%,
+  100% {
+    color: var(--base);
+  }
+  50% {
+    color: red;
+  }
 }

@@ -4,45 +4,28 @@
   overflow: auto;
   position: relative;
 }
-.bg-foto-profile {
+
+.bg-image-profile {
   width: 100%;
   height: 250px;
-  position: relative;
-  overflow: hidden; /* Agar shape tidak keluar dari kontainer */
-}
-
-.bg-foto-profile div {
-  position: absolute;
-}
-
-.bg-foto-profile div:nth-child(1) {
-  top: -200px;
-  right: -200px;
-  width: 600px;
-  height: 600px;
-  opacity: 0.3;
-  transform: scaleY(-1);
-}
-
-.bg-foto-profile div:nth-child(2) {
-  bottom: -250px;
-  left: -350px;
-  width: 700px;
-  height: 700px;
-  opacity: 0.3;
-  transform: scaleX(-1);
+  background-image: url("/Assets/Images/background-profile.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  opacity: 0.5;
+  margin-bottom: 30px;
 }
 
 .bg-profile {
-  position: absolute;
   width: 98%;
   height: 250px;
-  left: 0px;
-  top: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
 
 .profile {
@@ -68,6 +51,10 @@
   color: white;
   text-decoration: underline;
   margin-top: 5px;
+}
+
+.check {
+  color: rgb(0, 145, 255);
 }
 
 .data-diri {

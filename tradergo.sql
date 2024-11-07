@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 02, 2024 at 05:04 PM
+-- Generation Time: Nov 07, 2024 at 04:37 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -31,7 +31,7 @@ CREATE TABLE `crypto_coins` (
   `coin_name` varchar(100) NOT NULL,
   `coin_symbol` varchar(10) NOT NULL,
   `logo_url` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `crypto_coins`
@@ -73,6 +73,7 @@ INSERT INTO `crypto_coins` (`coin_name`, `coin_symbol`, `logo_url`) VALUES
 ('neo', 'NEO/USD', '/Assets/Images/CryptocurrencyIcons/neo.svg'),
 ('okb', 'OKB/USD', '/Assets/Images/CryptocurrencyIcons/okb.svg'),
 ('quant', 'QNT/USD', '/Assets/Images/CryptocurrencyIcons/quant.svg'),
+('raydium', 'RAY/USD', '/Assets/Images/CryptocurrencyIcons/raydium.svg'),
 ('the-sandbox', 'SAND/USD', '/Assets/Images/CryptocurrencyIcons/the-sandbox.svg'),
 ('shiba-inu', 'SHIB/USD', '/Assets/Images/CryptocurrencyIcons/shiba-inu.svg'),
 ('solana', 'SOL/USD', '/Assets/Images/CryptocurrencyIcons/solana.svg'),
@@ -102,7 +103,7 @@ CREATE TABLE `deposits` (
   `status` enum('pending','completed') NOT NULL,
   `telegram_chat_id` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,7 @@ CREATE TABLE `transactions` (
   `amount` decimal(18,8) NOT NULL,
   `price_at_transaction` decimal(18,8) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -138,16 +139,21 @@ CREATE TABLE `users` (
   `work` varchar(250) NOT NULL,
   `capital_amount` decimal(15,2) DEFAULT '0.00',
   `profile_picture` varchar(255) DEFAULT NULL,
+  `quotes` text NOT NULL,
+  `account_status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `role`, `name`, `address`, `gender`, `phone_number`, `work`, `capital_amount`, `profile_picture`, `created_at`, `updated_at`) VALUES
-(7785975, 'admin@gmail.com', '1234', 'admin', 'Admin', 'Yogyakarta', 'laki-laki', '082328035237', 'Programmer', '500000', '/Assets/Images/foto-profile.png', '2024-11-01 03:53:31', '2024-11-02 16:16:50');
+INSERT INTO `users` (`id`, `email`, `password`, `role`, `name`, `address`, `gender`, `phone_number`, `work`, `capital_amount`, `profile_picture`, `quotes`, `account_status`, `created_at`, `updated_at`) VALUES
+(7785975, 'mimin@gmail.com', '1234', 'admin', 'Admin Trading', 'Babadan Pangkur Ngawi', 'perempuan', '082328035237', 'Programmer', '0.00', '/Assets/Images/foto-profile.png', 'Good', 'notactive', '2024-11-01 03:53:31', '2024-11-07 16:29:20'),
+(31781449, 'andira@gmail.com', '1234', 'client', 'andira', 'jakarta', 'perempuan', '0823484488', 'sales', '300000.00', '/Assets/Images/profile/31781449.png', 'lorem belu dia akses', '500000', '2024-11-07 16:32:02', '2024-11-07 16:33:52'),
+(79549298, 'moli@gmail.com', '1234', 'client', 'Moli Comel', 'Tidak Tau', 'laki-laki', '039847', 'Turu', '1000000.00', '/Assets/Images/profile/79549298.png', 'Good', 'notactive', '2024-11-04 18:51:53', '2024-11-07 16:21:15'),
+(79995750, 't@gmail.com', '1234', 'client', 'Opikz', 'udicjnc', 'laki-laki', '03987477', 'oieu', '99000.00', '/Assets/Images/profile/79995750.png', '', '', '2024-11-04 13:20:16', '2024-11-04 15:50:32');
 
 -- --------------------------------------------------------
 
@@ -165,14 +171,18 @@ CREATE TABLE `withdrawals` (
   `status` enum('pending','completed') NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `withdrawals`
 --
 
 INSERT INTO `withdrawals` (`id`, `user_id`, `nama_payment`, `method`, `number_payment`, `amount`, `status`, `created_at`, `updated_at`) VALUES
+(4943775, 79995750, 'Tofiq Nrdyth', 'DANA', '0283777636', '100000.00', 'completed', '2024-11-04 15:46:54', '2024-11-04 17:34:39'),
+(6816825, 31781449, 'andira', 'BCA', '1234567890', '200000.00', 'pending', '2024-11-07 16:33:52', '2024-11-07 16:33:52'),
+(17429867, 79995750, 'Tofiq', 'BCA', '0394773', '1000.00', 'pending', '2024-11-04 15:50:32', '2024-11-04 15:50:32'),
 (61243050, 7785975, 'Tofiq Nur Hidayat', 'BRI', '938474783763', '300000.00', 'completed', '2024-11-02 16:16:18', '2024-11-02 16:17:14'),
+(98426982, 79995750, 'Opik', 'BCA', '1234567890', '100000.00', 'completed', '2024-11-04 15:33:07', '2024-11-04 19:02:46'),
 (334426647, 7785975, 'Tofiq Nur Hidayat', 'Dana', '082328035237', '30000.00', 'completed', '2024-11-01 17:02:52', '2024-11-02 15:56:49');
 
 --
@@ -235,7 +245,7 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69989200;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89030018;
 
 --
 -- AUTO_INCREMENT for table `withdrawals`

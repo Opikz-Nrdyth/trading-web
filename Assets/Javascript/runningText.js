@@ -1,11 +1,12 @@
 let assetMap = {};
 let nameCoin = "";
+let host = window.location.origin;
 
 // Fungsi untuk mengambil data dari API dan memperbarui assetMap dan nameCoin
 async function updateCryptoAssets() {
   try {
     // Fetch data dari API
-    let response = await fetch("http://localhost/services/criptoapi.php?coins");
+    let response = await fetch(`${host}/services/criptoapi.php?coins`);
     let coins = await response.json();
 
     // Array untuk menyimpan nama-nama aset yang akan digunakan dalam WebSocket

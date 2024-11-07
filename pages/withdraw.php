@@ -92,6 +92,9 @@ if (isset($_POST["changeWithdraw"])) {
     require_once("Components/client/navbar.php");
 
     ?>
+    <div class="bg-images">
+
+    </div>
     <main>
         <div class="ticker-container">
             <div class="ticker-wrap">

@@ -90,7 +90,7 @@ if (isset($_SESSION["users"])) {
             </div>
 
             <p class="text-data">
-                <?php echo $result["riwayat_penarikan"] ?></p>
+                <?php echo $data["quotes"] ?></p>
             <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i> Admin Telegram</button>
         </div>
     </main>

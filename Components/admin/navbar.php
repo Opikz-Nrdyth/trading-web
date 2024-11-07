@@ -10,7 +10,6 @@ if (!isset($_SESSION["users"])) {
         header("location:/");
     }
 
-    echo trim($_SESSION["role"]) == "admin";
     $query = "SELECT * FROM `users` WHERE id = '$id'";
     $sql = mysqli_query($conn, $query);
 

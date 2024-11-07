@@ -1,8 +1,16 @@
 <?php
-
+session_start();
 require_once("./services/settings.php");
 
 $result = readSettings();
+
+$userId = $_SESSION["users"];
+$query = "SELECT * FROM `users` WHERE id='$userId'";
+$sql = mysqli_query($conn,  $query);
+
+$data = mysqli_fetch_assoc($sql);
+
+
 
 ?>
 <!DOCTYPE html>
@@ -37,6 +45,18 @@ $result = readSettings();
                 </div>
             </div>
         </div>
+        <p class="account-type">
+            <span class="<?php echo ($data["account_status"] == 'active') ? 'dots-active' : 'dots-inactive'; ?>">
+                <i class="fa-solid fa-circle"></i>
+            </span>
+            <?php if ($data["account_status"] == "active"): ?>
+                Akun Anda Telah Diaktifkan
+            <?php else: ?>
+                Akun Anda Belum Aktif
+            <?php endif; ?>
+        </p>
+
+
         <div id="trading-container">
             <div id="tradingview-widget-container"></div>
         </div>
