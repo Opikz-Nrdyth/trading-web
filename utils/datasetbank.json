@@ -16,7 +16,7 @@
     "logo": "https://logo.clearbit.com/bni.co.id"
   },
   {
-    "name": "BNI",
+    "name": "BSI",
     "logo": "https://logo.clearbit.com/bankbsi.co.id"
   },
   {
@@ -42,5 +42,13 @@
   {
     "name": "ShopeePay",
     "logo": "https://logo.clearbit.com/shopee.co.id"
+  },
+  {
+    "name": "Bank of Singapure",
+    "logo": "https://logo.clearbit.com/https://www.uob.com.sg/"
+  },
+  {
+    "name": "DBS",
+    "logo": "https://icons.veryicon.com/png/o/business/bank-logo-collection/dbs-logo.png"
   }
 ]

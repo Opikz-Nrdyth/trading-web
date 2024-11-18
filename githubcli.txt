@@ -1,0 +1,15 @@
+Push Pertama
+
+echo "# solar-system" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/Opikz-Nrdyth/trading-web.git
+git push -u origin main
+
+Update Data Ke Github
+git status
+git add .
+git commit -m "Pesan perubahan Anda"
+git push origin main

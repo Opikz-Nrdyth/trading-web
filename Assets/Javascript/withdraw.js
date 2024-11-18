@@ -1,49 +1,12 @@
-const data = [
-  {
-    name: "Bank Mandiri",
-    logo: "https://logo.clearbit.com/bankmandiri.co.id",
-  },
-  {
-    name: "BCA",
-    logo: "https://cdn3.iconfinder.com/data/icons/banks-in-indonesia-logo-badge/100/BCA-512.png",
-  },
-  {
-    name: "BRI",
-    logo: "https://logo.clearbit.com/bri.co.id",
-  },
-  {
-    name: "BNI",
-    logo: "https://logo.clearbit.com/bni.co.id",
-  },
-  {
-    name: "BSI",
-    logo: "https://logo.clearbit.com/bankbsi.co.id",
-  },
-  {
-    name: "Sea Bank",
-    logo: "https://logo.clearbit.com/seabank.co.id",
-  },
-  {
-    name: "OVO",
-    logo: "https://logo.clearbit.com/ovo.id",
-  },
-  {
-    name: "GoPay",
-    logo: "https://logo.clearbit.com/gopay.co.id",
-  },
-  {
-    name: "DANA",
-    logo: "https://logo.clearbit.com/dana.id",
-  },
-  {
-    name: "LinkAja",
-    logo: "https://logo.clearbit.com/linkaja.id",
-  },
-  {
-    name: "ShopeePay",
-    logo: "https://logo.clearbit.com/shopee.co.id",
-  },
-];
+let data;
+fetch("/utils/datasetbank.json")
+  .then((response) => {
+    return response.json();
+  })
+  .then((json) => {
+    data = json;
+    console.log(data);
+  });
 
 const dropdown = document.getElementById("dropdown");
 const searchInput = document.getElementById("searchInput");
