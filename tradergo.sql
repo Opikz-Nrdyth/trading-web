@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 13, 2024 at 04:10 PM
+-- Generation Time: Nov 18, 2024 at 12:23 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -147,6 +147,7 @@ CREATE TABLE `users` (
   `quotes_withdaw_fail` text NOT NULL,
   `account_status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `nominal_type` varchar(30) NOT NULL,
+  `language` varchar(250) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -155,11 +156,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `email`, `password`, `role`, `name`, `address`, `gender`, `phone_number`, `work`, `capital_amount`, `saldo_awal`, `saldo_tambahan`, `bonus_member`, `saldo_akhir`, `profile_picture`, `quotes`, `quotes_withdaw_fail`, `account_status`, `nominal_type`, `created_at`, `updated_at`) VALUES
-(7785975, 'mimin@gmail.com', '1234', 'admin', 'Admin Trading', 'Babadan Pangkur Ngawi', 'perempuan', '082328035237', 'Programmer', '0.00', '', '', '', '', '/Assets/Images/foto-profile.png', 'Good', '', 'notactive', '', '2024-11-01 03:53:31', '2024-11-07 16:29:20'),
-(31781449, 'andira@gmail.com', '1234', 'client', 'andira', 'jakarta', 'perempuan', '0823484488', 'sales', '300000.00', '', '', '', '', '/Assets/Images/profile/31781449.png', 'lorem belu dia akses', '', '500000', '', '2024-11-07 16:32:02', '2024-11-07 16:33:52'),
-(79549298, 'moli@gmail.com', '1234', 'client', 'Moli Comel', 'Tidak Tau', 'laki-laki', '039847', 'Turu', '764877.00', '1000000', '10000', '0', '1010000', '/Assets/Images/profile/79549298.png', 'Good', 'Yang sabar ya guys', 'active', 'USD', '2024-11-04 18:51:53', '2024-11-13 16:08:48'),
-(79995750, 't@gmail.com', '1234', 'client', 'Opikz', 'udicjnc', 'laki-laki', '03987477', 'oieu', '99000.00', '', '', '', '', '/Assets/Images/profile/79995750.png', '', '', '', '', '2024-11-04 13:20:16', '2024-11-04 15:50:32');
+INSERT INTO `users` (`id`, `email`, `password`, `role`, `name`, `address`, `gender`, `phone_number`, `work`, `capital_amount`, `saldo_awal`, `saldo_tambahan`, `bonus_member`, `saldo_akhir`, `profile_picture`, `quotes`, `quotes_withdaw_fail`, `account_status`, `nominal_type`, `language`, `created_at`, `updated_at`) VALUES
+(7785975, 'mimin@gmail.com', '1234', 'admin', 'Admin Trading', 'Babadan Pangkur Ngawi', 'perempuan', '082328035237', 'Programmer', '0.00', '', '', '', '', '/Assets/Images/foto-profile.png', 'Good', '', 'notactive', '', '', '2024-11-01 03:53:31', '2024-11-07 16:29:20'),
+(31781449, 'andira@gmail.com', '1234', 'client', 'andira', 'jakarta', 'perempuan', '0823484488', 'sales', '300000.00', '', '', '', '', '/Assets/Images/profile/31781449.png', 'lorem belu dia akses', '', 'notactive', 'IDR', 'id', '2024-11-07 16:32:02', '2024-11-18 10:00:52'),
+(79549298, 'moli@gmail.com', '1234', 'client', 'Moli Comel', 'Tidak Tau', 'laki-laki', '039847', 'Turu', '764877.00', '1000000', '10000', '0', '1010000', '/Assets/Images/profile/79549298.png', 'Good', 'Yang sabar ya guys', 'active', 'SAR', 'id', '2024-11-04 18:51:53', '2024-11-18 10:00:36'),
+(79995750, 't@gmail.com', '1234', 'client', 'Opikz', 'udicjnc', 'laki-laki', '03987477', 'oieu', '99000.00', '', '', '', '', '/Assets/Images/profile/79995750.png', '', '', 'notactive', 'IDR', 'id', '2024-11-04 13:20:16', '2024-11-18 10:01:04');
 
 -- --------------------------------------------------------
 
