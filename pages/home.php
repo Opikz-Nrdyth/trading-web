@@ -1,7 +1,9 @@
 <?php
 require_once("./services/settings.php");
+require_once("./utils/translate.php");
+require_once("./services/dbConnect.php");
+require_once("./services/getUser.php");
 $result = readSettings();
-
 ?>
 
 <!DOCTYPE html>
@@ -36,13 +38,25 @@ $result = readSettings();
         </div>
       </div>
     </div>
+    <div class="top-home">
+      <div class="title">
+        <img src="/Assets/Images/foto-profile.png" alt="foto" class="foto-top-home">
+        <div class="text-top-home">
+          <p><?php echo translate(trim($dataUser["language"]), "Lorem Ipsum Indonesia") ?></p>
+          <p><?php echo translate(trim($dataUser["language"]), "Pusat Info Perdagangan yang terpercaya") ?></p>
+        </div>
+      </div>
+      <div class="descriptions">
+        <?php echo translate(trim($dataUser["language"]), "Lorem ipsum dolor sit amet, consectetur adipisicing elit. A quia quas dicta saepe. Eius tempora adipisci officiis. Dicta repudiandae, suscipit, dignissimos quam libero accusantium animi quisquam fuga voluptatibus optio nostrum.") ?>
+      </div>
+    </div>
     <table class="table-desktop">
       <thead class="bg-primary">
         <tr>
-          <th>Coin</th>
-          <th>Rank</th>
-          <th>Price</th>
-          <th>Change %<span style="opacity: 0.5; font-size:0.8em">(24h)</span></th>
+          <th><?php echo translate(trim($dataUser["language"]), "Coin") ?></th>
+          <th><?php echo translate(trim($dataUser["language"]), "Rank") ?></th>
+          <th><?php echo translate(trim($dataUser["language"]), "Price") ?></th>
+          <th><?php echo translate(trim($dataUser["language"]), "Presentase ") ?>%<span style="opacity: 0.5; font-size:0.8em">(24h)</span></th>
         </tr>
       </thead>
       <tbody>

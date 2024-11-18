@@ -1,0 +1,12 @@
+{
+    "require": {
+        "php-translation/translator": "*",
+        "stichoza/google-translate-php": "^5.2",
+        "php-http/guzzle7-adapter": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

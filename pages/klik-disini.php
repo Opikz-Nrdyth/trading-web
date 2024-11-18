@@ -1,7 +1,10 @@
 <?php
 session_start();
-require_once("services/dbConnect.php");
 require_once("./services/settings.php");
+require_once("./utils/translate.php");
+require_once("./services/dbConnect.php");
+require_once("./services/getUser.php");
+
 $result = readSettings();
 ?>
 <!DOCTYPE html>
@@ -40,9 +43,9 @@ $result = readSettings();
         <div class="desktop" style="overflow: auto;">
 
             <p class="text-data">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi vero quasi praesentium facilis dolor veniam molestias, deleniti laborum, culpa officia fugiat est quaerat rerum aliquid omnis quo, nisi obcaecati?
+                <?php echo translate(trim($dataUser["language"]), "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi vero quasi praesentium facilis dolor veniam molestias, deleniti laborum, culpa officia fugiat est quaerat rerum aliquid omnis quo, nisi obcaecati?") ?>
             </p>
-            <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i> Admin Telegram</button>
+            <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i> <?php echo translate(trim($dataUser["language"]), "Admin Telegram") ?></button>
         </div>
     </main>
 

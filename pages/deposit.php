@@ -1,6 +1,9 @@
 <?php
 
 require_once("./services/settings.php");
+require_once("./utils/translate.php");
+require_once("./services/dbConnect.php");
+require_once("./services/getUser.php");
 
 $result = readSettings();
 
@@ -46,12 +49,12 @@ $result = readSettings();
                     </div>
                 </div>
                 <div class="investment-capital">
-                    <h3>Investment Capital Deposit</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, earum incidunt! Illo voluptas culpa molestias est alias. Eum, inventore! Incidunt nemo fugiat earum, illo placeat repellendus nulla ad neque in?</p>
+                    <h3><?php echo translate(trim($dataUser["language"]), "Investment Capital Deposit") ?></h3>
+                    <p><?php echo translate(trim($dataUser["language"]), "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, earum incidunt! Illo voluptas culpa molestias est alias. Eum, inventore! Incidunt nemo fugiat earum, illo placeat repellendus nulla ad neque in?") ?></p>
                 </div>
             </div>
             <div>
-                <button class="telegram-buttons" onclick="window.location.href = 'klikdisini'"> Klik Disini</button>
+                <button class="telegram-buttons" onclick="window.location.href = 'klikdisini'"> <?php echo translate(trim($dataUser["language"]), "Klik Disini") ?></button>
             </div>
         </nav>
 

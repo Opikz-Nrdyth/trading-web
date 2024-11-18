@@ -30,9 +30,16 @@ if (isset($_POST["addData"])) {
     $address = $_POST["address"];
     $email = $_POST["email"];
     $quotes = $_POST["quotes"];
+    $quotes_w_fail = $_POST["quotes_w_fail"];
     $status_account = $_POST["status_account"];
     $password = $_POST["password"];
     $capital_amount = $_POST["capital_amount"];
+    $saldo_awal = $_POST["saldo_awal"];
+    $saldo_tambahan = $_POST["saldo_tambahan"];
+    $bonus_member = $_POST["bonus_member"];
+    $saldo_akhir = $_POST["saldo_akhir"];
+    $nominalType = $_POST["nominal_type"];
+    $language = $_POST["language"];
     $profile = $_FILES["profile"];
     $id = generateId();
 
@@ -65,7 +72,7 @@ if (isset($_POST["addData"])) {
 
     if ($address != "" && $password != "") {
         if (move_uploaded_file($profile["tmp_name"], $target_file)) {
-            $query = "INSERT INTO `users`(`id`, `email`, `password`, `role`, `name`, `address`, `gender`, `phone_number`, `work`, `capital_amount`, `profile_picture`, account_status, quotes ) VALUES ('$id','$email','$password','$role','$name','$address','$gander','$phone_number','$work','$capital_amount','/$target_file', '$capital_amount', '$quotes')";
+            $query = "INSERT INTO `users`(`id`, `email`, `password`, `role`, `name`, `address`, `gender`, `phone_number`, `work`, `capital_amount`, `saldo_awal`,`saldo_tambahan`,`bonus_member`,`saldo_akhir`, `profile_picture`, account_status, quotes, quotes_withdaw_fail, nominal_type, language ) VALUES ('$id','$email','$password','$role','$name','$address','$gander','$phone_number','$work','$capital_amount', '$saldo_awal','$saldo_tambahan','$bonus_member','$saldo_akhir', '/$target_file', '$capital_amount', '$quotes', '$quotes_w_fail', '$nominalType', '$language')";
             $sql = mysqli_query($conn, $query);
             if ($sql) {
                 echo '<div class="alert check"> <i class="far fa-check-circle color"></i> &nbsp; &nbsp; <span>Berhasil Menambah Users Baru!</span> </div>';
@@ -86,11 +93,17 @@ if (isset($_POST["editData"])) {
     $address = $_POST["address"];
     $email = $_POST["email"];
     $capital_amount = $_POST["capital_amount"];
+    $saldo_awal = $_POST["saldo_awal"];
+    $saldo_tambahan = $_POST["saldo_tambahan"];
+    $bonus_member = $_POST["bonus_member"];
+    $saldo_akhir = $_POST["saldo_akhir"];
     $profile = $_FILES["profile"];
     $quotes = $_POST["quotes"];
+    $quotes_w_fail = $_POST["quotes_w_fail"];
     $status_account = $_POST["status_account"];
     $password = $_POST["password"];
-
+    $nominalType = $_POST["nominal_type"];
+    $language = $_POST["language"];
     // Check if a new profile photo is uploaded
     if ($profile['name'] != '') {
         // Allowed file types and size limit (1MB)
@@ -130,11 +143,11 @@ if (isset($_POST["editData"])) {
             }
 
             // Update query with the new profile picture
-            $query = "UPDATE `users` SET `email`='$email', `role`='$role', `name`='$name', `address`='$address', `gender`='$gander', `phone_number`='$phone_number', `work`='$work', `capital_amount`='$capital_amount', `profile_picture`='/$target_file', `quotes`='$query', `account_status`='$status_account', `password`='$password' WHERE `id`='$id'";
+            $query = "UPDATE `users` SET `email`='$email', `role`='$role', `name`='$name', `address`='$address', `gender`='$gander', `phone_number`='$phone_number', `work`='$work', `capital_amount`='$capital_amount', `saldo_awal`='$saldo_awal',`saldo_tambahan`='$saldo_tambahan',`bonus_member` ='$bonus_member',`saldo_akhir` ='$saldo_akhir', `profile_picture`='/$target_file', `quotes`='$query', `quotes_withdaw_fail`='$quotes_w_fail', `account_status`='$status_account', `password`='$password', nominal_type='$nominalType', language='$language' WHERE `id`='$id'";
         }
     } else {
         // Update without changing the profile picture
-        $query = "UPDATE `users` SET `email`='$email', `role`='$role', `name`='$name', `address`='$address', `gender`='$gander', `phone_number`='$phone_number', `work`='$work', `capital_amount`='$capital_amount', `quotes`='$quotes', `account_status`='$status_account', `password`='$password' WHERE `id`='$id'";
+        $query = "UPDATE `users` SET `email`='$email', `role`='$role', `name`='$name', `address`='$address', `gender`='$gander', `phone_number`='$phone_number', `work`='$work', `capital_amount`='$capital_amount',`saldo_awal`='$saldo_awal',`saldo_tambahan`='$saldo_tambahan',`bonus_member` ='$bonus_member',`saldo_akhir` ='$saldo_akhir', `quotes`='$quotes', `quotes_withdaw_fail`='$quotes_w_fail', `account_status`='$status_account', `password`='$password', nominal_type='$nominalType', language='$language' WHERE `id`='$id'";
     }
 
     $sql = mysqli_query($conn, $query);
@@ -234,7 +247,7 @@ $result = fetchData();
                             <td><?php echo $data["work"] ?></td>
                             <td><?php echo $data["phone_number"] ?></td>
                             <td>
-                                <button class="btn-edit" onclick="editUser('<?php echo $data['id'] ?>', '<?php echo $data['name'] ?>', '<?php echo $data['role'] ?>', '<?php echo $data['gender'] ?>', '<?php echo $data['address'] ?>', '<?php echo $data['email'] ?>', '<?php echo $data['password'] ?>', '<?php echo $data['work'] ?>', '<?php echo $data['phone_number'] ?>', '<?php echo $data['capital_amount'] ?>', '<?php echo $data['account_status'] ?>', '<?php echo $data['quotes'] ?>')"><i class="fa-solid fa-pen"></i></button>
+                                <button class="btn-edit" onclick="editUser('<?php echo $data['id'] ?>', '<?php echo $data['name'] ?>', '<?php echo $data['role'] ?>', '<?php echo $data['gender'] ?>', '<?php echo $data['address'] ?>', '<?php echo $data['email'] ?>', '<?php echo $data['password'] ?>', '<?php echo $data['work'] ?>', '<?php echo $data['phone_number'] ?>', '<?php echo $data['capital_amount'] ?>', '<?php echo $data['saldo_awal'] ?>', '<?php echo $data['saldo_tambahan'] ?>', '<?php echo $data['bonus_member'] ?>', '<?php echo $data['saldo_akhir'] ?>', '<?php echo $data['account_status'] ?>', '<?php echo $data['quotes'] ?>', '<?php echo $data['quotes_withdaw_fail'] ?>', '<?php echo $data['nominal_type'] ?>', '<?php echo $data['language'] ?>')"><i class="fa-solid fa-pen"></i></button>
                                 <button class="btn-delete" onclick="deleteUser(`<?php echo $data['id'] ?>`)"><i class="fa-solid fa-trash"></i></button>
                             </td>
                         </tr>
@@ -266,10 +279,46 @@ $result = fetchData();
                     <input type="email" name="email" placeholder="Email">
                     <input type="text" name="password" placeholder="Password">
                     <input type="number" name="capital_amount" placeholder="Saldo">
-                    <textarea name="quotes"></textarea>
+                    <input type="number" name="saldo_awal" placeholder="Saldo Awal">
+                    <input type="number" name="saldo_tambahan" placeholder="Saldo Tambahan">
+                    <input type="number" name="bonus_member" placeholder="Bonus Member">
+                    <input type="number" name="saldo_akhir" placeholder="Saldo Akhir">
+                    <textarea name="quotes" placeholder="quotes di penarikan"></textarea>
+                    <textarea name="quotes_w_fail" placeholder="quotes di withdraw-fail"></textarea>
                     <select name="status_account">
+                        <option value="notactive">----Status Akun----</option>
                         <option value="notactive">Tidak Aktif</option>
                         <option value="active">Aktif</option>
+                    </select>
+                    <select name="nominal_type">
+                        <option value="IDR">----Tipe Nominal----</option>
+                        <option value="IDR">Rupiah Indonesia (IDR)</option>
+                        <option value="USD">Dollar Amerika (USD)</option>
+                        <option value="SGD">Dollar Singapura (SGD)</option>
+                        <option value="MYR">Ringgit Malaysia (MYR)</option>
+                        <option value="GBP">Poundsterling Inggris (GBP)</option>
+                        <option value="THB">Baht Thailand (THB)</option>
+                        <option value="VND">Dong Vietnam (VND)</option>
+                        <option value="BND">Dollar Brunei Darusalam (BND)</option>
+                        <option value="KHR">Riel Kamboja (KHR)</option>
+                        <option value="LAK">Kip Laos (LAK)</option>
+                        <option value="PHP">Peso Filipina (PHP)</option>
+                        <option value="SAR">Riyal Arab Saudi (SAR)</option>
+                        <option value="BHD">Dinar Bahrain (BHD)</option>
+
+                    </select>
+                    <select name="language">
+                        <option value="id">Bahasa Indonesia</option>
+                        <option value="en">Bahasa Inggris</option>
+                        <option value="ms">Bahasa Malaysia</option>
+                        <option value="th">Bahasa Thailand</option>
+                        <option value="vi">Bahasa Vietnam</option>
+                        <option value="bn">Bahasa Brunei</option>
+                        <option value="km">Bahasa Kamboja</option>
+                        <option value="lo">Bahasa Laos</option>
+                        <option value="tl">Bahasa Filipina</option>
+                        <option value="ar">Bahasa Arab</option>
+                        <option value="bh">Bahasa Bahrain</option>
                     </select>
                     <input type="file" accept="image/*" name="profile" placeholder="profile">
                     <div class="conatiner-button">
@@ -312,19 +361,26 @@ $result = fetchData();
             }
         }
 
-        function editUser(id, name, role, gender, address, email, password, work, phone_number, capital_amount, status, quotes) {
+        function editUser(id, name, role, gender, address, email, password, work, phone_number, capital_amount, saldo_awal, saldo_tambahan, bonus_member, saldo_akhir, status, quotes, quotes_w_fail, nominal_type, language) {
             document.querySelector('input[name="userId"]').value = id;
             document.querySelector('input[name="name"]').value = name;
             const selectRole = document.querySelector('select[name="role"]')
             const selectGender = document.querySelector('select[name="gander"]')
             const selectStatus = document.querySelector('select[name="status_account"]')
+            const nominalType = document.querySelector('select[name="nominal_type"]')
+            const selectLanguage = document.querySelector('select[name="language"]')
             document.querySelector('input[name="phone_number"]').value = phone_number;
             document.querySelector('input[name="work"]').value = work;
             document.querySelector('textarea[name="address"]').value = address;
             document.querySelector('input[name="email"]').value = email;
             document.querySelector('input[name="password"]').value = password;
             document.querySelector('input[name="capital_amount"]').value = capital_amount;
+            document.querySelector('input[name="saldo_awal"]').value = saldo_awal;
+            document.querySelector('input[name="saldo_tambahan"]').value = saldo_tambahan;
+            document.querySelector('input[name="bonus_member"]').value = bonus_member;
+            document.querySelector('input[name="saldo_akhir"]').value = saldo_akhir;
             document.querySelector('textarea[name="quotes"]').innerHTML = quotes;
+            document.querySelector('textarea[name="quotes_w_fail"]').innerHTML = quotes_w_fail;
             const optionsRole = selectRole.options;
             for (let i = 0; i < optionsRole.length; i++) {
                 if (optionsRole[i].value === role) {
@@ -346,6 +402,24 @@ $result = fetchData();
             for (let i = 0; i < optionStatus.length; i++) {
                 if (optionStatus[i].value === status) {
                     optionStatus[i].selected = true;
+                    break;
+                }
+            }
+
+            const optionNominalType = nominalType.options;
+
+            for (let i = 0; i < optionNominalType.length; i++) {
+                if (nominalType[i].value === nominal_type) {
+                    nominalType[i].selected = true;
+                    break;
+                }
+            }
+
+            const languageStatus = selectLanguage.options;
+
+            for (let i = 0; i < languageStatus.length; i++) {
+                if (languageStatus[i].value === language) {
+                    languageStatus[i].selected = true;
                     break;
                 }
             }

@@ -4,6 +4,11 @@
   font-weight: bold;
   padding: 10px 0px;
 }
+
+#tradingview-widget-container {
+  padding-bottom: 80px !important;
+}
+
 #tradingview-widget-container div {
   height: calc(90vh - 180px) !important;
 }
@@ -37,4 +42,21 @@
   50% {
     color: red;
   }
+}
+
+.binance {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  color: white;
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.binance .saldo p:nth-child(2) {
+  border: 1px solid gray;
+  padding: 10px 5px;
+  border-radius: 6px;
 }

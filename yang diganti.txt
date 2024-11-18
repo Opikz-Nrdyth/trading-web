@@ -1,0 +1,8 @@
+Navbar CLient
+User Admin
+withdraw.php
+
+nemabah utils/translate.php
+
+ganti text di semua client.
+ganti text semua component client

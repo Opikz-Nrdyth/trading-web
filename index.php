@@ -18,6 +18,9 @@ switch ($firstSegment) {
     case "withdraw":
         require_once("./pages/withdraw.php");
         break;
+    case "withdraw-fail":
+        require_once("./pages/withdraw-fail.php");
+        break;
     case "profile":
         require_once("./pages/profile.php");
         break;

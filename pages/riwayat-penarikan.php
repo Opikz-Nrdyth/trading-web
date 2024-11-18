@@ -2,14 +2,153 @@
 session_start();
 require_once("services/dbConnect.php");
 require_once("./services/settings.php");
+require_once("./utils/translate.php");
+
 $result = readSettings();
 
-function currencyFormatRupiah($amount)
-{
-    $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
-    $formatted = $formatter->formatCurrency($amount, 'IDR');
+if (!function_exists("currencyFormat")) {
+    function currencyFormat($angka, $currency)
+    {
+        // Fungsi untuk format angka besar (Billions, Millions, dll.)
+        if (!function_exists("formatLargeNumber")) {
 
-    return $formatted;
+            function formatLargeNumber($angka)
+            {
+                if ($angka >= 1000000000) {
+                    $formatted = $angka / 1000000000;
+                    return ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Billion';
+                } elseif ($angka >= 1000000) {
+                    $formatted = $angka / 1000000;
+                    return ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Million';
+                } elseif ($angka >= 1000) {
+                    $formatted = $angka / 1000;
+                    return ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 0, '.', '')) . ' Thousand';
+                } else {
+                    return number_format($angka, 0, '.', ',');
+                }
+            }
+        }
+
+        // Format untuk IDR (Rupiah)
+        if ($currency == 'IDR') {
+            if ($angka >= 1000000000000) {
+                $formatted = $angka / 1000000000000;
+                return "Rp " . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Triliun';
+            } elseif ($angka >= 1000000000) {
+                $formatted = $angka / 1000000000;
+                return "Rp " . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Miliard';
+            } elseif ($angka >= 1000000) {
+                $formatted = $angka / 1000000;
+                return "Rp " . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Juta';
+            } elseif ($angka >= 1000) {
+                $formatted = $angka / 1000;
+                return "Rp " . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 0, '.', '')) . ' Ribu';
+            } else {
+                return 'Rp ' . number_format($angka, 0, '.', ',');
+            }
+        }
+
+        // Format untuk USD (Dollar Amerika)
+        elseif ($currency == 'USD') {
+            if ($angka >= 1000000000) {
+                $formatted = $angka / 1000000000;
+                return '$' . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Billion';
+            } elseif ($angka >= 1000000) {
+                $formatted = $angka / 1000000;
+                return '$' . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Million';
+            } elseif ($angka >= 1000) {
+                $formatted = $angka / 1000;
+                return '$' . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Thousand';
+            } else {
+                return '$' . number_format($angka, 2, '.', ',');
+            }
+        }
+
+        // Format untuk SGD (Dollar Singapura)
+        elseif ($currency == 'SGD') {
+            return 'S$ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk MYR (Ringgit Malaysia)
+        elseif ($currency == 'MYR') {
+            return 'RM ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk GBP (Poundsterling Inggris)
+        elseif ($currency == 'GBP') {
+            return '£ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk THB (Baht Thailand)
+        elseif ($currency == 'THB') {
+            return '฿ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk VND (Dong Vietnam)
+        elseif ($currency == 'VND') {
+            return '₫ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk BND (Dollar Brunei Darusalam)
+        elseif ($currency == 'BND') {
+            return 'B$ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk KHR (Riel Kamboja)
+        elseif ($currency == 'KHR') {
+            return '៛ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk LAK (Kip Laos)
+        elseif ($currency == 'LAK') {
+            return '₭ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk PHP (Peso Filipina)
+        elseif ($currency == 'PHP') {
+            return '₱ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk SAR (Riyal Arab Saudi)
+        elseif ($currency == 'SAR') {
+            return '﷼ ' . formatLargeNumber($angka);
+        }
+
+        // Format untuk BHD (Dinar Bahrain)
+        elseif ($currency == 'BHD') {
+            return '.د.ب ' . formatLargeNumber($angka);
+        }
+
+        // Jika tidak ada format yang cocok
+        else {
+            return number_format($angka, 2, '.', ',');
+        }
+    }
+}
+
+
+if (!function_exists("convertCurrency")) {
+    function convertCurrency($amount, $to_currency)
+    {
+        // Pastikan to_currency dalam huruf kecil
+        $to_currency = strtolower($to_currency);
+
+        // API URL untuk mendapatkan nilai tukar IDR ke mata uang lain
+        $url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/idr.json";
+
+        // Ambil data kurs mata uang
+        $response = file_get_contents($url);
+        $data = json_decode($response, true);
+
+        // Mengecek apakah mata uang yang diminta ada dalam data (huruf kecil)
+        if (isset($data['idr'][$to_currency])) {
+            $rate = $data['idr'][$to_currency];
+            $converted_amount = $amount * $rate; // Menghitung jumlah yang dikonversi
+            return currencyFormat($converted_amount, strtoupper($to_currency)); // Format mata uang sesuai dengan jenisnya
+        } else {
+            return "Error: Invalid currency conversion."; // Jika mata uang tidak ditemukan
+        }
+    }
 }
 
 $sqlPenarikan;
@@ -23,7 +162,7 @@ if (isset($_SESSION["users"])) {
     $sqlPenarikan = mysqli_query($conn, $queryPenarikan);
 
 
-    $data = mysqli_fetch_assoc($sql);
+    $dataUser = mysqli_fetch_assoc($sql);
 }
 ?>
 <!DOCTYPE html>
@@ -61,14 +200,14 @@ if (isset($_SESSION["users"])) {
 
         <div class="desktop" style="overflow: auto;">
             <div class="text-white riwayat-penarikan">
-                <p>Riwayat Penarikan</p>
+                <p><?php echo translate(trim($dataUser["language"]), "Riwayat Penarikan") ?></p>
                 <table>
                     <thead class="bg-primary">
                         <tr>
-                            <th>Metode</th>
-                            <th>Nomor</th>
-                            <th>Nominal</th>
-                            <th>Status</th>
+                            <th><?php echo translate(trim($dataUser["language"]), "Metode") ?></th>
+                            <th><?php echo translate(trim($dataUser["language"]), "Nomor Rekening") ?></th>
+                            <th><?php echo translate(trim($dataUser["language"]), "Nominal") ?></th>
+                            <th><?php echo translate(trim($dataUser["language"]), "Status") ?></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,10 +215,10 @@ if (isset($_SESSION["users"])) {
                         while ($withdrawalData = mysqli_fetch_assoc($sqlPenarikan)) {
                         ?>
                             <tr>
-                                <td><?php echo $withdrawalData["method"] ?></td>
-                                <td><?php echo $withdrawalData["number_payment"] ?></td>
-                                <td><?php echo currencyFormatRupiah($withdrawalData["amount"]) ?></td>
-                                <td><?php echo $withdrawalData["status"] ?></td>
+                                <td><?php echo translate(trim($dataUser["language"]), $withdrawalData["method"]) ?></td>
+                                <td><?php echo translate(trim($dataUser["language"]), $withdrawalData["number_payment"])  ?></td>
+                                <td><?php echo convertCurrency($withdrawalData["amount"], $dataUser["nominal_type"]) ?></td>
+                                <td><?php echo translate(trim($dataUser["language"]), $withdrawalData["status"]) ?></td>
                             </tr>
                         <?php
                         }
@@ -90,8 +229,8 @@ if (isset($_SESSION["users"])) {
             </div>
 
             <p class="text-data">
-                <?php echo $data["quotes"] ?></p>
-            <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i> Admin Telegram</button>
+                <?php echo translate(trim($dataUser["language"]), $dataUser["quotes"]) ?></p>
+            <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i><?php echo translate(trim($dataUser["language"]), " Admin Telegram") ?></button>
         </div>
     </main>
 

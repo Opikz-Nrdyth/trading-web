@@ -116,7 +116,7 @@ main {
 
 .nominal div {
   position: absolute;
-  right: 15%;
+  right: 20%;
   top: 25px;
   color: black;
   opacity: 0.7;
@@ -246,4 +246,10 @@ thead tr {
   background-color: var(--fourd);
   color: white;
   border: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .nominal div {
+    right: 16%;
+  }
 }
