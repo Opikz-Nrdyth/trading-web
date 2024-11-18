@@ -1,2 +1,8 @@
-buat fitur update foto profile
-buat fitur setting untuk update foto sama nama perusahaan
+Untuk menggunaka fitur translate
+
+copy bagian sini
+
+<?php echo translate(trim($dataUser["language"]), "Isi text Apapun") ?>
+
+
+untuk menambah bank cek di bagian utils -> datasetbank.json

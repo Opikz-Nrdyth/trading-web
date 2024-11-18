@@ -6,8 +6,8 @@
 }
 
 .company-profile {
-  width: 85px;
-  height: 85px;
+  width: 80%;
+  height: auto;
   margin-top: 30px;
 }
 .company-profile img {

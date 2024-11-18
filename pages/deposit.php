@@ -45,7 +45,7 @@ $result = readSettings();
             <div>
                 <div class="container-company">
                     <div class="company-profile">
-                        <img src="<?php echo $result["logo"] ?>" alt="company profile">
+                        <img src="https://banner2.cleanpng.com/20180825/ook/kisspng-logo-brand-product-design-trademark-logos-fake-mock-up-illust-ss143531671-2-sra-so-1713948667494.webp" alt="company profile">
                     </div>
                 </div>
                 <div class="investment-capital">
