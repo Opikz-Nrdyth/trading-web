@@ -6,122 +6,33 @@ if (session_status() == PHP_SESSION_NONE) {
 if (!function_exists("currencyFormat")) {
     function currencyFormat($angka, $currency)
     {
-        // Fungsi untuk format angka besar (Billions, Millions, dll.)
-        if (!function_exists("formatLargeNumber")) {
+        // Fungsi format angka berdasarkan currency
+        $symbols = [
+            'IDR' => 'Rp ',
+            'USD' => '$',
+            'SGD' => 'S$',
+            'MYR' => 'RM ',
+            'GBP' => '£',
+            'THB' => '฿',
+            'VND' => '₫',
+            'BND' => 'B$',
+            'KHR' => '៛ ',
+            'LAK' => '₭ ',
+            'PHP' => '₱',
+            'SAR' => '﷼ ',
+            'BHD' => '.د.ب '
+        ];
 
-            function formatLargeNumber($angka)
-            {
-                if ($angka >= 1000000000) {
-                    $formatted = $angka / 1000000000;
-                    return ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Billion';
-                } elseif ($angka >= 1000000) {
-                    $formatted = $angka / 1000000;
-                    return ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Million';
-                } elseif ($angka >= 1000) {
-                    $formatted = $angka / 1000;
-                    return ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 0, '.', '')) . ' Thousand';
-                } else {
-                    return number_format($angka, 0, '.', ',');
-                }
-            }
-        }
+        // Simbol default jika tidak ditemukan
+        $symbol = $symbols[$currency] ?? '';
 
-        // Format untuk IDR (Rupiah)
-        if ($currency == 'IDR') {
-            if ($angka >= 1000000000000) {
-                $formatted = $angka / 1000000000000;
-                return "Rp " . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Triliun';
-            } elseif ($angka >= 1000000000) {
-                $formatted = $angka / 1000000000;
-                return "Rp " . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Miliard';
-            } elseif ($angka >= 1000000) {
-                $formatted = $angka / 1000000;
-                return "Rp " . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Juta';
-            } elseif ($angka >= 1000) {
-                $formatted = $angka / 1000;
-                return "Rp " . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 0, '.', '')) . ' Ribu';
-            } else {
-                return 'Rp ' . number_format($angka, 0, '.', ',');
-            }
-        }
+        // Format angka sesuai aturan internasional
+        $formatted = number_format($angka, 0, '.', '.');
 
-        // Format untuk USD (Dollar Amerika)
-        elseif ($currency == 'USD') {
-            if ($angka >= 1000000000) {
-                $formatted = $angka / 1000000000;
-                return '$' . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Billion';
-            } elseif ($angka >= 1000000) {
-                $formatted = $angka / 1000000;
-                return '$' . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Million';
-            } elseif ($angka >= 1000) {
-                $formatted = $angka / 1000;
-                return '$' . ($formatted == intval($formatted) ? intval($formatted) : number_format($formatted, 2, '.', '')) . ' Thousand';
-            } else {
-                return '$' . number_format($angka, 2, '.', ',');
-            }
-        }
-
-        // Format untuk SGD (Dollar Singapura)
-        elseif ($currency == 'SGD') {
-            return 'S$ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk MYR (Ringgit Malaysia)
-        elseif ($currency == 'MYR') {
-            return 'RM ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk GBP (Poundsterling Inggris)
-        elseif ($currency == 'GBP') {
-            return '£ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk THB (Baht Thailand)
-        elseif ($currency == 'THB') {
-            return '฿ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk VND (Dong Vietnam)
-        elseif ($currency == 'VND') {
-            return '₫ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk BND (Dollar Brunei Darusalam)
-        elseif ($currency == 'BND') {
-            return 'B$ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk KHR (Riel Kamboja)
-        elseif ($currency == 'KHR') {
-            return '៛ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk LAK (Kip Laos)
-        elseif ($currency == 'LAK') {
-            return '₭ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk PHP (Peso Filipina)
-        elseif ($currency == 'PHP') {
-            return '₱ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk SAR (Riyal Arab Saudi)
-        elseif ($currency == 'SAR') {
-            return '﷼ ' . formatLargeNumber($angka);
-        }
-
-        // Format untuk BHD (Dinar Bahrain)
-        elseif ($currency == 'BHD') {
-            return '.د.ب ' . formatLargeNumber($angka);
-        }
-
-        // Jika tidak ada format yang cocok
-        else {
-            return number_format($angka, 2, '.', ',');
-        }
+        return $symbol . $formatted;
     }
 }
+
 
 
 if (!function_exists("convertCurrency")) {
@@ -185,7 +96,7 @@ if (!isset($_SESSION["users"])) {
             <?php
             $currency = $data["nominal_type"]; // Mata uang yang dipilih oleh pengguna (misalnya 'IDR' atau 'USD')
             echo convertCurrency($data["capital_amount"],  $currency);
-            ?> <span><i class="fa-solid fa-wallet"></i></span>
+            ?>
         </a>
         <a href="profile" class="foto-profile">
             <img src="<?php echo $data["profile_picture"] ?>" alt="foto profile">
