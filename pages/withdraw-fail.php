@@ -49,42 +49,44 @@ $dataUser = mysqli_fetch_assoc($sql);
             </div>
         </div>
 
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <div class="tradingview-widget-copyright"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                {
-                    "symbols": [{
-                            "proName": "FOREXCOM:SPXUSD",
-                            "title": "S&P 500 Index"
-                        },
-                        {
-                            "proName": "FOREXCOM:NSXUSD",
-                            "title": "US 100 Cash CFD"
-                        },
-                        {
-                            "proName": "FX_IDC:EURUSD",
-                            "title": "EUR to USD"
-                        },
-                        {
-                            "proName": "BITSTAMP:BTCUSD",
-                            "title": "Bitcoin"
-                        },
-                        {
-                            "proName": "BITSTAMP:ETHUSD",
-                            "title": "Ethereum"
-                        }
-                    ],
-                    "showSymbolLogo": true,
-                    "isTransparent": false,
-                    "displayMode": "adaptive",
-                    "colorTheme": "dark",
-                    "locale": "id"
-                }
-            </script>
+        <div id="running">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <div class="tradingview-widget-copyright"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                    {
+                        "symbols": [{
+                                "proName": "FOREXCOM:SPXUSD",
+                                "title": "S&P 500 Index"
+                            },
+                            {
+                                "proName": "FOREXCOM:NSXUSD",
+                                "title": "US 100 Cash CFD"
+                            },
+                            {
+                                "proName": "FX_IDC:EURUSD",
+                                "title": "EUR to USD"
+                            },
+                            {
+                                "proName": "BITSTAMP:BTCUSD",
+                                "title": "Bitcoin"
+                            },
+                            {
+                                "proName": "BITSTAMP:ETHUSD",
+                                "title": "Ethereum"
+                            }
+                        ],
+                        "showSymbolLogo": true,
+                        "isTransparent": false,
+                        "displayMode": "adaptive",
+                        "colorTheme": "dark",
+                        "locale": "id"
+                    }
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
         </div>
-        <!-- TradingView Widget END -->
 
         <nav class="content">
             <p><?php echo $dataUser["quotes_withdaw_fail"] ?></p>

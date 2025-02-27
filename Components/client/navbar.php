@@ -41,11 +41,14 @@ if (!function_exists("convertCurrency")) {
         // Pastikan to_currency dalam huruf kecil
         $to_currency = strtolower($to_currency);
 
-        // API URL untuk mendapatkan nilai tukar IDR ke mata uang lain
         $url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/idr.json";
 
-        // Ambil data kurs mata uang
-        $response = file_get_contents($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        curl_close($ch);
+
         $data = json_decode($response, true);
 
         // Mengecek apakah mata uang yang diminta ada dalam data (huruf kecil)

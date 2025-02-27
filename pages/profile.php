@@ -53,8 +53,11 @@ if (!function_exists("convertCurrency")) {
         // API URL untuk mendapatkan nilai tukar IDR ke mata uang lain
         $url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/idr.json";
 
-        // Ambil data kurs mata uang
-        $response = file_get_contents($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $response = curl_exec($ch);
+        curl_close($ch);
         $data = json_decode($response, true);
 
         // Mengecek apakah mata uang yang diminta ada dalam data (huruf kecil)
@@ -106,42 +109,44 @@ if (isset($_POST["logout"])) {
             </div>
         </div>
 
-        <!-- TradingView Widget BEGIN -->
-        <div class="tradingview-widget-container">
-            <div class="tradingview-widget-container__widget"></div>
-            <div class="tradingview-widget-copyright"></div>
-            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-                {
-                    "symbols": [{
-                            "proName": "FOREXCOM:SPXUSD",
-                            "title": "S&P 500 Index"
-                        },
-                        {
-                            "proName": "FOREXCOM:NSXUSD",
-                            "title": "US 100 Cash CFD"
-                        },
-                        {
-                            "proName": "FX_IDC:EURUSD",
-                            "title": "EUR to USD"
-                        },
-                        {
-                            "proName": "BITSTAMP:BTCUSD",
-                            "title": "Bitcoin"
-                        },
-                        {
-                            "proName": "BITSTAMP:ETHUSD",
-                            "title": "Ethereum"
-                        }
-                    ],
-                    "showSymbolLogo": true,
-                    "isTransparent": false,
-                    "displayMode": "adaptive",
-                    "colorTheme": "dark",
-                    "locale": "id"
-                }
-            </script>
+        <div id="running">
+            <!-- TradingView Widget BEGIN -->
+            <div class="tradingview-widget-container">
+                <div class="tradingview-widget-container__widget"></div>
+                <div class="tradingview-widget-copyright"></div>
+                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                    {
+                        "symbols": [{
+                                "proName": "FOREXCOM:SPXUSD",
+                                "title": "S&P 500 Index"
+                            },
+                            {
+                                "proName": "FOREXCOM:NSXUSD",
+                                "title": "US 100 Cash CFD"
+                            },
+                            {
+                                "proName": "FX_IDC:EURUSD",
+                                "title": "EUR to USD"
+                            },
+                            {
+                                "proName": "BITSTAMP:BTCUSD",
+                                "title": "Bitcoin"
+                            },
+                            {
+                                "proName": "BITSTAMP:ETHUSD",
+                                "title": "Ethereum"
+                            }
+                        ],
+                        "showSymbolLogo": true,
+                        "isTransparent": false,
+                        "displayMode": "adaptive",
+                        "colorTheme": "dark",
+                        "locale": "id"
+                    }
+                </script>
+            </div>
+            <!-- TradingView Widget END -->
         </div>
-        <!-- TradingView Widget END -->
 
         <nav class="container-data desktop">
             <div class="bg-image-profile">

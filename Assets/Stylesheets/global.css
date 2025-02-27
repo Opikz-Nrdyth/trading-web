@@ -191,6 +191,19 @@
   font-size: 0.5em;
 }
 
+.tradingview-widget-container {
+  margin-bottom: 20px !important;
+}
+
+.tradingview-widget-container {
+  width: 100% !important;
+}
+
+#running .tradingview-widget-container {
+  width: 100% !important;
+  height: 60px !important;
+}
+
 main {
   margin-top: 70px;
 }
