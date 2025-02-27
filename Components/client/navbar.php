@@ -84,19 +84,23 @@ if (!isset($_SESSION["users"])) {
         <img src="<?php echo $result["logo"] ?>" alt="Company Logo" class="logo-company">
     </div>
     <div class="right-nav">
-        <div class="text-white bg-secondary type-balance"><?php echo translate(trim($dataUser["language"]), "REAL") ?>
-            <!-- REAL <i class="fa-solid fa-caret-down"></i> -->
-            <!-- <nav class="select-options">
+        <!-- <div class="text-white bg-secondary type-balance"><?php echo translate(trim($dataUser["language"]), "REAL") ?>
+            REAL <i class="fa-solid fa-caret-down"></i>
+            <nav class="select-options">
                 <nav>DEMO</nav>
                 <nav>REAL</nav>
-            </nav> -->
-        </div>
+            </nav>
+        </div> -->
 
-        <a href="withdraw" class="balance text-white bg-secondary">
+        <a href="withdraw" class="balance-container text-white">
             <?php
             $currency = $data["nominal_type"]; // Mata uang yang dipilih oleh pengguna (misalnya 'IDR' atau 'USD')
             echo convertCurrency($data["capital_amount"],  $currency);
             ?>
+
+            <div class="text-white bg-secondary type-balance">
+                REAL
+            </div>
         </a>
         <a href="profile" class="foto-profile">
             <img src="<?php echo $data["profile_picture"] ?>" alt="foto profile">

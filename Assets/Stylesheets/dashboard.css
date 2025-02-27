@@ -1,7 +1,7 @@
 @import url("./baseColor.css");
 
 .table-mobile {
-  max-height: calc(100vh - 390px);
+  max-height: calc(100vh - 412px);
   overflow: auto;
 }
 
@@ -179,6 +179,76 @@ tr td {
   text-align: center;
   font-size: 0.9em;
   margin-top: 20px;
+}
+
+.balance-amount {
+  background-color: #1c2948;
+  color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  margin-left: 2.5%;
+  overflow: hidden;
+  border-radius: 10px;
+  min-height: 150px;
+  height: fit-content;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 15px 8px;
+}
+
+.balance-amount::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("/Assets/Images/line-chart.png");
+  opacity: 0.1;
+  /* background-color: #1c2948; */
+  z-index: -1;
+}
+
+.balance-amount .users {
+  margin-left: 30px;
+}
+
+.balance-amount .users p:nth-child(1) {
+  font-size: 1.2em;
+  color: #0088cc;
+}
+
+.balance-amount .users p:nth-child(2) {
+  font-size: 1.2em;
+  color: #28a745;
+  font-weight: bolder;
+}
+
+.balance-amount .amount {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: fit-content;
+}
+
+.balance-amount .amount div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.balance-amount .amount div p:nth-child(1) {
+  font-size: 1.5em;
+  font-weight: bolder;
+}
+
+.balance-amount .amount .invt-amount {
+  font-size: 1em;
+  border-bottom: 2px solid #0088cc;
+  padding-bottom: 3px;
 }
 
 @media only screen and (max-width: 600px) {

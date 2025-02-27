@@ -2,6 +2,15 @@ let assetMap = {};
 let nameCoin = "";
 let host = window.location.origin;
 
+document.addEventListener("DOMContentLoaded", function (event) {
+  const tickers = document.querySelectorAll(".tradingview-widget-container");
+  if (tickers) {
+    setTimeout(() => {
+      tickers[0].setAttribute("style", "width: 100%; height: fit-content;");
+    }, 1000);
+  }
+});
+
 // Fungsi untuk mengambil data dari API dan memperbarui assetMap dan nameCoin
 async function updateCryptoAssets() {
   try {

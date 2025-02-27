@@ -48,14 +48,14 @@ if (!function_exists("currencyFormat")) {
     }
 }
 
-function convertUsdToIdr($amount) // Fungsi buat melihat kurs dollar saat ini dan mengubah IDR ke USD
+function convertUsdToIdr($amount, $currencyType) // Fungsi buat melihat kurs dollar saat ini dan mengubah IDR ke USD
 {
-    $url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/usd.json";
+    $url = "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/$currencyType.json";
 
     $response = file_get_contents($url);
     $data = json_decode($response, true);
 
-    $rate_idr_to_usd = $data['usd']['idr'];
+    $rate_idr_to_usd = $data[$currencyType]['idr'];
 
     // Menghitung konversi ke USD
     $amount_usd = $amount * $rate_idr_to_usd;
@@ -107,32 +107,30 @@ if (isset($_POST["changeWithdraw"])) {
     $userId = $_SESSION["users"];
 
     if ($dataUser["nominal_type"] != "IDR") {
-        // $amount = convertUsdToIdr($amount);
-        header("location:/withdraw-fail");
-    } else {
-        sleep(2);
-        if ($amount <= $dataUser["capital_amount"]) {
-            $query = "INSERT INTO `withdrawals`(`id`, `user_id`, `nama_payment`, `method`, `number_payment`, `amount`, `status`) VALUES ('$id', '$userId', '$nama', '$method', '$nomor', '$amount', 'pending')";
-            $sqlChangePenarikan = mysqli_query($conn, $query);
+        $amount = convertUsdToIdr($amount, strtolower($dataUser["nominal_type"]));
+    }
+    sleep(2);
+    if ($amount <= $dataUser["capital_amount"]) {
+        $query = "INSERT INTO `withdrawals`(`id`, `user_id`, `nama_payment`, `method`, `number_payment`, `amount`, `status`) VALUES ('$id', '$userId', '$nama', '$method', '$nomor', '$amount', 'pending')";
+        $sqlChangePenarikan = mysqli_query($conn, $query);
 
-            if ($sqlChangePenarikan) {
-                $totalAmount = $dataUser["capital_amount"] - $amount;
-                $queryUpdateAmount = "UPDATE `users` SET `capital_amount`='$totalAmount' WHERE id='$userId'";
-                $sqlUser = mysqli_query($conn, $queryUpdateAmount);
-                if ($sqlUser) {
-                    header("location:/riwayatpenarikan");
-                } else {
-                    echo "Error updating user capital amount";
-                }
+        if ($sqlChangePenarikan) {
+            $totalAmount = $dataUser["capital_amount"] - $amount;
+            $queryUpdateAmount = "UPDATE `users` SET `capital_amount`='$totalAmount' WHERE id='$userId'";
+            $sqlUser = mysqli_query($conn, $queryUpdateAmount);
+            if ($sqlUser) {
+                header("location:/riwayatpenarikan");
+            } else {
+                echo "Error updating user capital amount";
             }
-        } else {
-?>
-            <script>
-                alert("Jumlah Uang Tidak Mencukupi")
-                document.querySelector(".conatiner-loader").setAttribute("style", "display:none");
-            </script>
-<?php
         }
+    } else {
+?>
+        <script>
+            alert("Jumlah Uang Tidak Mencukupi")
+            document.querySelector(".conatiner-loader").setAttribute("style", "display:none");
+        </script>
+<?php
     }
 }
 ?>
@@ -164,57 +162,99 @@ if (isset($_POST["changeWithdraw"])) {
 
     </div>
     <main>
-        <div class="ticker-container">
+        <div class="ticker-container display-none">
             <div class="ticker-wrap">
                 <div class="ticker">
 
                 </div>
             </div>
         </div>
+
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [{
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500 Index"
+                        },
+                        {
+                            "proName": "FOREXCOM:NSXUSD",
+                            "title": "US 100 Cash CFD"
+                        },
+                        {
+                            "proName": "FX_IDC:EURUSD",
+                            "title": "EUR to USD"
+                        },
+                        {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                        },
+                        {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                        }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "dark",
+                    "locale": "id"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
         <div class="conatiner-loader">
             <div class="custom-loader"></div>
         </div>
         <div class="desktop" style="overflow: auto;">
             <div class="balance-amount">
-                <p><?php echo translate(trim($dataUser["language"]), "Uang Anda") ?></p>
-                <div>
-                    <p><?php echo convertCurrency($dataUser["capital_amount"], $dataUser["nominal_type"]) ?></p>
-                    <p><?php echo translate(trim($dataUser["language"]), "Proses penarikan berlangsung 1-3 hari kerja") ?></p>
+                <div class="blc">
+                    <div class="logo">
+                        <p class="wallet-logo"><i class="fa-solid fa-wallet"></i></p>
+                        <p>Your Balance</p>
+                    </div>
+                    <div class="amount">
+                        <p><?php echo convertCurrency($dataUser["capital_amount"], $dataUser["nominal_type"]) ?></p>
+                    </div>
                 </div>
+                <p class="txt-alert">The withdrawal process takes 1-3 working days</p>
             </div>
 
             <form method="post" action="" class="container-pembayaran">
-                <p class="title"><?php echo translate(trim($dataUser["language"]), "Metode Pembayaran") ?></p>
+                <p class="title">Payment Method</p>
                 <div class="search-container">
                     <input type="text"
                         name="method"
                         required
                         class="search-input"
-                        placeholder="<?php echo translate(trim($dataUser["language"]), "Pilih Bank atau E-Wallet") ?>"
+                        placeholder="Select Bank or E-Wallet"
                         id="searchInput"
                         oninput="filterItems()"
                         onfocus="showDropdown()"
                         onblur="hideDropdown()">
                     <div class="dropdown" id="dropdown"></div>
                 </div>
-                <p class="title"><?php echo translate(trim($dataUser["language"]), "Nama Pemilik") ?></p>
-                <input type="text" required name="nama_payment" placeholder="<?php echo translate(trim($dataUser["language"]), "Masukan Nama Pemilik") ?>">
+                <p class="title">User Name</p>
+                <input type="text" required name="nama_payment" placeholder="Enter the Owner's Name">
 
-                <p class="title"><?php echo translate(trim($dataUser["language"]), "Nomer Rekening / E-Wallet") ?></p>
-                <input class="input" required name="number_payment" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="<?php echo translate(trim($dataUser["language"]), "Masukan Nomer Rekening / E-Wallet") ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                <p class="title">Account Number / E-Wallet</p>
+                <input class="input" required name="number_payment" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter Account Number / E-Wallet" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
 
                 <div class="nominal">
-                    <p class="title"><?php echo translate(trim($dataUser["language"]), "Nominal Penarikan") ?></p>
-                    <input class="input" id="amount" required name="amount" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="<?php echo translate(trim($dataUser["language"]), "Masukan Nominal Penarikan") ?>" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                    <p class="title">Withdrawal Amount</p>
+                    <input class="input" id="amount" required name="amount" type="text" inputmode="numeric" pattern="[0-9]*" placeholder="Enter the Withdrawal Amount" oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                     <div onclick="allAmount(`<?php echo preg_replace('/\D/', '', str_replace('$', '', convertCurrency($dataUser['capital_amount'], $dataUser['nominal_type']))) ?>`)">
-                        <?php echo translate(trim($dataUser["language"]), "Semua") ?>
+                        All
                     </div>
 
                 </div>
-                <button class="btn-process" type="submit" name="changeWithdraw" onclick="proseswithdraw()"><?php echo translate(trim($dataUser["language"]), "Proses") ?></button>
+                <button class="btn-process" type="submit" name="changeWithdraw" onclick="proseswithdraw()">Process</button>
 
             </form>
-            <button class="btn-riwayat"><?php echo translate(trim($dataUser["language"]), "Cek Riwayat Transaksi") ?></button>
+            <button class="btn-riwayat">Check Transaction History</button>
         </div>
 
 

@@ -60,7 +60,7 @@ $result = fetchData();
                         <th>UserID</th>
                         <th>Nama</th>
                         <th>Metode</th>
-                        <th>Jumlah</th>
+                        <th>Jumlah (Rp)</th>
                         <th>Status</th>
                         <th>Tanggal Request</th>
                         <th>Tanggal Confirmasi</th>

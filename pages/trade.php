@@ -83,6 +83,7 @@ function convertCurrencyAmount($amount, $to_currency)
     // Mengecek apakah mata uang yang diminta ada dalam data (huruf kecil)
     if (isset($data['idr'][$to_currency])) {
         $rate = $data['idr'][$to_currency];
+
         $converted_amount = $amount * $rate; // Menghitung jumlah yang dikonversi
         return currencyFormat($converted_amount, strtoupper($to_currency)); // Format mata uang sesuai dengan jenisnya
     } else {
@@ -116,40 +117,78 @@ function convertCurrencyAmount($amount, $to_currency)
 
     ?>
     <main>
-        <div class="ticker-container">
+        <div class="ticker-container display-none">
             <div class="ticker-wrap">
                 <div class="ticker">
 
                 </div>
             </div>
         </div>
+
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [{
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500 Index"
+                        },
+                        {
+                            "proName": "FOREXCOM:NSXUSD",
+                            "title": "US 100 Cash CFD"
+                        },
+                        {
+                            "proName": "FX_IDC:EURUSD",
+                            "title": "EUR to USD"
+                        },
+                        {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                        },
+                        {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                        }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "dark",
+                    "locale": "id"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+
         <p class="account-type">
             <span class="<?php echo ($dataUser["account_status"] == 'active') ? 'dots-active' : 'dots-inactive'; ?>">
                 <i class="fa-solid fa-circle"></i>
             </span>
             <?php if ($dataUser["account_status"] == "active"):
-                echo translate(trim($dataUser["language"]), "Akun Anda Telah Aktif");
+                echo "Your Account is Active";
             else:
-                echo translate(trim($dataUser["language"]), "Akun Anda Belum Aktif");
+                echo "Your account is not active yet";
             endif; ?>
         </p>
 
         <div class="binance">
             <div class="saldo">
-                <p><?php echo translate(trim($dataUser["language"]), "Saldo Awal") ?></p>
+                <p>Beginning balance</p>
                 <p><?php echo convertCurrencyAmount($dataUser["saldo_awal"], $dataUser["nominal_type"]) ?></p>
             </div>
             <div class="saldo">
-                <p><?php echo translate(trim($dataUser["language"]), "Saldo Tambahan") ?></p>
+                <p>Additional Balance</p>
                 <p><?php echo convertCurrencyAmount($dataUser["saldo_tambahan"], $dataUser["nominal_type"]) ?></p>
             </div>
             <div class="saldo">
-                <p><?php echo translate(trim($dataUser["language"]), "Bonus Member") ?></p>
+                <p>Member Bonuses</p>
                 <p><?php echo convertCurrencyAmount($dataUser["bonus_member"], $dataUser["nominal_type"]) ?></p>
             </div>
             <div class="saldo">
-                <p><?php echo translate(trim($dataUser["language"]), "Saldo Akhir") ?></p>
-                <p><?php echo convertCurrencyAmount($dataUser["saldo_akhir"], $dataUser["nominal_type"]) ?></p>
+                <p>Ending balance</p>
+                <p><?php echo convertCurrencyAmount($dataUser["capital_amount"], $dataUser["nominal_type"]) ?></p>
             </div>
         </div>
 

@@ -148,7 +148,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["simpansettings"])) {
     <script>
         setTimeout(() => {
             document.querySelector(".alert").remove()
-        }, 3000);
+        }, 10000);
     </script>
     <script src="/Assets/Javascript/responsiveAdmin.js"></script>
 </body>

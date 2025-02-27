@@ -33,7 +33,7 @@ $result = readSettings();
 
     ?>
     <main>
-        <div class="ticker-container">
+        <div class="ticker-container display-none">
             <div class="ticker-wrap">
                 <div class="ticker">
 
@@ -41,20 +41,71 @@ $result = readSettings();
             </div>
         </div>
 
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [{
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500 Index"
+                        },
+                        {
+                            "proName": "FOREXCOM:NSXUSD",
+                            "title": "US 100 Cash CFD"
+                        },
+                        {
+                            "proName": "FX_IDC:EURUSD",
+                            "title": "EUR to USD"
+                        },
+                        {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                        },
+                        {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                        }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "dark",
+                    "locale": "id"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+
         <nav class="desktop">
             <div>
-                <div class="container-company">
-                    <div class="company-profile">
-                        <img src="https://banner2.cleanpng.com/20180825/ook/kisspng-logo-brand-product-design-trademark-logos-fake-mock-up-illust-ss143531671-2-sra-so-1713948667494.webp" alt="company profile">
-                    </div>
+                <!-- TradingView Widget BEGIN -->
+                <div class="tradingview-widget-container">
+                    <div class="tradingview-widget-container__widget"></div>
+                    <div class="tradingview-widget-copyright"></div>
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-technical-analysis.js" async>
+                        {
+                            "interval": "1m",
+                            "width": 425,
+                            "isTransparent": false,
+                            "height": 450,
+                            "symbol": "COINBASE:BTCUSD",
+                            "showIntervalTabs": true,
+                            "displayMode": "single",
+                            "locale": "en",
+                            "colorTheme": "dark"
+                        }
+                    </script>
                 </div>
+                <!-- TradingView Widget END -->
                 <div class="investment-capital">
-                    <h3><?php echo translate(trim($dataUser["language"]), "Investment Capital Deposit") ?></h3>
-                    <p><?php echo translate(trim($dataUser["language"]), "Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, earum incidunt! Illo voluptas culpa molestias est alias. Eum, inventore! Incidunt nemo fugiat earum, illo placeat repellendus nulla ad neque in?") ?></p>
+                    <h3>Investment Capital Deposit</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores, earum incidunt! Illo voluptas culpa molestias est alias. Eum, inventore! Incidunt nemo fugiat earum, illo placeat repellendus nulla ad neque in?</p>
                 </div>
             </div>
-            <div>
-                <button class="telegram-buttons" onclick="window.location.href = 'klikdisini'"> <?php echo translate(trim($dataUser["language"]), "Klik Disini") ?></button>
+            <div style="padding-bottom: 100px;">
+                <button class="telegram-buttons" onclick="window.location.href = 'klikdisini'"> <i class="fa-brands fa-telegram"></i> Telegram</button>
             </div>
         </nav>
 

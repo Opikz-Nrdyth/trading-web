@@ -98,13 +98,50 @@ if (isset($_POST["logout"])) {
 
     ?>
     <main>
-        <div class="ticker-container">
+        <div class="ticker-container display-none">
             <div class="ticker-wrap">
                 <div class="ticker">
 
                 </div>
             </div>
         </div>
+
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [{
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500 Index"
+                        },
+                        {
+                            "proName": "FOREXCOM:NSXUSD",
+                            "title": "US 100 Cash CFD"
+                        },
+                        {
+                            "proName": "FX_IDC:EURUSD",
+                            "title": "EUR to USD"
+                        },
+                        {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                        },
+                        {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                        }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "dark",
+                    "locale": "id"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
 
         <nav class="container-data desktop">
             <div class="bg-image-profile">
@@ -115,51 +152,51 @@ if (isset($_POST["logout"])) {
                     <img src="<?php echo $dataUser["profile_picture"] ?>" alt="Foto Profile">
                 </div>
                 <p class="nama"><?php echo $dataUser["name"] ?></p>
-                <p class="member"><?php echo translate(trim($dataUser["language"]), "Member Terdaftar") ?><span class="check"><i class="fa-solid fa-circle-check"></i></span></p>
+                <p class="member">Registered Member<span class="check"><i class="fa-solid fa-circle-check"></i></span></p>
             </div>
 
             <div class="data-diri text-white">
 
                 <div class="item">
-                    <p class="title-key"><i class="fa-solid fa-user-tie"></i> <?php echo translate(trim($dataUser["language"]), "Nama Lengkap:") ?></p>
+                    <p class="title-key"><i class="fa-solid fa-user-tie"></i> Full Name:</p>
                     <p class="value"><?php echo $dataUser["name"] ?></p>
                     <hr>
                 </div>
                 <div class="item">
-                    <p class="title-key"><i class="fa-solid fa-location-dot"></i> <?php echo translate(trim($dataUser["language"]), "Alamat:") ?></p>
+                    <p class="title-key"><i class="fa-solid fa-location-dot"></i> Address:</p>
                     <p class="value"><?php echo $dataUser["address"] ?></p>
 
                     <hr>
                 </div>
                 <div class="item">
-                    <p class="title-key"><i class="fa-solid fa-envelope"></i> <?php echo translate(trim($dataUser["language"]), "Email:") ?></p>
+                    <p class="title-key"><i class="fa-solid fa-envelope"></i> Email:</p>
                     <p class="value"><?php echo $dataUser["email"] ?></p>
                     <hr>
                 </div>
                 <div class="item">
-                    <p class="title-key"><i class="fa-solid fa-venus-mars"></i> <?php echo translate(trim($dataUser["language"]), "Jenis Kelamin:") ?></p>
+                    <p class="title-key"><i class="fa-solid fa-venus-mars"></i> Gander:</p>
                     <p class="value"><?php echo $dataUser["gender"] ?></p>
                     <hr>
                 </div>
                 <div class="item">
-                    <p class="title-key"><i class="fa-solid fa-briefcase"></i> <?php echo translate(trim($dataUser["language"]), "Pekerjaan") ?></p>
+                    <p class="title-key"><i class="fa-solid fa-briefcase"></i> Work:</p>
                     <p class="value"><?php echo $dataUser["work"] ?></p>
                     <hr>
                 </div>
                 <div class="item">
-                    <p class="title-key"><i class="fa-solid fa-phone"></i> <?php echo translate(trim($dataUser["language"]), "Nomor Telephone") ?></p>
+                    <p class="title-key"><i class="fa-solid fa-phone"></i> Phone Number:</p>
                     <p class="value"><?php echo $dataUser["phone_number"] ?></p>
                     <hr>
                 </div>
                 <div class="item">
-                    <p class="title-key"><i class="fa-solid fa-money-check-dollar"></i> <?php echo translate(trim($dataUser["language"]), "Jumlah Modal") ?></p>
+                    <p class="title-key"><i class="fa-solid fa-money-check-dollar"></i> Amount of Capital:</p>
                     <p class="value"><?php echo convertCurrency(intval($dataUser["capital_amount"]), $dataUser["nominal_type"]) ?></p>
                     <hr>
                 </div>
 
                 <form method="post" action="">
                     <button class="btn-logout" type="submit" name="logout">
-                        <i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> <?php echo translate(trim($dataUser["language"]), "LOGOUT") ?>
+                        <i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i> LOGOUT
                     </button>
                 </form>
             </div>

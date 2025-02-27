@@ -10,7 +10,7 @@
 }
 
 #tradingview-widget-container div {
-  height: calc(90vh - 180px) !important;
+  height: calc(90vh - 300px) !important;
 }
 
 .dots-active {

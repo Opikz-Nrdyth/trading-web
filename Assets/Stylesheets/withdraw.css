@@ -19,14 +19,23 @@ main {
 
 .balance-amount {
   width: 90%;
-  height: 150px;
+  height: 160px;
   margin-left: 5%;
   border-radius: 12px;
   background-color: var(--secondary);
   margin-top: 30px;
   color: white;
+  border: 1px solid white;
+  padding: 2px 2px;
 }
-.balance-amount p {
+.blc {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  height: 80%;
+}
+/* .balance-amount p {
   padding: 15px 0px 0px 15px;
 }
 .balance-amount div {
@@ -34,17 +43,28 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}  */
+
+.blc .logo p {
+  font-size: 1em;
+  margin: 5px 0px;
+  text-align: center;
 }
 
-.balance-amount div p:nth-child(1) {
-  font-size: 2em;
+.blc .logo .wallet-logo {
+  font-size: 2.5em;
+}
+
+.blc .amount p {
+  font-size: 1.8em;
   font-weight: bolder;
 }
 
-.balance-amount div p:nth-child(2) {
+.balance-amount .txt-alert {
   font-size: 0.8em;
-  margin-top: -10px;
   opacity: 0.6;
+  text-align: center;
+  width: 100%;
 }
 
 .title {
@@ -57,11 +77,9 @@ main {
   height: fit;
   margin-top: 10px;
   padding-bottom: 10px;
-}
-
-.container-pembayaran {
-  margin-left: 10%;
+  margin-left: 5%;
   color: white;
+  width: 85%;
 }
 
 .search-container {
@@ -69,8 +87,8 @@ main {
 }
 
 .container-pembayaran input {
-  width: 80%;
-  height: 30px;
+  width: 100%;
+  height: 45px;
   border: none;
   outline: none;
   border-radius: 4px;
@@ -116,8 +134,8 @@ main {
 
 .nominal div {
   position: absolute;
-  right: 20%;
-  top: 25px;
+  right: 0px;
+  top: 35px;
   color: black;
   opacity: 0.7;
   font-size: 1.1em;
@@ -125,9 +143,9 @@ main {
 }
 
 .btn-process {
-  width: 60%;
-  height: 30px;
-  margin-left: 15%;
+  width: 70%;
+  height: 45px;
+  margin-left: 18%;
   margin-top: 20px;
   border: none;
   background-color: var(--secondary);
@@ -240,16 +258,19 @@ thead tr {
 .btn-riwayat {
   width: 60%;
   margin-left: 20%;
-  border-radius: 6px;
+  border-radius: 4px;
   margin-top: 10px;
   padding: 7px 0px;
   background-color: var(--fourd);
   color: white;
   border: none;
+  margin-bottom: 50px;
+  height: 45px;
+  font-size: 1em;
 }
 
 @media only screen and (max-width: 768px) {
   .nominal div {
-    right: 16%;
+    right: 0px;
   }
 }

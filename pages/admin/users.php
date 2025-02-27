@@ -262,35 +262,68 @@ $result = fetchData();
             <div class="modal-content">
                 <p>Tambah Users</p>
                 <form action="" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="userId" placeholder="user ID">
-                    <input type="text" name="name" placeholder="Nama Lengkap">
-                    <select name="role">
+                    <input type="hidden" id="user" name="userId" placeholder="user ID">
+
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" id="name" placeholder="Nama Lengkap">
+
+                    <label for="role">Role</label>
+                    <select name="role" id="role">
                         <option value="client">Client</option>
                         <option value="admin">Admin</option>
                     </select>
-                    <select name="gander">
+
+                    <label for="gander">Gander</label>
+                    <select name="gander" id="gander">
                         <option value="laki-laki">Laki-laki</option>
                         <option value="perempuan">Perempuan</option>
                     </select>
 
-                    <input type="number" name="phone_number" placeholder="Nomer Telephone">
-                    <input type="text" name="work" placeholder="Pekerjaan">
-                    <textarea name="address" placeholder="Masukan Alamat"></textarea>
-                    <input type="email" name="email" placeholder="Email">
-                    <input type="text" name="password" placeholder="Password">
-                    <input type="number" name="capital_amount" placeholder="Saldo">
-                    <input type="number" name="saldo_awal" placeholder="Saldo Awal">
-                    <input type="number" name="saldo_tambahan" placeholder="Saldo Tambahan">
-                    <input type="number" name="bonus_member" placeholder="Bonus Member">
-                    <input type="number" name="saldo_akhir" placeholder="Saldo Akhir">
-                    <textarea name="quotes" placeholder="quotes di penarikan"></textarea>
-                    <textarea name="quotes_w_fail" placeholder="quotes di withdraw-fail"></textarea>
-                    <select name="status_account">
+                    <label for="phone_number">Phone Number</label>
+                    <input type="number" id="phone_number" name="phone_number" placeholder="Nomer Telephone">
+
+                    <label for="work">Work</label>
+                    <input type="text" id="work" name="work" placeholder="Pekerjaan">
+
+                    <label for="address">Address</label>
+                    <textarea name="address" id="address" placeholder="Masukan Alamat"></textarea>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email">
+
+                    <label for="password">Password</label>
+                    <input type="text" id="password" name="password" placeholder="Password">
+
+                    <label for="capital_amount">Capital Amount</label>
+                    <input type="number" id="capital_amount" name="capital_amount" placeholder="Saldo">
+
+                    <label for="saldo_awal">Beginning balance</label>
+                    <input type="number" id="saldo_awal" name="saldo_awal" placeholder="Saldo Awal">
+
+                    <label for="saldo_tambahan">Additional Balance</label>
+                    <input type="number" id="saldo_tambahan" name="saldo_tambahan" placeholder="Saldo Tambahan">
+
+                    <label for="bonus_member">Member Bonus</label>
+                    <input type="number" id="bonus_member" name="bonus_member" placeholder="Bonus Member">
+
+                    <label for="saldo_akhir">Ending balance</label>
+                    <input type="number" id="saldo_akhir" name="saldo_akhir" placeholder="Saldo Akhir">
+
+                    <label for="withdrawal_quotes">Withdrawal Quotes</label>
+                    <textarea name="quotes" id="withdrawal_quotes" placeholder="quotes di penarikan"></textarea>
+
+                    <label for="quotes_w_fail">Withdrawal Quotes Fail</label>
+                    <textarea name="quotes_w_fail" id="quotes_w_fail" placeholder="quotes di withdraw-fail"></textarea>
+
+                    <label for="status_account">Status Account</label>
+                    <select name="status_account" id="status_account">
                         <option value="notactive">----Status Akun----</option>
                         <option value="notactive">Tidak Aktif</option>
                         <option value="active">Aktif</option>
                     </select>
-                    <select name="nominal_type">
+
+                    <label for="nominal_type">Nominal Type</label>
+                    <select name="nominal_type" id="nominal_type">
                         <option value="IDR">----Tipe Nominal----</option>
                         <option value="IDR">Rupiah Indonesia (IDR)</option>
                         <option value="USD">Dollar Amerika (USD)</option>
@@ -307,7 +340,9 @@ $result = fetchData();
                         <option value="BHD">Dinar Bahrain (BHD)</option>
 
                     </select>
-                    <select name="language">
+
+                    <label for="language">Language Interface</label>
+                    <select name="language" id="language">
                         <option value="id">Bahasa Indonesia</option>
                         <option value="en">Bahasa Inggris</option>
                         <option value="ms">Bahasa Malaysia</option>
@@ -320,7 +355,9 @@ $result = fetchData();
                         <option value="ar">Bahasa Arab</option>
                         <option value="bh">Bahasa Bahrain</option>
                     </select>
-                    <input type="file" accept="image/*" name="profile" placeholder="profile">
+
+                    <label for="profil">Photo Profile</label>
+                    <input type="file" id="profile" accept="image/*" name="profile" placeholder="profile">
                     <div class="conatiner-button">
                         <button type="button" onclick="closeModal()">Batal</button>
                         <button type="submit" name="addData">Prosess</button>

@@ -100,7 +100,7 @@ if (isset($_SESSION["users"])) {
 
     ?>
     <main>
-        <div class="ticker-container">
+        <div class="ticker-container display-none">
             <div class="ticker-wrap">
                 <div class="ticker">
 
@@ -108,16 +108,53 @@ if (isset($_SESSION["users"])) {
             </div>
         </div>
 
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [{
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500 Index"
+                        },
+                        {
+                            "proName": "FOREXCOM:NSXUSD",
+                            "title": "US 100 Cash CFD"
+                        },
+                        {
+                            "proName": "FX_IDC:EURUSD",
+                            "title": "EUR to USD"
+                        },
+                        {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                        },
+                        {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                        }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "dark",
+                    "locale": "id"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+
         <div class="desktop" style="overflow: auto;">
             <div class="text-white riwayat-penarikan">
-                <p><?php echo translate(trim($dataUser["language"]), "Riwayat Penarikan") ?></p>
+                <p>Withdrawal History</p>
                 <table>
                     <thead class="bg-primary">
                         <tr>
-                            <th><?php echo translate(trim($dataUser["language"]), "Metode") ?></th>
-                            <th><?php echo translate(trim($dataUser["language"]), "Nomor Rekening") ?></th>
-                            <th><?php echo translate(trim($dataUser["language"]), "Nominal") ?></th>
-                            <th><?php echo translate(trim($dataUser["language"]), "Status") ?></th>
+                            <th>Method</th>
+                            <th>Account number</th>
+                            <th>Nominal</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -125,10 +162,10 @@ if (isset($_SESSION["users"])) {
                         while ($withdrawalData = mysqli_fetch_assoc($sqlPenarikan)) {
                         ?>
                             <tr>
-                                <td><?php echo translate(trim($dataUser["language"]), $withdrawalData["method"]) ?></td>
-                                <td><?php echo translate(trim($dataUser["language"]), $withdrawalData["number_payment"])  ?></td>
+                                <td><?php echo $withdrawalData["method"] ?></td>
+                                <td><?php echo $withdrawalData["number_payment"]  ?></td>
                                 <td><?php echo convertCurrency($withdrawalData["amount"], $dataUser["nominal_type"]) ?></td>
-                                <td><?php echo translate(trim($dataUser["language"]), $withdrawalData["status"]) ?></td>
+                                <td><?php echo $withdrawalData["status"] ?></td>
                             </tr>
                         <?php
                         }
@@ -139,8 +176,8 @@ if (isset($_SESSION["users"])) {
             </div>
 
             <p class="text-data">
-                <?php echo translate(trim($dataUser["language"]), $dataUser["quotes"]) ?></p>
-            <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i><?php echo translate(trim($dataUser["language"]), " Admin Telegram") ?></button>
+                <?php echo $dataUser["quotes"] ?></p>
+            <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i> Admin Telegram</button>
         </div>
     </main>
 

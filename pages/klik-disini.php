@@ -32,7 +32,7 @@ $result = readSettings();
 
     ?>
     <main>
-        <div class="ticker-container">
+        <div class="ticker-container display-none">
             <div class="ticker-wrap">
                 <div class="ticker">
 
@@ -40,12 +40,49 @@ $result = readSettings();
             </div>
         </div>
 
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                {
+                    "symbols": [{
+                            "proName": "FOREXCOM:SPXUSD",
+                            "title": "S&P 500 Index"
+                        },
+                        {
+                            "proName": "FOREXCOM:NSXUSD",
+                            "title": "US 100 Cash CFD"
+                        },
+                        {
+                            "proName": "FX_IDC:EURUSD",
+                            "title": "EUR to USD"
+                        },
+                        {
+                            "proName": "BITSTAMP:BTCUSD",
+                            "title": "Bitcoin"
+                        },
+                        {
+                            "proName": "BITSTAMP:ETHUSD",
+                            "title": "Ethereum"
+                        }
+                    ],
+                    "showSymbolLogo": true,
+                    "isTransparent": false,
+                    "displayMode": "adaptive",
+                    "colorTheme": "dark",
+                    "locale": "id"
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
+
         <div class="desktop" style="overflow: auto;">
 
             <p class="text-data">
-                <?php echo translate(trim($dataUser["language"]), "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur eligendi vero quasi praesentium facilis dolor veniam molestias, deleniti laborum, culpa officia fugiat est quaerat rerum aliquid omnis quo, nisi obcaecati?") ?>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut cumque nisi saepe ex officia. Unde quo ipsa cupiditate, at adipisci quam ipsum quis eius, pariatur iste, nam minima aperiam non?
             </p>
-            <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i> <?php echo translate(trim($dataUser["language"]), "Admin Telegram") ?></button>
+            <button class="telegram-btn" onclick="window.location.href = 'https://t.me/Examport1'"><i class="fa-brands fa-telegram"></i> Admin Telegram</button>
         </div>
     </main>
 
