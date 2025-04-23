@@ -1,0 +1,8 @@
+.tv-embed-widget-wrapper__body {
+    max-height: 78px !important;
+}
+
+iframe[src="https://www.tradingview-widget.com/embed-widget/advanced-chart/?locale=en#%7B%22autosize%22%3Atrue%2C%22symbol%22%3A%22BITCOIN%22%2C%22interval%22%3A%22D%22%2C%22timezone%22%3A%22Asia%2FJakarta%22%2C%22theme%22%3A%22dark%22%2C%22style%22%3A%221%22%2C%22allow_symbol_change%22%3Atrue%2C%22calendar%22%3Afalse%2C%22support_host%22%3A%22https%3A%2F%2Fwww.tradingview.com%22%2C%22width%22%3A%22100%25%22%2C%22height%22%3A%22100%25%22%2C%22utm_source%22%3A%22localhost%22%2C%22utm_medium%22%3A%22widget%22%2C%22utm_campaign%22%3A%22advanced-chart%22%2C%22page-uri%22%3A%22localhost%2Ftrade%22%7D"]
+{
+    height: 50vh !important;
+}

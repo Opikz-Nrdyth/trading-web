@@ -1,0 +1,8 @@
+Cara Perbaiki Filament
+https://github.com/filamentphp/filament/discussions/15091
+
+
+Yang Belum:
+1. semua admin itu bisa menggunakan fitur convert currency
+2. form withdraw dibikin otomatis dan masih bermasalah.
+3. buat fungsi untuk menambah country secara otomatis.
