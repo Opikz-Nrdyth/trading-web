@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Waktu pembuatan: 31 Jan 2025 pada 23.14
--- Versi server: 10.6.20-MariaDB-cll-lve
--- Versi PHP: 8.3.15
+-- Generation Time: Apr 23, 2025 at 04:21 PM
+-- Server version: 8.0.30
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,217 +18,171 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kiosmyid_trading`
+-- Database: `trading`
 --
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `amounts`
+-- Table structure for table `amounts`
 --
 
 CREATE TABLE `amounts` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `amount` bigint(20) NOT NULL,
-  `type` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `from_user` bigint(20) UNSIGNED NOT NULL,
-  `noted` text NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `amount` bigint NOT NULL,
+  `type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `from_user` bigint UNSIGNED NOT NULL,
+  `noted` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `amounts`
+-- Dumping data for table `amounts`
 --
 
 INSERT INTO `amounts` (`id`, `user_id`, `amount`, `type`, `status`, `from_user`, `noted`, `created_at`, `updated_at`) VALUES
-(1, 3, 300000, 'deposit', 'success', 3, 'Deposit Saldo', '2025-01-24 19:39:45', '2025-01-24 19:40:04'),
-(2, 3, 239298, 'deposit', 'success', 3, 'Deposit Saldo', '2025-01-24 19:56:52', '2025-01-24 19:57:40'),
-(11, 18, 1000000, 'topup', 'success', 1, '<p>ok</p>', '2025-01-27 07:42:20', '2025-01-27 07:42:20'),
-(12, 18, 2000000, 'profits', 'success', 1, '<p>OK</p>', '2025-01-27 07:48:00', '2025-01-27 07:48:00'),
-(13, 18, 1000000, 'bonus', 'success', 1, '<p>OK</p>', '2025-01-27 07:49:19', '2025-01-27 07:49:19'),
-(14, 23, 1000000, 'topup', 'pending', 1, '<p>0k</p>', '2025-01-27 08:35:47', '2025-01-27 09:39:56'),
-(15, 19, 1000000, 'topup', 'success', 1, '<p>Ok</p>', '2025-01-27 22:54:36', '2025-01-27 22:54:36'),
-(16, 30, 4000000, 'topup', 'success', 1, 'Ok', '2025-01-28 00:29:55', '2025-01-28 00:29:55'),
-(17, 30, 147000000, 'profits', 'success', 1, '<p>Ok</p>', '2025-01-28 00:31:40', '2025-01-28 09:21:35'),
-(18, 30, 100000000, 'deposit', 'pending', 30, 'Deposit Saldo', '2025-01-28 09:23:31', '2025-01-28 09:23:31'),
-(19, 30, -150002000, 'withdraw', 'success', 30, 'Withdraw Balance', '2025-01-28 19:30:50', '2025-01-28 19:30:50'),
-(20, 3, -9030, 'withdraw', 'success', 3, 'Withdraw Balance', '2025-01-29 07:07:22', '2025-01-29 07:07:22'),
-(21, 30, 5000, 'bonus', 'success', 30, 'Withdraw Balance', '2025-01-29 08:01:14', '2025-01-29 08:05:52'),
-(23, 3, 100000, 'bonus', 'success', 1, '<p>Bonus User Baru</p>', '2025-01-31 07:46:38', '2025-01-31 07:46:38'),
-(24, 3, 50000, 'profits', 'success', 1, '<p>Profit Pertama kamu ciieeee...</p>', '2025-01-31 07:49:42', '2025-01-31 07:49:42');
+(1, 4, 50000, 'bonus', 'success', 1, '<p>Bonus Pertama</p>', '2025-04-23 06:11:33', '2025-04-23 06:11:33'),
+(2, 4, 500000, 'bonus', 'success', 1, '<p>Topup</p>', '2025-04-23 07:28:16', '2025-04-23 07:28:16'),
+(3, 4, -40, 'withdraw', 'success', 4, 'Withdraw Balance', '2025-04-23 07:28:41', '2025-04-23 07:28:41'),
+(4, 4, 40, 'refund', 'success', 1, 'Refund of Rejected Withdrawal', '2025-04-23 07:29:35', '2025-04-23 07:29:35'),
+(5, 4, -515573, 'withdraw', 'success', 4, 'Withdraw Balance', '2025-04-23 07:33:44', '2025-04-23 07:33:44'),
+(6, 4, -3441697, 'withdraw', 'success', 4, 'Withdraw Balance', '2025-04-23 08:01:07', '2025-04-23 08:01:07'),
+(7, 4, 3441697, 'refund', 'success', 1, 'Refund of Rejected Withdrawal', '2025-04-23 08:02:49', '2025-04-23 08:02:49'),
+(8, 4, -3441697, 'withdraw', 'success', 4, 'Withdraw Balance', '2025-04-23 08:03:13', '2025-04-23 08:03:13'),
+(9, 4, 3441697, 'refund', 'success', 1, 'Refund of Rejected Withdrawal', '2025-04-23 08:03:37', '2025-04-23 08:03:37'),
+(10, 4, -32080, 'withdraw', 'success', 4, 'Withdraw Balance', '2025-04-23 08:06:45', '2025-04-23 08:06:45'),
+(11, 4, 32080, 'refund', 'success', 1, 'Refund of Rejected Withdrawal', '2025-04-23 08:23:15', '2025-04-23 08:23:15'),
+(12, 4, -3441697, 'withdraw', 'success', 4, 'Withdraw Balance', '2025-04-23 08:23:44', '2025-04-23 08:23:44'),
+(13, 4, 3441697, 'refund', 'success', 1, 'Refund of Rejected Withdrawal', '2025-04-23 08:26:07', '2025-04-23 08:26:07'),
+(14, 4, -34417, 'withdraw', 'success', 4, 'Withdraw Balance', '2025-04-23 08:26:28', '2025-04-23 08:26:28'),
+(15, 4, 34417, 'refund', 'success', 1, 'Refund of Rejected Withdrawal', '2025-04-23 08:28:15', '2025-04-23 08:28:15'),
+(16, 4, -34417, 'withdraw', 'success', 4, 'Withdraw Balance', '2025-04-23 08:29:05', '2025-04-23 08:29:05');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cripto_currencies`
+-- Table structure for table `cripto_currencies`
 --
 
 CREATE TABLE `cripto_currencies` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `currency_code` varchar(255) NOT NULL,
-  `currency_name` varchar(255) NOT NULL,
-  `currency_logo` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `currency_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `cripto_currencies`
+-- Dumping data for table `cripto_currencies`
 --
 
 INSERT INTO `cripto_currencies` (`id`, `currency_code`, `currency_name`, `currency_logo`, `created_at`, `updated_at`) VALUES
-(1, 'BTC', 'BITCOIN', 'images/bitcoin.png', '2025-01-23 21:41:21', '2025-01-23 21:41:21');
+(1, 'BTC', 'BITCOIN', '/images/bitcoin.png', '2025-04-23 06:06:16', '2025-04-23 06:06:16');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `currencies`
+-- Table structure for table `currencies`
 --
 
 CREATE TABLE `currencies` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `currency_code` varchar(255) NOT NULL,
-  `currency_name` varchar(255) NOT NULL,
-  `currency_logo` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `currency_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `currencies`
+-- Dumping data for table `currencies`
 --
 
 INSERT INTO `currencies` (`id`, `currency_code`, `currency_name`, `currency_logo`, `created_at`, `updated_at`) VALUES
-(2, 'SGD', 'Singapure Dollar', 'images/01JJBZEZJ5H6J0FGC07ZPZWM21.png', '2025-01-24 03:59:26', '2025-01-24 03:59:26'),
-(3, 'IDR', 'Indonesia Rupiah', 'images/01JJC27XVNQT3RCAPR6GSQECTH.png', '2025-01-24 04:48:01', '2025-01-31 08:04:24'),
-(4, 'MYR', 'Malaysia Ringgit', 'images/01JJYEH09X7ZKHG63E6VCVR1RF.png', '2025-01-31 08:09:01', '2025-01-31 08:09:01'),
-(5, 'SAR', 'Saudi Arabian', 'images/01JJYEM1RV5KGYWW3XMAQ4048T.png', '2025-01-31 08:10:41', '2025-01-31 08:10:41');
+(2, 'SGD', 'Singapore Dollar', 'images/01JSHHJZJAVKFY1B14NX10FT5J.png', '2025-04-23 07:42:17', '2025-04-23 07:42:17'),
+(3, 'AED', 'United Arab Emirates Dirham', 'images/01JSHJ0WCS1XN6HPQR3KFH2AT6.png', '2025-04-23 07:49:52', '2025-04-23 07:49:52');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `faqs`
+-- Table structure for table `faqs`
 --
 
 CREATE TABLE `faqs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `faqs`
---
-
-INSERT INTO `faqs` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'What are the additional fees?', 'There are no additional fees charged.', '2025-01-19 22:49:32', '2025-01-19 22:49:32'),
-(2, 'When does the market open for trading investment?', 'The forex market is open 24 hours daily in several parts of the globe, from 5 p.m. EST on Sunday until 4 p.m. EST on Friday. the flexibility of the forex to trade invest over 24 hours is due partially to different international time zones.', '2025-01-19 22:51:29', '2025-01-19 22:51:29'),
-(3, 'How to manage my risk?', 'The limit orders and the stop-loss orders are the most common risk management tools in Forex Trading Investment. A limit order helps to restrict the minimum price to be received or a maximum price to be paid. Stop-loss orders are used to set a position to', '2025-01-19 22:54:58', '2025-01-19 22:54:58'),
-(4, 'What type of account do you offer?', 'We have a wide range of account types. You can explore the account types here and choose the one that suits you.', '2025-01-19 22:55:29', '2025-01-19 22:55:29'),
-(5, 'Is there any minimum trading investment volume?', 'You can trade with as low as few dollars using our micro-accounts', '2025-01-19 22:55:56', '2025-01-19 22:55:56'),
-(6, 'What is spread?', 'Spread is a difference between the bid and ask price of the base currency.', '2025-01-19 22:56:23', '2025-01-19 22:56:23'),
-(7, 'How can I open a trading investment account?', 'You can open two types of accounts- Demo account and live account. In the demo account, you will get virtual money through with you can trade and learn virtually. In live account first, you need to deposit funds to trade  invest', '2025-01-19 22:56:53', '2025-01-19 22:56:53'),
-(8, 'How to login to the trading investment platform?', 'Upon registering you will get a username and password through which you can log in into your account.', '2025-01-19 22:57:17', '2025-01-19 22:57:17'),
-(9, 'Is any document required to open an account with Daxtradefx?', 'To open an account following documents will be required: –\nIdentification proof like passport or driving license.\nResidential proof', '2025-01-19 22:57:46', '2025-01-19 22:57:46'),
-(10, 'How many accounts can I open?', 'Daxtradefx offers three base currencies in which you can trade invest. You can have multiple accounts for each base currency.', '2025-01-19 22:58:11', '2025-01-19 22:58:11'),
-(11, 'What leverage is applied to my account?', 'Your account can have a maximum of 1:1000 leverage.', '2025-01-19 22:58:30', '2025-01-19 22:58:30'),
-(12, 'How can I verify my account?', 'To verify your account, you need to submit a government-issued id and address proof.', '2025-01-19 22:58:50', '2025-01-19 22:58:50'),
-(13, 'How can I open an account?', 'To open an account with Daxtradefx you need to provide us with some necessary information and submit some identification documents.', '2025-01-19 22:59:10', '2025-01-19 22:59:10'),
-(14, 'How can I deposit funds into my account?', 'First, you need to go through our security and identification documents and then you can deposit funds into your account using a variety of different methods including bank transfer, bitcoin & many more.', '2025-01-19 22:59:47', '2025-01-19 22:59:47'),
-(15, 'How can I withdraw money?', 'To do so you need to fill our security and identification documents and select the amount you wish to withdraw.', '2025-01-19 23:00:31', '2025-01-19 23:00:31'),
-(19, 'Do you offer Islamic accounts?', 'Yes, we do offer it.\n', '2025-01-20 10:57:16', '2025-01-20 10:57:16'),
-(20, 'What spreads do you offers?', 'We offer variable spreads that may be as low as 0.0 pips. We have got no re-quoting: our clients are given directly the value that our system receives.', '2025-01-20 10:57:33', '2025-01-20 10:57:33'),
-(21, 'What leverage do you offer?', 'Leverage offered for Daxtradefx trading accounts is up to 1:1000 depending on the account type.', '2025-01-20 10:57:51', '2025-01-20 10:57:51'),
-(22, 'Do you allow scalping?', 'Yes, we allow scalping.', '2025-01-20 10:58:10', '2025-01-20 10:58:10'),
-(23, 'What is stop loss?', 'Stop-loss is an order for closing a previously opened position at a price less profitable for the client than the worth at the time of placing the stop loss. Stop loss could be a limit that you simply set to your order.\nOnce this limit is reached, your or', '2025-01-20 10:58:36', '2025-01-20 10:58:36'),
-(24, 'Do you allow hedging?', 'Yes, we do. You are liberated to hedge your positions on your trading investment account. Hedging takes place after you open a protracted and a brief position on the identical instrument simultaneously. once you open a BUY and a SELL position on the ident', '2025-01-20 10:59:01', '2025-01-20 10:59:01'),
-(25, 'Can I change my leverage? If yes then how?', 'Yes, under the My Account tab, you can change the leverage, and then press the Change Leverage button in our Members section. That is the instant leverage change method.', '2025-01-20 10:59:20', '2025-01-20 10:59:20'),
-(26, 'I still have questions.', 'For further queries, you can contact us on our email and contact no.\n', '2025-01-20 10:59:40', '2025-01-20 10:59:40');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `investments`
+-- Table structure for table `investments`
 --
 
 CREATE TABLE `investments` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `package` varchar(255) NOT NULL,
-  `amount` varchar(255) NOT NULL,
-  `status` enum('success','canceled','pending') NOT NULL,
-  `invoice` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `package` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('success','canceled','pending') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `invoice` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `investments`
---
-
-INSERT INTO `investments` (`id`, `user_id`, `package`, `amount`, `status`, `invoice`, `created_at`, `updated_at`) VALUES
-(1, 3, 'BASIC', '100000.0909331', 'pending', 'INV-679459FA20709', '2025-01-24 20:26:50', '2025-01-24 20:26:50');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kycs`
+-- Table structure for table `kycs`
 --
 
 CREATE TABLE `kycs` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `identity` varchar(255) NOT NULL,
-  `status` enum('pending','success','failed') NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `identity` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('pending','success','failed') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `kycs`
---
-
-INSERT INTO `kycs` (`id`, `user_id`, `photo`, `identity`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 'kyc/vzBqEFrbFGkUhwU8GjtlIS936HKs9iXO171ZEcFL.jpg', 'kyc/NqnTaCMdHLsOG9u23RAUrT89KSeIaQjvYs7C814a.jpg', 'failed', '2025-01-25 09:38:31', '2025-01-28 07:16:28'),
-(2, 19, 'kyc/Sn3jLHtn3u0PeplopFoa5LjiZlJKPNXcVwp2ZteA.jpg', 'kyc/PtAdavKM9gOF57CoLVe5xY90jtXRNhnfj5ITeEYq.jpg', 'success', '2025-01-27 18:54:18', '2025-01-30 19:07:05'),
-(3, 30, 'kyc/QFfWWol5QdQo9LFQRsUbe1KJ9XzPEkPHLVEZlG4e.jpg', 'kyc/t7Sg52vaTgBHXdhLT8Dn9szLmV0c5wVrmVK4dg7j.jpg', 'success', '2025-01-28 00:35:26', '2025-01-28 09:16:17');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -240,31 +194,31 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2025_01_17_022256_create_kycs_table', 1),
 (7, '2025_01_17_030514_create_investments_table', 1),
 (8, '2025_01_17_122755_create_networks_table', 1),
-(9, '2025_01_17_131648_create_news_table', 1),
-(10, '2025_01_17_140844_create_faqs_table', 1),
-(11, '2025_01_17_142127_create_testimonials_table', 1),
-(12, '2025_01_17_999999_create_amounts_table', 1),
-(13, '2025_01_18_030222_create_notifications_table', 1),
-(14, '2025_01_19_115333_create_packages_table', 1),
-(15, '2025_01_19_117543_create_trades_table', 1),
-(16, '2025_01_20_150414_create_withdrawals_table', 1),
-(17, '2025_01_24_031914_create_settings_table', 2),
-(18, '2025_01_24_042650_create_currencies_table', 3),
-(19, '2025_01_24_043617_create_cripto_currencies_table', 3);
+(9, '2025_01_17_122756_create_settings_table', 1),
+(10, '2025_01_17_131648_create_news_table', 1),
+(11, '2025_01_17_140844_create_faqs_table', 1),
+(12, '2025_01_17_142127_create_testimonials_table', 1),
+(13, '2025_01_17_999999_create_amounts_table', 1),
+(14, '2025_01_18_030222_create_notifications_table', 1),
+(15, '2025_01_19_115333_create_packages_table', 1),
+(16, '2025_01_19_117543_create_trades_table', 1),
+(17, '2025_01_20_150414_create_withdrawals_table', 1),
+(18, '2025_01_24_042650_create_currencies_table', 1),
+(19, '2025_01_24_043617_create_cripto_currencies_table', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `networks`
+-- Table structure for table `networks`
 --
 
 CREATE TABLE `networks` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `child` bigint(20) UNSIGNED NOT NULL,
-  `mother` bigint(20) UNSIGNED NOT NULL,
-  `mother_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `join_date` varchar(255) NOT NULL,
-  `status` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `child` bigint UNSIGNED NOT NULL,
+  `mother` bigint UNSIGNED NOT NULL,
+  `mother_id` bigint UNSIGNED DEFAULT NULL,
+  `join_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -272,16 +226,16 @@ CREATE TABLE `networks` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `news`
+-- Table structure for table `news`
 --
 
 CREATE TABLE `news` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `thumbnail` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `content` text NOT NULL,
-  `author` varchar(255) NOT NULL,
-  `status` enum('publish','pending') NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `thumbnail` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `content` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `author` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('publish','pending') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -289,106 +243,76 @@ CREATE TABLE `news` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE `notifications` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` varchar(255) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `message` longtext NOT NULL,
-  `type` enum('info','warning','error') NOT NULL,
-  `status` enum('read','unread') NOT NULL DEFAULT 'unread',
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `message` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `type` enum('info','warning','error') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('read','unread') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'unread',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `notifications`
+-- Dumping data for table `notifications`
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `title`, `message`, `type`, `status`, `created_at`, `updated_at`) VALUES
-(1, '3', 'Balance', 'Your balance has been approved', 'info', 'read', '2025-01-24 19:40:04', '2025-01-25 03:56:38'),
-(2, '3', 'Balance', 'Your balance has been approved', 'info', 'read', '2025-01-24 19:57:35', '2025-01-25 03:56:38'),
-(3, '3', 'Balance', 'Your balance has been approved', 'info', 'read', '2025-01-24 19:57:40', '2025-01-25 03:56:38'),
-(4, '3', 'Balance', 'Your balance has been approved', 'info', 'read', '2025-01-24 20:07:17', '2025-01-25 03:56:38'),
-(5, '2', 'Balance', 'Your balance has been approved', 'info', 'unread', '2025-01-24 20:07:22', '2025-01-24 20:07:22'),
-(6, '3', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'read', '2025-01-24 20:11:18', '2025-01-25 03:56:38'),
-(7, '3', 'Withdraw', 'Your withdraw has been approved', 'info', 'read', '2025-01-24 20:16:30', '2025-01-25 03:56:38'),
-(8, '3', 'Withdraw', 'Your withdraw has been approved', 'info', 'read', '2025-01-24 20:16:38', '2025-01-25 03:56:38'),
-(9, '14', 'Welcome Ahmad likuon', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-25 05:30:49', '2025-01-25 05:30:49'),
-(10, '15', 'Welcome Riyan Suhada', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-25 05:32:51', '2025-01-25 05:32:51'),
-(11, '3', 'KYC', 'Your kyc has been reject', 'error', 'read', '2025-01-25 09:48:29', '2025-01-31 08:02:07'),
-(12, '16', 'Welcome Muh Belajar Sukses ', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-25 19:30:57', '2025-01-25 19:30:57'),
-(13, '17', 'Welcome Anime putri ', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-25 20:16:07', '2025-01-25 20:16:07'),
-(14, '18', 'Welcome Askari jaya', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-26 22:24:37', '2025-01-26 22:24:37'),
-(15, '19', 'Welcome Bismillahirrahmanirrahim', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'read', '2025-01-26 23:21:03', '2025-01-27 04:04:26'),
-(16, '20', 'Welcome DoeJhon', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'read', '2025-01-27 01:27:55', '2025-01-27 01:30:31'),
-(17, '23', 'Welcome Aranti', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-27 08:30:20', '2025-01-27 08:30:20'),
-(18, '24', 'Welcome Moli', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-27 08:57:37', '2025-01-27 08:57:37'),
-(19, '25', 'Welcome Moli', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-27 09:06:19', '2025-01-27 09:06:19'),
-(20, '29', 'Welcome Moli', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-27 09:33:01', '2025-01-27 09:33:01'),
-(21, '30', 'Welcome Saya belajar', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'read', '2025-01-28 00:26:01', '2025-01-28 00:46:03'),
-(22, '3', 'KYC', 'Your kyc has been reject', 'error', 'read', '2025-01-28 07:16:28', '2025-01-31 08:02:07'),
-(23, '30', 'Withdraw', 'Your withdraw has been approved', 'info', 'read', '2025-01-29 08:01:59', '2025-01-29 08:02:52'),
-(24, '19', 'KYC', 'Your kyc has been approved', 'info', 'unread', '2025-01-30 19:07:05', '2025-01-30 19:07:05'),
-(25, '41', 'Welcome User1', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-01-31 03:48:53', '2025-01-31 03:48:53');
+(1, '4', 'Welcome Wulan Dian Agustina', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-04-23 06:09:47', '2025-04-23 06:09:47'),
+(2, '4', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-23 07:29:35', '2025-04-23 07:29:35'),
+(3, '4', 'Withdraw', 'Your withdraw has been approved', 'info', 'unread', '2025-04-23 07:34:20', '2025-04-23 07:34:20'),
+(4, '4', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-23 08:02:49', '2025-04-23 08:02:49'),
+(5, '4', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-23 08:03:37', '2025-04-23 08:03:37'),
+(6, '4', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-23 08:23:15', '2025-04-23 08:23:15'),
+(7, '4', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-23 08:26:07', '2025-04-23 08:26:07'),
+(8, '4', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-23 08:28:15', '2025-04-23 08:28:15');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `packages`
+-- Table structure for table `packages`
 --
 
 CREATE TABLE `packages` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `plan` varchar(255) NOT NULL,
-  `min_amount` varchar(255) NOT NULL,
-  `max_amount` varchar(255) NOT NULL,
-  `min_contract` varchar(255) NOT NULL,
-  `max_contract` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `plan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `min_amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `min_contract` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `max_contract` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `packages`
---
-
-INSERT INTO `packages` (`id`, `plan`, `min_amount`, `max_amount`, `min_contract`, `max_contract`, `created_at`, `updated_at`) VALUES
-(1, 'BASIC', '300000', '5000000', '3', '7', '2025-01-19 23:01:30', '2025-01-29 18:35:53'),
-(2, 'BRONZE', '100000', '1000000', '2', '12', '2025-01-19 23:03:39', '2025-01-24 19:05:13'),
-(3, 'SILVER', '100000', '1000000', '2', '12', '2025-01-19 23:04:08', '2025-01-24 19:05:13'),
-(4, 'GOLD', '100000', '1000000', '2', '12', '2025-01-19 23:04:48', '2025-01-24 19:05:13'),
-(5, 'PLATINUM', '100000', '1000000', '2', '12', '2025-01-19 23:05:15', '2025-01-24 19:05:13'),
-(6, 'DIAMOND', '100000', '1000000', '2', '12', '2025-01-19 23:05:39', '2025-01-24 19:05:13'),
-(7, 'CROWN', '100000', '1000000', '2', '12', '2025-01-19 23:06:00', '2025-01-24 19:05:13');
-
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `password_reset_tokens`
+-- Table structure for table `password_reset_tokens`
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tokenable_id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `abilities` text COLLATE utf8mb4_unicode_ci,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -398,39 +322,39 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `settings`
+-- Table structure for table `settings`
 --
 
 CREATE TABLE `settings` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `company_name` varchar(255) NOT NULL,
-  `company_logo` varchar(255) NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `company_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `company_logo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `min_wd` decimal(15,2) NOT NULL,
   `min_tf` decimal(15,2) NOT NULL,
-  `fee` int(11) NOT NULL,
-  `telegram` text NOT NULL,
+  `fee` decimal(15,2) NOT NULL,
+  `telegram` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `settings`
+-- Dumping data for table `settings`
 --
 
 INSERT INTO `settings` (`id`, `company_name`, `company_logo`, `min_wd`, `min_tf`, `fee`, `telegram`, `created_at`, `updated_at`) VALUES
-(1, 'INTERNASIONAL SUCCESS', 'logos/01JJYHY9MS3082PXNKDKY4YAJF.png', 10000.00, 500.00, 30, 'https://wa.me/82328035237', '2025-01-23 21:38:50', '2025-01-31 09:08:42');
+(1, 'Opik Studio', 'logos/01JSHJMF1XRHHRG272VARKNQ0C.png', '1000.00', '100000.00', '2.00', 'te.me/6282328035237', '2025-04-23 06:06:16', '2025-04-23 08:00:34');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `testimonials`
+-- Table structure for table `testimonials`
 --
 
 CREATE TABLE `testimonials` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `status` enum('publish','pending') NOT NULL DEFAULT 'publish',
-  `testimonial` text NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `status` enum('publish','pending') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'publish',
+  `testimonial` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -438,20 +362,20 @@ CREATE TABLE `testimonials` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `trades`
+-- Table structure for table `trades`
 --
 
 CREATE TABLE `trades` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `market` varchar(255) NOT NULL,
-  `trx` varchar(255) NOT NULL,
-  `package_id` bigint(20) UNSIGNED NOT NULL,
-  `amount` varchar(255) NOT NULL,
-  `rate_stake` varchar(255) NOT NULL,
-  `rate_end` varchar(255) NOT NULL,
-  `status` enum('Success','Pendding') NOT NULL,
-  `win_lost` enum('Win','Lost') NOT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `market` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `trx` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `package_id` bigint UNSIGNED NOT NULL,
+  `amount` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rate_stake` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rate_end` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('Success','Pendding') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `win_lost` enum('Win','Lost') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -459,131 +383,102 @@ CREATE TABLE `trades` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL DEFAULT 'User',
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'User',
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `view_password` varchar(255) DEFAULT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password_view` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `view_password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', 'Admin', '2025-01-20 08:16:22', '$2y$12$ehADPduluBATS6eGMcb8/usMH39aELGgm7I0VoBJd64NizpK/ExEe', NULL, 'snqxHZD5v6pKM2MIJYDa0rMXwtd31Nrwnr0XV2Xg41EREUq3zM0EQaeTY0EO', '2025-01-20 08:16:23', '2025-01-20 08:16:23'),
-(3, 'Opikzz', 'opik@gmail.com', 'User', '2025-01-23 07:12:22', '$2y$12$ljZNyOZJTCbnoKoKu8Ri9uQxBCgrYru/GwaY2MDUiJferhRTHtoLe', 'OpikOnk123', NULL, '2025-01-19 23:41:34', '2025-01-31 08:11:19'),
-(9, 'Jhon Doe', 'jhondoe@gmail.com', 'User', NULL, '$2y$12$dqixG2CnRC2uXMJW3wVja.ncwvrn5agYi9bnnx3SsqlJyxjeDtHiO', NULL, NULL, '2025-01-21 02:48:27', '2025-01-27 08:24:57'),
-(13, 'Riyan Suhada', 'riyan@gmail.com', 'User', NULL, '$2y$12$Q51dKo2qyGm8BSthUBSs2.NshS49c///s7IAFGlKOLjdkRaBiYHli', NULL, NULL, '2025-01-25 05:27:57', '2025-01-25 05:27:57'),
-(14, 'Ahmad likuon', 'likuon7@gmail.com', 'User', NULL, '$2y$12$TET1s6ZjSRM6hAxq6ZQazeauwbTq4oTzrDVIfahC5Urof2cb/hC2i', NULL, 'UfgPjiFayoFlzLX4h578hNzkABOZmmzcpn90C6FXIRpWUVJaLqC9Qy5iWOMr', '2025-01-25 05:30:49', '2025-01-25 05:30:49'),
-(15, 'Riyan Suhada', 'riyan2@gmail.com', 'User', NULL, '$2y$12$SfphOevHJ.fGJ4XfcI0cY..KmbFUBbYI3dTFjTy.ObKMwWtFdoh4q', NULL, NULL, '2025-01-25 05:31:02', '2025-01-25 05:31:02'),
-(16, 'Muh Belajar Sukses ', 'belajarsukses13579@gmail.com', 'User', NULL, '$2y$12$vjimKTPiOGo2IGCEEBVRpO2DAVBvd6HFYwmyVVp..R9ZmCpTwgzNm', NULL, '31xXUWeJPdCMf7zzHbbSC8PJdiS2j2FbK7T7PtQK3vSWnZsgCA1ZVl46cKNU', '2025-01-25 19:30:57', '2025-01-25 19:30:57'),
-(17, 'Anime putri ', 'anime@gmail.com', 'User', NULL, '$2y$12$q5HurrUNvP7FTAbr1GxO..tspAFt/UY4XdiLqVgoji/i3j6soHyiC', NULL, NULL, '2025-01-25 20:16:07', '2025-01-25 20:16:07'),
-(18, 'Askari jaya', 'askar@gmail.com', 'User', NULL, '$2y$12$TC0c/xjB1G.n.LrQO9z8CeAqqA6M3n74X6mYPezjCYMXC9lvhb6/.', NULL, NULL, '2025-01-26 22:24:37', '2025-01-26 22:24:37'),
-(19, 'Bismillahirrahmanirrahim', 'gokugoal7@gmail.com', 'User', '2025-01-30 19:07:05', '$2y$12$z7wDOnYW0mPH./.LIVU1FeEbhl.JnSNuB2F3jIgzPdxlBKR3vKM36', 'Jhon12345', 'fzQQibZJc2lUEFKeazKUSYZZEDDXAZJe9eW1W9TQGutW4whNyMUxoauwf28J', '2025-01-26 23:21:03', '2025-01-30 19:07:05'),
-(20, 'DoeJhon', 'doejhon@gmail.com', 'User', NULL, '$2y$12$/.brLb6YtMoEodx7XCbe8eVJ8rzxw18zwU7WCZn7jDStizt.4tXrO', NULL, NULL, '2025-01-27 01:27:55', '2025-01-27 01:27:55'),
-(21, 'Rika', 'rika@gmail.com', 'User', NULL, '$2y$12$SNIzLDAo8LJZJ8RgJujhKudEfIhn7JaHUOZvQdvAIJBwD1irPSZ4e', NULL, NULL, '2025-01-27 07:58:39', '2025-01-27 07:58:39'),
-(22, 'Rika', 'rika1@gmail.com', 'User', NULL, '$2y$12$azR1XxFe5lNPmzQQh.0p9.kCqiMN7O/GKkybyANZNolFTjbvLaOwC', NULL, NULL, '2025-01-27 08:28:01', '2025-01-27 08:28:01'),
-(23, 'Aranti', 'aryanti@gmail.com', 'User', NULL, '$2y$12$sK8VuNlnBwSA7eQTeY9yO.5KPj873t0TN8LndRAqw0VuuFDLnh5aK', 'Aryanti123', NULL, '2025-01-27 08:30:20', '2025-01-28 06:54:24'),
-(30, 'Saya belajar', 'saya@gmail.com', 'User', NULL, '$2y$12$fOyOtajydBqWxZPF76kirOQNQWGjSHyjS6CfBy8ANge3ICnPeOQ1u', 'saya12345', 'AamOowIbp1m2HSpTdvFzxsGcgJP2Hr4wzl0zAPV5eltnFaEmiY13CtdoM6N4', '2025-01-28 00:26:01', '2025-01-30 20:10:52'),
-(37, 'Aldi', 'aldi@gmail.com', 'User', NULL, '$2y$12$BFkObMuoJWVpocB1nrOXVuI8Th39JAU0LcOfBW0pyuY8SOY/D5hF2', NULL, NULL, '2025-01-30 22:43:26', '2025-01-30 22:43:26'),
-(38, 'oke', 'oke@gmail.com', 'User', NULL, '$2y$12$DNXAfC9eI.RUCyjwAM2e9evvKkHZqm4gleWjhbszEbVlKUKeQIEOu', NULL, NULL, '2025-01-31 03:41:38', '2025-01-31 03:41:38'),
-(39, 'oke', 'oke2@gmail.com', 'User', NULL, '$2y$12$mSQ1.or32G1OIbnWbXvObuI6OQs76v3yo3u5iERllH3H9nRqoCsgS', NULL, NULL, '2025-01-31 03:45:20', '2025-01-31 03:45:20'),
-(40, 'Oke3', 'oke3@gmail.com', 'User', NULL, '$2y$12$LeKViYF8CGrh/4DVnpn/xuBV1noIg4Y3XshkdwOD4sjJV2pM52I0S', NULL, NULL, '2025-01-31 03:45:54', '2025-01-31 03:45:54'),
-(41, 'User1', 'user1@gmail.com', 'User', NULL, '$2y$12$6K9TngNsGuZ2oYXS0gRWyuCi5edxqVb5dwnnim/6.loHJ1IrWyzE2', 'OpikOnk123', NULL, '2025-01-31 03:48:53', '2025-01-31 03:48:53');
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `password_view`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@gmail.com', 'Admin', '2025-04-23 06:06:14', '$2y$12$doq5eD8Y5KwKlTVbD5VE.uiNOH2V150cQ2JNK1r51u1CIGEsy9sl.', NULL, NULL, '2025-04-23 06:06:15', '2025-04-23 06:06:15'),
+(4, 'Wulan Dian Agustina', 'wulan@gmail.com', 'User', NULL, '$2y$12$GNwFJM6fnttX199aSv48P.Zleof.NtXfHyqiN0pPOxBr6S80AQ6C2', NULL, NULL, '2025-04-23 06:09:46', '2025-04-23 07:53:21');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_data`
+-- Table structure for table `user_data`
 --
 
 CREATE TABLE `user_data` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `referals` varchar(255) DEFAULT NULL,
-  `profile_image` text DEFAULT NULL,
-  `username` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `country` varchar(255) DEFAULT NULL,
-  `phone_number` varchar(255) DEFAULT NULL,
-  `bitcoin_address` varchar(255) DEFAULT NULL,
-  `bank_number` varchar(255) DEFAULT NULL,
-  `bank_name` varchar(20) DEFAULT NULL,
-  `members` varchar(255) DEFAULT NULL,
-  `type_currency` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `referals` bigint UNSIGNED DEFAULT NULL,
+  `profile_image` text COLLATE utf8mb4_unicode_ci,
+  `username` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `country` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bitcoin_address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bank_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type_currency` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `members` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `user_data`
+-- Dumping data for table `user_data`
 --
 
-INSERT INTO `user_data` (`id`, `user_id`, `referals`, `profile_image`, `username`, `address`, `country`, `phone_number`, `bitcoin_address`, `bank_number`, `bank_name`, `members`, `type_currency`, `created_at`, `updated_at`) VALUES
-(2, 3, '', 'profile/GWoaDVSmMbPFen20WeiEPXbiv6YLbKz2AM29BGB6.jpg', 'Opikkz', 'Ngawi', 'Thailand', '082328035237', NULL, NULL, NULL, '100', 'SAR', '2025-01-19 23:41:34', '2025-01-31 08:11:19'),
-(3, 9, 'Opikz', NULL, 'Jhon', NULL, NULL, NULL, NULL, NULL, NULL, '100', '', '2025-01-21 02:48:27', '2025-01-27 08:24:57'),
-(6, 14, NULL, 'profile/ePrKwt2ZhIEVf17Nmb3GACkjzlbmuULAYbE8u1YK.png', 'Likuon', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-01-25 05:30:49', '2025-01-25 09:53:15'),
-(7, 15, NULL, NULL, 'Riyan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-01-25 05:32:50', '2025-01-25 05:32:50'),
-(8, 16, NULL, NULL, 'Belajar Sukses ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-01-25 19:30:57', '2025-01-25 19:30:57'),
-(9, 17, NULL, NULL, 'anime', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-01-25 20:16:07', '2025-01-25 20:16:07'),
-(10, 18, NULL, 'profile/iZuvJ5JGYJdCbHO2TW88VIQJ2tRozRTqog3m1rsn.jpg', 'Aska', NULL, NULL, NULL, NULL, NULL, NULL, '100', '', '2025-01-26 22:24:37', '2025-01-27 07:53:20'),
-(11, 19, NULL, 'profile/QUHBMEtCRGas74QyUPO9NoJNxkJHeJ8kkWkxiJyE.jpg', 'Bismillah ', 'Jl.mangonsidi kalbar', 'Indonesia', '+62811432765', NULL, NULL, NULL, '100', 'SGD', '2025-01-26 23:21:03', '2025-01-29 06:03:55'),
-(12, 20, NULL, NULL, 'Does', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-01-27 01:27:55', '2025-01-27 07:11:36'),
-(13, 21, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-01-27 07:58:39', '2025-01-27 07:58:39'),
-(14, 22, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '2025-01-27 08:28:01', '2025-01-27 08:28:01'),
-(15, 23, NULL, 'profile/VnqV5V2Ev0eoVYaTq93AQjw8ytRTVQwNnYmq2KR3.png', 'Aryanti', 'jl muh soleh', 'Indonesia', '082283833879', NULL, NULL, NULL, '200', 'SGD', '2025-01-27 08:30:20', '2025-01-28 06:54:24'),
-(22, 30, NULL, 'profile/nGji2iX63oqAUN7V58ZFUu2fdsJI7u8uLY9DT9Li.jpg', 'Sayabelajar', 'Jl batal kalbar', 'Indonesia', '08113216578', NULL, NULL, NULL, '19179', 'IDR', '2025-01-28 00:26:01', '2025-01-30 20:10:52'),
-(23, 41, NULL, NULL, 'user1@gmail.com', NULL, NULL, NULL, NULL, NULL, NULL, '0', 'IDR', '2025-01-31 03:48:53', '2025-01-31 03:48:53');
+INSERT INTO `user_data` (`id`, `user_id`, `referals`, `profile_image`, `username`, `address`, `country`, `phone_number`, `bitcoin_address`, `bank_number`, `bank_name`, `type_currency`, `members`, `created_at`, `updated_at`) VALUES
+(2, 4, NULL, NULL, 'wulan', NULL, NULL, NULL, NULL, NULL, NULL, 'AED', '0', '2025-04-23 06:09:47', '2025-04-23 07:53:21');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `withdrawals`
+-- Table structure for table `withdrawals`
 --
 
 CREATE TABLE `withdrawals` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `currency_type` varchar(255) NOT NULL,
-  `bank_number` varchar(255) NOT NULL,
-  `user_bank` varchar(255) NOT NULL,
-  `pass_bank` varchar(255) NOT NULL,
-  `pin_bank` varchar(255) DEFAULT NULL,
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `currency_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `bank_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_bank` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pass_bank` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `pin_bank` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `amount_withdraw` decimal(15,2) NOT NULL,
   `fee` decimal(15,2) NOT NULL,
-  `status` enum('pending','success','failed') NOT NULL,
+  `status` enum('pending','success','failed') COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Dumping data untuk tabel `withdrawals`
+-- Dumping data for table `withdrawals`
 --
 
 INSERT INTO `withdrawals` (`id`, `user_id`, `currency_type`, `bank_number`, `user_bank`, `pass_bank`, `pin_bank`, `amount_withdraw`, `fee`, `status`, `created_at`, `updated_at`) VALUES
-(1, 3, 'SGD (Singapure Dollar)', '1FfmbHfnpaZjKFvyi1okTjJJusN455paPH', 'opikz', 'Opik1234', '1234', 59824.41, 0.84, 'failed', '2025-01-24 20:09:43', '2025-01-24 20:11:18'),
-(2, 3, 'SGD (Singapure Dollar)', '1FfmbHfnpaZjKFvyi1okTjJJusN455paPH', 'Opikz', 'opik1234', '1234', 59824.41, 10000.25, 'success', '2025-01-24 20:13:40', '2025-01-24 20:16:38'),
-(3, 3, 'SGD (Singapure Dollar)', '1FfmbHfnpaZjKFvyi1okTjJJusN455paPH', 'Opikzz', 'opik123', '1234', 358946.46, 10000.25, 'success', '2025-01-24 20:14:55', '2025-01-24 20:16:30'),
-(4, 30, 'IDR (Indonesia Rupiah)', 'BRI', 'Sayabelajar', '12345677', '120954', 150000000.00, 2000.00, 'pending', '2025-01-28 19:30:50', '2025-01-28 19:30:50'),
-(5, 3, 'SGD (Singapure Dollar)', '328736263557672', 'Opikzzzzz', 'BNI', NULL, 9000.00, 30.00, 'pending', '2025-01-29 07:07:22', '2025-01-29 07:07:22'),
-(6, 30, 'SGD (Singapure Dollar)', '7012472153', 'Saya belajar ', 'BNI', NULL, 8000.00, 30.00, 'success', '2025-01-29 08:01:14', '2025-01-29 08:01:59');
+(1, 4, 'SGD (Singapure Dollar)', '589845829989', 'Tes', 'BRI', '-', '40.00', '0.00', 'failed', '2025-04-23 07:28:41', '2025-04-23 07:29:35'),
+(2, 4, 'SGD (Singapure Dollar)', '589845829989', 'Tes', 'BRI', '-', '515572.95', '0.00', 'success', '2025-04-23 07:33:44', '2025-04-23 07:34:20'),
+(3, 4, 'SGD (Singapure Dollar)', '589845829989', 'Tes', 'BRI', '-', '3441696.67', '0.00', 'failed', '2025-04-23 08:01:07', '2025-04-23 08:02:49'),
+(4, 4, 'AED (United Arab Emirates Dirham)', '589845829989', 'Tes', 'BRI', '-', '3441696.67', '0.00', 'failed', '2025-04-23 08:03:13', '2025-04-23 08:03:37'),
+(5, 4, 'AED (United Arab Emirates Dirham)', '589845829989', 'Tes', 'BRI', '-', '32079.73', '0.00', 'failed', '2025-04-23 08:06:45', '2025-04-23 08:23:15'),
+(6, 4, 'AED (United Arab Emirates Dirham)', '589845829989', 'Tes', 'BRI', '-', '3441696.67', '0.00', 'failed', '2025-04-23 08:23:44', '2025-04-23 08:26:07'),
+(7, 4, 'AED (United Arab Emirates Dirham)', '589845829989', 'Tes', 'BRI', '-', '34416.97', '0.00', 'failed', '2025-04-23 08:26:28', '2025-04-23 08:28:15'),
+(8, 4, 'AED (United Arab Emirates Dirham)', '589845829989', 'Pinz', 'BRI', '-', '34416.97', '0.00', 'pending', '2025-04-23 08:29:05', '2025-04-23 08:29:05');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `amounts`
+-- Indexes for table `amounts`
 --
 ALTER TABLE `amounts`
   ADD PRIMARY KEY (`id`),
@@ -591,53 +486,53 @@ ALTER TABLE `amounts`
   ADD KEY `amounts_from_user_foreign` (`from_user`);
 
 --
--- Indeks untuk tabel `cripto_currencies`
+-- Indexes for table `cripto_currencies`
 --
 ALTER TABLE `cripto_currencies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `currencies`
+-- Indexes for table `currencies`
 --
 ALTER TABLE `currencies`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Indeks untuk tabel `faqs`
+-- Indexes for table `faqs`
 --
 ALTER TABLE `faqs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `faqs_title_unique` (`title`);
 
 --
--- Indeks untuk tabel `investments`
+-- Indexes for table `investments`
 --
 ALTER TABLE `investments`
   ADD PRIMARY KEY (`id`),
   ADD KEY `investments_user_id_foreign` (`user_id`);
 
 --
--- Indeks untuk tabel `kycs`
+-- Indexes for table `kycs`
 --
 ALTER TABLE `kycs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `kycs_user_id_foreign` (`user_id`);
 
 --
--- Indeks untuk tabel `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `networks`
+-- Indexes for table `networks`
 --
 ALTER TABLE `networks`
   ADD PRIMARY KEY (`id`),
@@ -645,31 +540,31 @@ ALTER TABLE `networks`
   ADD KEY `networks_mother_id_foreign` (`mother_id`);
 
 --
--- Indeks untuk tabel `news`
+-- Indexes for table `news`
 --
 ALTER TABLE `news`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `notifications`
+-- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `packages`
+-- Indexes for table `packages`
 --
 ALTER TABLE `packages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `password_reset_tokens`
+-- Indexes for table `password_reset_tokens`
 --
 ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indeks untuk tabel `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -677,20 +572,20 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indeks untuk tabel `settings`
+-- Indexes for table `settings`
 --
 ALTER TABLE `settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `testimonials`
+-- Indexes for table `testimonials`
 --
 ALTER TABLE `testimonials`
   ADD PRIMARY KEY (`id`),
   ADD KEY `testimonials_user_id_foreign` (`user_id`);
 
 --
--- Indeks untuk tabel `trades`
+-- Indexes for table `trades`
 --
 ALTER TABLE `trades`
   ADD PRIMARY KEY (`id`),
@@ -698,196 +593,198 @@ ALTER TABLE `trades`
   ADD KEY `trades_package_id_foreign` (`package_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Indeks untuk tabel `user_data`
+-- Indexes for table `user_data`
 --
 ALTER TABLE `user_data`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `user_data_username_unique` (`username`),
+  ADD KEY `user_data_referals_foreign` (`referals`),
   ADD KEY `user_data_user_id_foreign` (`user_id`);
 
 --
--- Indeks untuk tabel `withdrawals`
+-- Indexes for table `withdrawals`
 --
 ALTER TABLE `withdrawals`
   ADD PRIMARY KEY (`id`),
   ADD KEY `withdrawals_user_id_foreign` (`user_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `amounts`
+-- AUTO_INCREMENT for table `amounts`
 --
 ALTER TABLE `amounts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `cripto_currencies`
+-- AUTO_INCREMENT for table `cripto_currencies`
 --
 ALTER TABLE `cripto_currencies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `currencies`
+-- AUTO_INCREMENT for table `currencies`
 --
 ALTER TABLE `currencies`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `faqs`
+-- AUTO_INCREMENT for table `faqs`
 --
 ALTER TABLE `faqs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `investments`
+-- AUTO_INCREMENT for table `investments`
 --
 ALTER TABLE `investments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `kycs`
+-- AUTO_INCREMENT for table `kycs`
 --
 ALTER TABLE `kycs`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT untuk tabel `networks`
+-- AUTO_INCREMENT for table `networks`
 --
 ALTER TABLE `networks`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `news`
+-- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `notifications`
+-- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `packages`
+-- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `settings`
+-- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `testimonials`
+-- AUTO_INCREMENT for table `testimonials`
 --
 ALTER TABLE `testimonials`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `trades`
+-- AUTO_INCREMENT for table `trades`
 --
 ALTER TABLE `trades`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `user_data`
+-- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `withdrawals`
+-- AUTO_INCREMENT for table `withdrawals`
 --
 ALTER TABLE `withdrawals`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `amounts`
+-- Constraints for table `amounts`
 --
 ALTER TABLE `amounts`
   ADD CONSTRAINT `amounts_from_user_foreign` FOREIGN KEY (`from_user`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `amounts_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `investments`
+-- Constraints for table `investments`
 --
 ALTER TABLE `investments`
   ADD CONSTRAINT `investments_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `kycs`
+-- Constraints for table `kycs`
 --
 ALTER TABLE `kycs`
   ADD CONSTRAINT `kycs_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `networks`
+-- Constraints for table `networks`
 --
 ALTER TABLE `networks`
   ADD CONSTRAINT `networks_child_foreign` FOREIGN KEY (`child`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `networks_mother_id_foreign` FOREIGN KEY (`mother_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `testimonials`
+-- Constraints for table `testimonials`
 --
 ALTER TABLE `testimonials`
   ADD CONSTRAINT `testimonials_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `trades`
+-- Constraints for table `trades`
 --
 ALTER TABLE `trades`
   ADD CONSTRAINT `trades_package_id_foreign` FOREIGN KEY (`package_id`) REFERENCES `packages` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `trades_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user_data`
+-- Constraints for table `user_data`
 --
 ALTER TABLE `user_data`
+  ADD CONSTRAINT `user_data_referals_foreign` FOREIGN KEY (`referals`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `user_data_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `withdrawals`
+-- Constraints for table `withdrawals`
 --
 ALTER TABLE `withdrawals`
   ADD CONSTRAINT `withdrawals_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
