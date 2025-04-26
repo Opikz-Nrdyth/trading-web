@@ -143,6 +143,13 @@ class WithdrawalResource extends Resource
                             'message' => 'Your withdraw has been approved',
                         ]);
 
+                        amount::where('created_at', $record->created_at)
+                            ->where('from_user', $record->user_id)
+                            ->where('user_id', $record->user_id)
+                            ->update([
+                                'status' => 'success'
+                            ]);
+
                         Notification::make()
                             ->success()
                             ->title('Status updated successfully')
@@ -178,6 +185,12 @@ class WithdrawalResource extends Resource
 
                         $record->update(['status' => 'failed']);
 
+                        amount::where('created_at', $record->created_at)
+                            ->where('from_user', $record->user_id)
+                            ->where('user_id', $record->user_id)
+                            ->update([
+                                'status' => 'success'
+                            ]);
                         Notification::make()
                             ->success()
                             ->title('Status updated successfully')

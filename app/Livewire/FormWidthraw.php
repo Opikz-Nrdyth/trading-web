@@ -67,7 +67,7 @@ class FormWidthraw extends Component
         $dataCurrency = Cache::get('data_currency', []);
         $rate = 1 / $dataCurrency['idr'][strtolower(Auth::user()->userData->type_currency ?? "IDR")];
 
-        return $amount * $rate;
+        return round($amount * $rate, 0);
     }
 
     // public function getCurrency($amount)
@@ -122,7 +122,7 @@ class FormWidthraw extends Component
             'user_id' => Auth::id(),
             'amount' => - ($this->convertToRupiah(currencyToInt($this->amount_withdaraw)) + intval($this->fee)),
             'type' => 'withdraw',
-            'status' => 'success',
+            'status' => 'pending',
             'noted' => "Withdraw Balance",
             'from_user' => Auth::id(),
         ]);

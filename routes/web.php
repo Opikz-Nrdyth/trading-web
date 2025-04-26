@@ -285,6 +285,8 @@ Route::middleware('auth')->group(function () {
                 "Status" => $item->status,
             ];
         });
+
+        dd($transformedBalance);
         return view('Balance', [
             'route' => ['balance'],
             'title' => 'Balance',
