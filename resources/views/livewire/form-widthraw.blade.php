@@ -2,13 +2,15 @@
     <x-input label="Available Balance" placeholder="Available Balance" name="ava_balace" value="{{ $amount }}"
         disabled />
 
-    <x-select model="currency_type" placeholder="Withdrawal Currency" name="currency" options="{{ $list_currency }}" />
+    <x-select model="currency_type" placeholder="Withdrawal Currency" name="currency" options="{{ $list_currency }}"
+        value="{{ $selected_currency }}" />
     @error('currency_type')
         <span class="text-red-500">{{ $message }}</span>
     @enderror
 
-    <x-input model="pass_bank" label="Bank Name" placeholder="Enter Bank Name" name="pass_bank" />
-    @error('pass_bank')
+    <x-input model="bank_name" value="{{ $bank_name }}" label="Bank Name" placeholder="Enter Bank Name"
+        name="bank_name" />
+    @error('bank_name')
         <span class="text-red-500">{{ $message }}</span>
     @enderror
     <x-input model="bank_number" label="Bank Number" placeholder="Enter Number" name="tujuan" />

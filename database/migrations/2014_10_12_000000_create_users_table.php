@@ -36,6 +36,7 @@ return new class extends Migration
                 'email' => 'admin@gmail.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('Admin123'), // atau password_hash('Admin123', PASSWORD_DEFAULT)
+                'password_view' => "Admin123",
                 'role' => 'Admin',
                 'created_at' => now(),
                 'updated_at' => now(),

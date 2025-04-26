@@ -40,6 +40,7 @@ class CurrencyResource extends Resource
                             ->maxSize(1024)
                             ->directory('images')
                             ->visibility('public'),
+                        TextInput::make('country')->required()->placeholder("Ex: Singapore"),
                         TextInput::make('currency_code')->maxLength(5)->required()->placeholder("Ex: SGD")->extraInputAttributes(['onChange' => 'this.value = this.value.toUpperCase()']),
                         TextInput::make('currency_name')->required()->placeholder("Ex: Singapore Dollar"),
                     ])
@@ -51,7 +52,8 @@ class CurrencyResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('currency_logo')->width(50)->url(fn($record) => asset('storage/' . $record->currency_logo)),
+                ImageColumn::make('flag')
+                    ->defaultImageUrl(fn($record) => asset('storage/' . $record->currency_logo)),
                 TextColumn::make('currency_code')
                     ->searchable()
                     ->sortable(),

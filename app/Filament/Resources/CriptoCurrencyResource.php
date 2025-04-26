@@ -48,9 +48,8 @@ class CriptoCurrencyResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('currency_logo')
-                    ->width(50)
-                    ->url(fn($record) => url('storage/' . $record->currency_logo)),
+                ImageColumn::make('logo')
+                    ->defaultImageUrl(fn($record) => asset('storage/' . $record->currency_logo)),
                 TextColumn::make('currency_code')
                     ->searchable()
                     ->sortable(),

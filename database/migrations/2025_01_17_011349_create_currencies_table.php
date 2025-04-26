@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('currency_code');
             $table->string('currency_name');
+            $table->string('country');
             $table->string('currency_logo');
             $table->timestamps();
         });
@@ -27,6 +28,7 @@ return new class extends Migration
             DB::table('currencies')->insert([
                 'currency_code' => 'SGD',
                 'currency_name' => 'Singapure Dollar',
+                'country' => 'Singapure',
                 'currency_logo' => '/images/singapore.png',
                 'created_at' => now(),
                 'updated_at' => now(),

@@ -76,10 +76,10 @@ class UserResource extends Resource
                             ->dehydrateStateUsing(fn($state) => filled($state) ? Hash::make($state) : null)
                             ->dehydrated(fn($state) => filled($state))
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record) {
-                                        $component->state($record->view_password);
-                                    }
-                                }),
+                                if ($record) {
+                                    $component->state($record->password_view);
+                                }
+                            }),
                         TextInput::make('password_confirmation')
                             ->label('Confirm Password')
                             ->password()
@@ -98,10 +98,10 @@ class UserResource extends Resource
                                 }
                             })
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record) {
-                                        $component->state($record->view_password);
-                                    }
-                                })
+                                if ($record) {
+                                    $component->state($record->password_view);
+                                }
+                            })
                     ])->columns(2),
 
                 Section::make('Additional Information')
@@ -112,27 +112,29 @@ class UserResource extends Resource
                             ->maxLength(255)
                             ->placeholder("ex: john_doe")
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record && $record->userData) {
-                                        $component->state($record->userData->username);
-                                    }
-                                }),
+                                if ($record && $record->userData) {
+                                    $component->state($record->userData->username);
+                                }
+                            }),
                         TextInput::make('userData.address')
                             ->label('Address')
                             ->maxLength(255)
                             ->placeholder("ex: 123 Main St")
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record && $record->userData) {
-                                        $component->state($record->userData->address);
-                                    }
-                                }),
+                                if ($record && $record->userData) {
+                                    $component->state($record->userData->address);
+                                }
+                            }),
                         Select::make('userData.country')
                             ->label('Country')
                             ->searchable()
-                            ->options([
-                                "Indonesia" => "Indonesia",
-                                "Singapore" => "Singapore",
-                                "Thailand" => "Thailand"
-                            ])
+                            ->options(function () {
+                                return Currency::query()
+                                    ->pluck('country', 'country') // key dan value sama
+                                    ->unique()
+                                    ->toArray();
+                            })
+                            ->default(fn() => Currency::first()?->country)
                             ->afterStateHydrated(function (Select $component, $state, $record) {
                                 if ($record && $record->userData) {
                                     $component->state($record->userData->country);
@@ -144,53 +146,64 @@ class UserResource extends Resource
                             ->maxLength(15)
                             ->placeholder("ex: 081234567890")
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record && $record->userData) {
-                                        $component->state($record->userData->phone_number);
-                                    }
-                                }),
+                                if ($record && $record->userData) {
+                                    $component->state($record->userData->phone_number);
+                                }
+                            }),
                         TextInput::make('userData.bitcoin_address')
                             ->label('Bitcoin Address')
                             ->nullable()
                             ->maxLength(255)
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record && $record->userData) {
-                                        $component->state($record->userData->bitcoin_address);
-                                    }
-                                }),
+                                if ($record && $record->userData) {
+                                    $component->state($record->userData->bitcoin_address);
+                                }
+                            }),
                         TextInput::make('userData.bank_number')
                             ->label('Bank Number')
                             ->nullable()
                             ->maxLength(50)
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record && $record->userData) {
-                                        $component->state($record->userData->bank_number);
-                                    }
-                                }),
-                                
+                                if ($record && $record->userData) {
+                                    $component->state($record->userData->bank_number);
+                                }
+                            }),
+
                         TextInput::make('userData.bank_name')
                             ->label('Bank Name')
                             ->nullable()
                             ->maxLength(50)
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record && $record->userData) {
-                                        $component->state($record->userData->bank_number);
-                                    }
-                                }),
-                            
+                                if ($record && $record->userData) {
+                                    $component->state($record->userData->bank_number);
+                                }
+                            }),
+
                         TextInput::make('userData.members')
                             ->label('Members')
                             ->default(0)
                             ->maxLength(255)
                             ->placeholder("ex: 100")
                             ->afterStateHydrated(function (TextInput $component, $state, $record) {
-                                    if ($record && $record->userData) {
-                                        $component->state($record->userData->members);
-                                    }
-                                }),
+                                if ($record && $record->userData) {
+                                    $component->state($record->userData->members);
+                                }
+                            }),
                         Select::make('userData.type_currency')
-                            ->default(fn () => 'IDR')
-                            ->options(currency::all()->pluck('currency_name', 'currency_code'))
-                            ->searchable(),
+                            ->label('Type Currency')
+                            ->searchable()
+                            ->options(fn() => Currency::all()->pluck('currency_name', 'currency_code')->toArray())
+                            ->default(fn() => Currency::first()?->currency_code)
+                            ->afterStateHydrated(function (Select $component, $state, $record) {
+                                if ($record && $record->userData && $record->userData->type_currency) {
+                                    $component->state($record->userData->type_currency);
+                                } elseif (blank($state)) {
+                                    // Jika create dan belum ada state, isi dengan default pertama
+                                    $component->state(Currency::first()?->currency_code);
+                                }
+                            }),
+
+
                     ])->columns(2)
             ]);
     }
@@ -216,7 +229,7 @@ class UserResource extends Resource
                         'User' => 'success',
                         default => 'gray',
                     }),
-                    
+
                 TextColumn::make('userAmount.sum_amount')
                     ->label('Balance')
                     ->searchable()
@@ -224,12 +237,12 @@ class UserResource extends Resource
                     ->getStateUsing(function ($record) {
                         return $record->userAmount()->sum('amount');
                     }),
-                    
+
                 TextColumn::make('userData.members')
                     ->label('Members')
                     ->default(0)
                     ->sortable(),
-                    
+
                 TextColumn::make('userData.username')
                     ->label('Username')
                     ->searchable()
@@ -237,7 +250,7 @@ class UserResource extends Resource
                 TextColumn::make('userData.country')
                     ->label('Country')
                     ->searchable(),
-                    
+
                 TextColumn::make('userData.phone_number')
                     ->label('Phone Number')
                     ->searchable(),

@@ -9,6 +9,7 @@ class currency extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'country',
         'currency_code',
         'currency_name',
         'currency_logo',

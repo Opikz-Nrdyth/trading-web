@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
-        'view_password',
+        'password_view',
     ];
 
     /**
@@ -95,9 +95,9 @@ class User extends Authenticatable
                     'phone_number' => null,
                     'bitcoin_address' => null,
                     'bank_number' => null,
-                    'type_currency'=>null,
-                    'bank_name'=>null,
-                    'members'=>null,
+                    'type_currency' => null,
+                    'bank_name' => null,
+                    'members' => null,
                 ]);
             }
         });

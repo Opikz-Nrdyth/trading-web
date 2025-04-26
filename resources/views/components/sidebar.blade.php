@@ -4,7 +4,7 @@
         <p class="text-primary text-xl main-link"><b>Welcome</b> {{ auth()->user()->role ?? '' }}</p>
         <div class="w-[50px] h-[50px] rounded-full bg-primary flex justify-center items-center">
             <img class="w-full h-full rounded-full"
-                src="@if (auth()->user()->userData->profile_image ?? '') {{ asset('public/storage/' . auth()->user()->userData->profile_image) }}
+                src="@if (auth()->user()->userData->profile_image ?? '') {{ asset('storage/' . auth()->user()->userData->profile_image) }}
                 @else
                     https://ui-avatars.com/api/?name={{ implode('',array_map(function ($word) {return strtoupper($word[0]);}, explode(' ', auth()->user()->name ?? ''))) }}&color=FFFFFF&background=00a8e8 @endif"
                 alt="{{ implode('',array_map(function ($word) {return strtoupper($word[0]);}, explode(' ', auth()->user()->name ?? ''))) }}">
