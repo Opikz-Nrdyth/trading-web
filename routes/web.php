@@ -286,7 +286,7 @@ Route::middleware('auth')->group(function () {
             ];
         });
 
-        dd($transformedBalance);
+
         return view('Balance', [
             'route' => ['balance'],
             'title' => 'Balance',
