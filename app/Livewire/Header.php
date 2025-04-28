@@ -39,13 +39,28 @@ class Header extends Component
 
         $this->dataCurrency = Cache::get('data_currency', []);
 
-        $this->userAmount = auth()->user()->userAmount->where('status', 'success')->sum('amount') ?? 0;
 
+
+        $successAmount = Auth::user()->userAmount
+            ->where('status', 'success')
+            ->sum('amount') ?? 0;
+
+        $pendingNegativeAmount = Auth::user()->userAmount
+            ->where('status', 'pending')
+            ->where('amount', '<', 0)
+            ->sum('amount') ?? 0;
+
+        $this->userAmount = $successAmount;
+
+        $amounts = $successAmount + $pendingNegativeAmount;
+        if ($amounts < 0 || $amounts == -0) {
+            $amounts = 0;
+        }
         $this->convert_currency_price = str_replace(
             ',00',
             '',
             $formatter->formatCurrency(
-                round($this->userAmount * $this->dataCurrency['idr'][strtolower($this->currency_selected)], 4),
+                round($amounts * $this->dataCurrency['idr'][strtolower($this->currency_selected)], 4),
                 $this->currency_selected
             )
         );

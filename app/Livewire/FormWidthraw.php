@@ -41,7 +41,19 @@ class FormWidthraw extends Component
             $this->selected_currency = $selectCountry->currency_code  . '(' . $selectCountry->currency_name . ')';
         }
 
-        $this->amount = Auth::user()->userAmount->where("status", "success")->sum("amount") ?? 0;
+        $successAmount = Auth::user()->userAmount
+            ->where('status', 'success')
+            ->sum('amount') ?? 0;
+
+        $pendingNegativeAmount = Auth::user()->userAmount
+            ->where('status', 'pending')
+            ->where('amount', '<', 0)
+            ->sum('amount') ?? 0;
+
+        $this->amount = $successAmount + $pendingNegativeAmount;
+        if ($this->amount < 0 || $this->amount == -0) {
+            $this->amount = 0;
+        }
         $this->amount = getCurrency($this->amount);
         $bitcoin_address = Auth::user()->userData->bitcoin_address;
         $bank = Auth::user()->userData->bank_number;
@@ -67,7 +79,7 @@ class FormWidthraw extends Component
         $dataCurrency = Cache::get('data_currency', []);
         $rate = 1 / $dataCurrency['idr'][strtolower(Auth::user()->userData->type_currency ?? "IDR")];
 
-        return round($amount * $rate, 0);
+        return $amount * $rate;
     }
 
     // public function getCurrency($amount)
