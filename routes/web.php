@@ -529,7 +529,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/register', function () {
     return view('RegisterPanel');
-})->name('filament.admin.auth.login');
+})->name('filament.admin.auth.regist');
 
 Route::get('/admin/register', function () {
     return redirect()->to("/register");

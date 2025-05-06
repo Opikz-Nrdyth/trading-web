@@ -15,6 +15,7 @@ class Authenticate extends Middleware
         if (!$request->user()) {
             if ($reff = $request->query('reff')) {
                 session()->put('reff', $reff);
+                return $request->expectsJson() ? null : route('filament.admin.auth.regist');
             }
         }
         return $request->expectsJson() ? null : route('filament.admin.auth.login');
