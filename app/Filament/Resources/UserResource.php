@@ -249,7 +249,20 @@ class UserResource extends Resource
                     ->searchable()
                     ->sortable()
                     ->getStateUsing(function ($record) {
-                        return $record->userAmount()->sum('amount');
+                        $successAmount = $record->userAmount()
+                            ->where('status', 'success')
+                            ->sum('amount') ?? 0;
+
+                        $pendingNegativeAmount = $record->userAmount()
+                            ->where('status', 'pending')
+                            ->where('amount', '<', 0)
+                            ->sum('amount') ?? 0;
+
+                        $amount = $successAmount + $pendingNegativeAmount;
+                        if ($amount < 0 || $amount == -0) {
+                            $amount = 0;
+                        }
+                        return $amount;
                     })
                     ->formatStateUsing(function ($state) {
                         return getCurrency($state); // Gunakan fungsi kustom
