@@ -29,7 +29,7 @@ class CreateAmountUsers extends CreateRecord
         unset($data['type_currency']);
 
         $user = User::where("id", $data['user_id'])->first();
-        dd($user?->userData?->username);
+
         notification::create([
             'user_id' => $user?->userData?->username,
             'type' => 'info',
