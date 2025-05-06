@@ -33,13 +33,6 @@ Route::middleware('auth')->group(function () {
         );
     }
 
-    // function currencyToInt($amount)
-    // {
-    //     $realAmount = filter_var($amount, FILTER_SANITIZE_NUMBER_INT);
-    //     $realAmount = intval($realAmount);
-    //     return $realAmount;
-    // }
-
     function getLocaleFromCurrency($currencyCode)
     {
         $currencyCode = strtoupper($currencyCode);
@@ -49,17 +42,6 @@ Route::middleware('auth')->group(function () {
 
         return $map[$currencyCode] ?? 'en_US'; // default fallback
     }
-
-    // function currencyToInt($amount)
-    // {
-    //     // // Hilangkan spasi non-breaking dan koma
-    //     // $cleaned = str_replace([' ', '.'], '', $amount); // Perhatikan ' ' adalah spasi unicode
-    //     // $cleaned = str_replace(',', '.', $amount);
-
-    //     // Hapus semua karakter non-angka
-    //     $cleaned = preg_replace('/[^0-9]/', '', $amount);
-    //     return $cleaned;
-    // }
 
     function currencyToInt($amount)
     {
@@ -83,8 +65,6 @@ Route::middleware('auth')->group(function () {
 
         return $parsed !== false ? $parsed : 0;
     }
-
-
 
     Route::get('/', [welcome::class, 'Welcome']);
 
@@ -542,4 +522,4 @@ Route::get('/login', function () {
 
 Route::get('/admin/login', function () {
     return redirect()->to("/login");
-});
+})->name('login');
