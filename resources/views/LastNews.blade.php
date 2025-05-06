@@ -9,7 +9,7 @@
             Recent posts
         </div>
         @foreach ($data as $d)
-            <x-news id="{{ $d['id'] }}" title="{{ $d['title'] }}" thubmnail="/public/storage/{{ $d['thumbnail'] }}"
+            <x-news id="{{ $d['id'] }}" title="{{ $d['title'] }}" thubmnail="{{ $d['thumbnail'] }}"
                 description="{!! $d['content'] !!}" updatedat="{{ $d['updated_at'] }}" />
         @endforeach
     </div>
