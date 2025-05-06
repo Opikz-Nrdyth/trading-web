@@ -1,3 +1,6 @@
+clear
+cls
+
 # Inisialisasi repo Git (jika belum)
 git init
 
