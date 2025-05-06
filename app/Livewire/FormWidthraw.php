@@ -99,11 +99,15 @@ class FormWidthraw extends Component
             'amount_withdaraw' => 'required|string',
         ]);
 
+        $WithdrawAndFee = currencyToInt($this->amount_withdaraw) + currencyToInt($this->fee);
+        $WithdrawAndFee = currencyToInt(number_format($WithdrawAndFee, 0, ',', '.'));
 
-        if (currencyToInt($this->amount) < (currencyToInt($this->amount_withdaraw) + currencyToInt($this->fee))) {
-            session()->flash('error', 'Your balance is insufficient. your balance ' . getCurrency($this->amount));
+
+        if (currencyToInt($this->amount) < $WithdrawAndFee) {
+            session()->flash('error', 'Your balance is insufficient. your balance ' . currencyToInt($this->amount));
             return;
         }
+
 
         if (Auth::user()->userData->type_currency ?? "IDR" != "IDR") {
 
@@ -117,6 +121,8 @@ class FormWidthraw extends Component
                 return;
             }
         }
+
+
 
         Withdrawal::create([
             'user_id' => Auth::id(),

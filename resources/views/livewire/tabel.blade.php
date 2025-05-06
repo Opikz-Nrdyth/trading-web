@@ -90,10 +90,10 @@
                             </thead>
                             <tbody>
                                 ${e.detail.data.map(row => `
-                                                                                                                                                                                                                                                                                                <tr>
-                                                                                                                                                                                                                                                                                                    ${e.detail.header.map(h => `<td>${row[h]}</td>`).join('')}
-                                                                                                                                                                                                                                                                                                </tr>
-                                                                                                                                                                                                                                                                                            `).join('')}
+                                                                                                                                                                                                                                                                                                        <tr>
+                                                                                                                                                                                                                                                                                                            ${e.detail.header.map(h => `<td>${row[h]}</td>`).join('')}
+                                                                                                                                                                                                                                                                                                        </tr>
+                                                                                                                                                                                                                                                                                                    `).join('')}
                             </tbody>
                         </table>
                         <script>

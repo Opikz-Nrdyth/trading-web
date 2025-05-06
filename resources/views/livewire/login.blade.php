@@ -35,7 +35,8 @@
             Keep me logged in
         </label>
     </div>
-    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded" type="submit" wire:loading.attr="disabled">
+    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded" type="submit"
+        wire:loading.attr="disabled">
         <i class="fa-solid fa-spinner animate-rotate" wire:loading></i>
         Log in
     </button>

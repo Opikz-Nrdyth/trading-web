@@ -44,9 +44,15 @@
     @error('bank')
         <span class="text-red-500 text-sm">{{ $message }}</span>
     @enderror
+
+    <x-input label="Bank Name" placeholder="your bank name" name="bank_name" model="bank_name"
+        value="{{ $bank_name }}" />
+    @error('bank_name')
+        <span class="text-red-500 text-sm">{{ $message }}</span>
+    @enderror
     <button type="submit"
-        class="bg-primary mt-3 px-5 py-2 rounded-md text-white flex items-center gap-2 justify-center"
-        id="submit-btn" wire:loading.attr="disabled">
+        class="bg-primary mt-3 px-5 py-2 rounded-md text-white flex items-center gap-2 justify-center" id="submit-btn"
+        wire:loading.attr="disabled">
         <i class="fa-solid fa-spinner animate-rotate" wire:loading></i> <span>Submit</span>
     </button>
 

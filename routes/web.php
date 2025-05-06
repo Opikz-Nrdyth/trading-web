@@ -18,8 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
-
-
+use Illuminate\Support\Facades\Storage;
 
 Route::middleware('auth')->group(function () {
     function getCurrency($amount)
@@ -40,16 +39,51 @@ Route::middleware('auth')->group(function () {
     //     $realAmount = intval($realAmount);
     //     return $realAmount;
     // }
+
+    function getLocaleFromCurrency($currencyCode)
+    {
+        $currencyCode = strtoupper($currencyCode);
+
+        $json = Storage::disk('local')->get('currency_locale.json');
+        $map = json_decode($json, true);
+
+        return $map[$currencyCode] ?? 'en_US'; // default fallback
+    }
+
+    // function currencyToInt($amount)
+    // {
+    //     // // Hilangkan spasi non-breaking dan koma
+    //     // $cleaned = str_replace([' ', '.'], '', $amount); // Perhatikan ' ' adalah spasi unicode
+    //     // $cleaned = str_replace(',', '.', $amount);
+
+    //     // Hapus semua karakter non-angka
+    //     $cleaned = preg_replace('/[^0-9]/', '', $amount);
+    //     return $cleaned;
+    // }
+
     function currencyToInt($amount)
     {
-        // Ubah koma jadi titik kalau ada
-        $cleaned = str_replace(',', '.', $amount);
+        $locale = getLocaleFromCurrency(auth()->user()->userData->type_currency);
 
-        // Hapus karakter selain angka dan titik desimal
-        $cleaned = preg_replace('/[^0-9.]/', '', $cleaned);
+        // 1. Hapus semua karakter selain angka, titik, dan koma
+        $amount = preg_replace('/[^0-9.,]/', '', $amount);
 
-        return floatval($cleaned);
+        // 2. Hapus titik ribuan
+        $amount = str_replace('.', '', $amount);
+
+        // 3. Ganti koma desimal menjadi titik
+        $amount = str_replace(',', '.', $amount);
+
+        // 4. Konversi ke float (opsional, jika ingin sebagai angka)
+        $floatAmount = (float)$amount;
+
+        $fmt = new \NumberFormatter($locale, \NumberFormatter::DECIMAL);
+        $parsed = $fmt->parse($floatAmount);
+
+
+        return $parsed !== false ? $parsed : 0;
     }
+
 
 
     Route::get('/', [welcome::class, 'Welcome']);
@@ -285,7 +319,6 @@ Route::middleware('auth')->group(function () {
                 "Status" => $item->status,
             ];
         });
-
 
         return view('Balance', [
             'route' => ['balance'],

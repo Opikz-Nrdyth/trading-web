@@ -22,6 +22,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Tables\Actions\Action;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use NumberFormatter;
 
 class WithdrawalResource extends Resource
 {
@@ -96,6 +98,17 @@ class WithdrawalResource extends Resource
 
     public static function table(Table $table): Table
     {
+        function getCurrency($amount)
+        {
+            $dataCurrency = Cache::get('data_currency', []);
+            $currencyType = Auth::user()->userData->type_currency ? Auth::user()->userData->type_currency : "IDR";
+            $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+            return str_replace(
+                ',00',
+                '',
+                $formatter->formatCurrency(round(intval($amount) * $dataCurrency['idr'][strtolower($currencyType)], 4), $currencyType)
+            );
+        }
         return $table
             ->columns([
                 TextColumn::make('user_id')
@@ -105,7 +118,10 @@ class WithdrawalResource extends Resource
                 TextColumn::make('bank_number'),
                 TextColumn::make('user_bank'),
                 TextColumn::make('amount_withdraw')
-                    ->sortable(),
+                    ->sortable()
+                    ->formatStateUsing(function ($state) {
+                        return getCurrency($state); // Gunakan fungsi kustom
+                    }),
                 TextColumn::make('status')
                     ->label('Status')
                     ->sortable()

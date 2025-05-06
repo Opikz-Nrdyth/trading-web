@@ -22,8 +22,12 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\AmountUsersResource\Pages;
 use App\Filament\Resources\AmountUsersResource\RelationManagers;
+use App\Models\currency;
 use App\Models\notification as ModelsNotification;
 use Filament\Actions\DeleteAction;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use NumberFormatter;
 
 class AmountUsersResource extends Resource
 {
@@ -56,13 +60,26 @@ class AmountUsersResource extends Resource
                             ->required()
                             ->numeric()
                             ->placeholder("ex: 100")->default(0)
-                            ->label("Amount (IDR)")->required()->minValue(1),
+                            ->label("Amount")->required()->minValue(1),
+                        Select::make('type_currency')
+                            ->label('Type Currency')
+                            ->searchable()
+                            ->options(fn() => currency::all()->pluck('currency_name', 'currency_code')->toArray())
+                            ->default(fn() => Currency::where("currency_code", "IDR")->exists() ? "IDR" : Currency::first()?->currency_code)
+                            ->afterStateHydrated(function (Select $component, $state, $record) {
+                                if ($record && $record->userData && $record->userData->type_currency) {
+                                    $component->state($record->userData->type_currency);
+                                } elseif (blank($state)) {
+                                    // Jika create dan belum ada state, isi dengan default pertama
+                                    $component->state(Currency::first()?->currency_code);
+                                }
+                            }),
                         Select::make('type')
                             ->options([
                                 "bonus" => "bonus",
                                 "transfer" => "transfer",
                                 "topup" => "topup",
-                                "profits"=>"profits",
+                                "profits" => "profits",
                             ])->label("Type Air Drop")->default("bonus"),
                         Select::make('status')
                             ->options([
@@ -78,6 +95,17 @@ class AmountUsersResource extends Resource
 
     public static function table(Table $table): Table
     {
+        function getCurrency($amount)
+        {
+            $dataCurrency = Cache::get('data_currency', []);
+            $currencyType = Auth::user()->userData->type_currency ? Auth::user()->userData->type_currency : "IDR";
+            $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+            return str_replace(
+                ',00',
+                '',
+                $formatter->formatCurrency(round(intval($amount) * $dataCurrency['idr'][strtolower($currencyType)], 4), $currencyType)
+            );
+        }
         return $table
             ->columns([
                 TextColumn::make('user.email')
@@ -89,7 +117,11 @@ class AmountUsersResource extends Resource
                     ->searchable()
                     ->sortable(),
 
-                TextColumn::make('amount')->label("Amount (SGD)"),
+                TextColumn::make('amount')
+                    ->label("Amount")
+                    ->formatStateUsing(function ($state) {
+                        return getCurrency($state); // Gunakan fungsi kustom
+                    }),
                 TextColumn::make('type'),
                 TextColumn::make('status')
                     ->badge()

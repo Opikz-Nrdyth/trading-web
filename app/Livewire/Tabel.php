@@ -15,10 +15,11 @@ class Tabel extends Component
     public $searchbar;
     public $header;
     public $colum;
+    public $newData;
     public $search = ''; // Search keyword with proper initialization
     public $searchableHeaders = []; // Searchable columns
 
-    public function mount($title = '', $action = false, $searchbar = false, $header = [], $colum = [], $searchableHeaders = [])
+    public function mount($title = '', $action = false, $searchbar = false, $header = [], $colum = [], $searchableHeaders = [], $newData = false)
     {
         $this->title = $title;
         $this->action = $action;
@@ -26,6 +27,14 @@ class Tabel extends Component
         $this->header = $header;
         $this->colum = $colum;
         $this->searchableHeaders = $searchableHeaders;
+        $this->newData = $newData;
+
+        if ($newData) {
+            // Asumsikan "Date" adalah Carbon instance yang bisa dibandingkan
+            $this->colum = collect($this->colum)->sortByDesc(function ($item) {
+                return $item['Date'];
+            })->values()->toArray();
+        }
     }
 
     public function exportCSV()

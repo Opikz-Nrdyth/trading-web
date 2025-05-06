@@ -71,7 +71,7 @@
     </div>
     <div class="mb-4">
         <label class="block text-white mb-2" for="referals">
-            Referals <span class="text-red-500">*</span>
+            Referals (optional)
         </label>
         <input wire:model="referals" class="w-full px-2 py-3 rounded bg-white text-xs" id="referals" name="username"
             type="text" placeholder="Username Referals" />

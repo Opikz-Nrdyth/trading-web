@@ -91,8 +91,8 @@ class KycResource extends Resource
                     ->label('Name')
                     ->searchable()
                     ->sortable(),
-                ImageColumn::make('identity')->width(50)->url(fn($record) => asset('storage/' . $record->identity)),
-                ImageColumn::make('photo')->width(50)->url(fn($record) => asset('storage/' . $record->photo)),
+                ImageColumn::make('identity_card')->width(50)->defaultImageUrl(fn($record) => asset('storage/' . $record->identity)),
+                ImageColumn::make('pas_photo')->width(50)->defaultImageUrl(fn($record) => asset('storage/' . $record->photo)),
                 TextColumn::make('status')
                     ->label('Status')
                     ->sortable()

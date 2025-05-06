@@ -18,6 +18,7 @@ class SettingForm extends Component
     public $phone;
     public $bitcoin_address;
     public $bank;
+    public $bank_name;
 
     protected $rules = [
         'username' => 'required|string|max:12',
@@ -27,7 +28,8 @@ class SettingForm extends Component
         'email' => 'required|email|max:100',
         'phone' => 'required|string|max:15',
         'bitcoin_address' => 'nullable|string|max:255',
-        'bank' => 'nullable|string|max:255',
+        'bank' => 'nullable|numeric',
+        'bank_name' => 'nullable|string|max:255',
     ];
 
     public function mount()
@@ -44,6 +46,7 @@ class SettingForm extends Component
         $this->phone = $userData->phone_number ?? '';
         $this->bitcoin_address = $userData->bitcoin_address ?? '';
         $this->bank = $userData->bank_number ?? '';
+        $this->bank_name = $userData->bank_name ?? '';
     }
 
     public function submit()
@@ -68,6 +71,7 @@ class SettingForm extends Component
                 'phone_number' => $this->phone,
                 'bitcoin_address' => $this->bitcoin_address,
                 'bank_number' => $this->bank,
+                'bank_name' => $this->bank_name,
             ]
         );
 
