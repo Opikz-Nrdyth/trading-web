@@ -29,7 +29,7 @@
         <?php $__currentLoopData = $data; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $d): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <?php if (isset($component)) { $__componentOriginal3d452745d4a5eb38b6bef38907945e76 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal3d452745d4a5eb38b6bef38907945e76 = $attributes; } ?>
-<?php $component = App\View\Components\News::resolve(['id' => ''.e($d['id']).'','title' => ''.e($d['title']).'','thubmnail' => '/public/storage/'.e($d['thumbnail']).'','description' => ''.$d['content'].'','updatedat' => ''.e($d['updated_at']).''] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
+<?php $component = App\View\Components\News::resolve(['id' => ''.e($d['id']).'','title' => ''.e($d['title']).'','thubmnail' => ''.e($d['thumbnail']).'','description' => ''.$d['content'].'','updatedat' => ''.e($d['updated_at']).''] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? (array) $attributes->getIterator() : [])); ?>
 <?php $component->withName('news'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>

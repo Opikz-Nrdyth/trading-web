@@ -44,7 +44,7 @@ class FormTransfer extends Component
     public function convertToRupiah($amount)
     {
         $dataCurrency = Cache::get('data_currency', []);
-        $rate = 1 / $dataCurrency['idr'][strtolower(session('currency') ?? "IDR")];
+        $rate = 1 / $dataCurrency['idr'][strtolower(Auth::user()->userData->type_currency ?? "IDR")];
 
         return $amount * $rate;
     }
@@ -52,9 +52,20 @@ class FormTransfer extends Component
     public function submit()
     {
         $this->validate([
-            'amount_transfer' => 'required|numeric|min:1',
+            'amount_transfer' => 'required|string',
             'username' => 'required|string',
         ]);
+
+        function parseCurrencyToFloat($value)
+        {
+            // Hilangkan titik (pemisah ribuan), ubah koma ke titik (desimal)
+            $normalized = str_replace(['.', ','], ['', '.'], $value);
+            return (float) $normalized;
+        }
+
+        $this->amount_transfer = parseCurrencyToFloat($this->amount_transfer);
+
+
 
         $userIdTarget = optional(User::with('userData')->whereHas('userData', function ($query) {
             $query->where('username', $this->username);
@@ -65,22 +76,24 @@ class FormTransfer extends Component
             return;
         }
 
-        if (getCurrency($this->amount) < getCurrency($this->amount_transfer)) {
-            session()->flash('error', 'Your balance is insufficient');
+
+        if (currencyToInt($this->amount) < $this->amount_transfer) {
+            session()->flash('error', 'Your balance is insufficient your balance ' . getCurrency(currencyToInt($this->amount)));
             return;
         }
 
-        if (session('currency') ?? "IDR" != 'IDR') {
-            if ($this->amount_transfer < getCurrency(setting::first()->min_tf)) {
-                session()->flash('error', 'Minimal Transfer is ' . getCurrency(setting::first()->min_wd) . ' Your Tranfer is ' . getCurrency($this->amount_transfer));
+        if (Auth::user()->userData->type_currency ?? "IDR" != 'IDR') {
+            if ($this->amount_transfer < currencyToInt(intval(setting::first()->min_tf))) {
+                session()->flash('error', 'Minimal Transfer is ' . getCurrency(currencyToInt(setting::first()->min_wd)) . ' Your Tranfer is ' . getCurrency(currencyToInt($this->amount_transfer)));
                 return;
             }
         } else {
-            if (getCurrency($this->amount_transfer) < getCurrency(setting::first()->min_tf)) {
-                session()->flash('error', 'Minimal Transfer is ' . getCurrency(setting::first()->min_wd) . ' Your Tranfer is ' . getCurrency($this->amount_transfer));
+            if ($this->amount_transfer < currencyToInt(intval(setting::first()->min_tf))) {
+                session()->flash('error', 'Minimal Transfer is ' . getCurrency(currencyToInt(setting::first()->min_wd)) . ' Your Tranfer is ' . getCurrency(currencyToInt($this->amount_transfer)));
                 return;
             }
         }
+
 
         amount::create([
             'user_id' => $userIdTarget,

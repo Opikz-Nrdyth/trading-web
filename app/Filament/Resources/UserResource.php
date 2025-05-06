@@ -25,6 +25,9 @@ use Filament\Support\Facades\FilamentExport;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Filament\Tables\Actions\DeleteAction;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use NumberFormatter;
 
 class UserResource extends Resource
 {
@@ -210,6 +213,17 @@ class UserResource extends Resource
 
     public static function table(Table $table): Table
     {
+        function getCurrency($amount)
+        {
+            $dataCurrency = Cache::get('data_currency', []);
+            $currencyType = Auth::user()->userData->type_currency ? Auth::user()->userData->type_currency : "IDR";
+            $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
+            return str_replace(
+                ',00',
+                '',
+                $formatter->formatCurrency(round(intval($amount) * $dataCurrency['idr'][strtolower($currencyType)], 4), $currencyType)
+            );
+        }
         return $table
             ->columns([
                 TextColumn::make('name')
@@ -236,6 +250,9 @@ class UserResource extends Resource
                     ->sortable()
                     ->getStateUsing(function ($record) {
                         return $record->userAmount()->sum('amount');
+                    })
+                    ->formatStateUsing(function ($state) {
+                        return getCurrency($state); // Gunakan fungsi kustom
                     }),
 
                 TextColumn::make('userData.members')

@@ -13,7 +13,7 @@
         </div>
         <div class="bg-base-card py-3 px-3 w-full lg:w-[60%]">
             <livewire:tabel title='Buy Cash Balance History' searchbar="{{ true }}" :header="$header"
-                :colum="$colum" :searchableHeaders="$filtered" />
+                :colum="$colum" :searchableHeaders="$filtered" newData="{{ true }}" />
         </div>
     </div>
 @endsection
