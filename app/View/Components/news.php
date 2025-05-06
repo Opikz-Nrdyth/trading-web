@@ -11,7 +11,7 @@ class news extends Component
     public $title;
     public $description;
     public $thubmnail;
-    public $updated_at;
+    public $updatedat;
     public $id;
     public function __construct($title = '', $description = '', $thubmnail = '', $updatedat = '', $id = 0)
     {
@@ -19,7 +19,7 @@ class news extends Component
         $this->title = $title;
         $this->description = $description;
         $this->thubmnail = $thubmnail;
-        $this->updated_at = $updatedat;
+        $this->updatedat = $updatedat;
     }
 
     /**
