@@ -10,7 +10,7 @@
         </div>
         @foreach ($data as $d)
             <x-news id="{{ $d['id'] }}" title="{{ $d['title'] }}" thubmnail="/public/storage/{{ $d['thumbnail'] }}"
-                description="{!! $d['content'] !!}" />
+                description="{!! $d['content'] !!}" updated_at="{!! $d['updated_at'] !!}" />
         @endforeach
     </div>
 @endsection
