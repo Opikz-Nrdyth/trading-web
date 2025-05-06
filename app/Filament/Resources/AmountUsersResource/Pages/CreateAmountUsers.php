@@ -28,13 +28,11 @@ class CreateAmountUsers extends CreateRecord
 
         unset($data['type_currency']);
 
-        $user = User::where("id", $data['user_id'])->first();
-
         notification::create([
-            'user_id' => $user?->userData?->username,
+            'user_id' => $data['user_id'],
             'type' => 'info',
             'title' => 'you get ' . $data['type'] . ' balance',
-            'message' => 'you get additional balance from ' . $data['from_user'],
+            'message' => 'you get additional balance from ' . User::where("id", $data['from_user'])->first()->userData->username,
         ]);
 
         return $data;
