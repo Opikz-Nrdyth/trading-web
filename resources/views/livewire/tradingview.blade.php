@@ -27,7 +27,7 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
         <div class="flex items-center space-x-4">
             <div class="bg-gray-800 text-white rounded px-4 py-2 flex items-center gap-3 justify-center">
-                <p>SGD | </p><input type="number" value="0"
+                <p>blc | </p><input type="number" value="0"
                     class="w-[80px] text-center text-lg bg-base-input outline-none rounded-md" min="1">
             </div>
             <select wire:model="timeframe" class="bg-gray-800 text-white rounded px-4 py-2">

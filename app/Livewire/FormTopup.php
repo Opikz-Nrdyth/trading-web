@@ -33,7 +33,7 @@ class FormTopup extends Component
             'from_user' => Auth::id(),
         ]);
 
-        session()->flash('message', 'Deposit SGD ' . $this->amount . ' successful, and waiting for confirmation');
+        session()->flash('message', 'Deposit Balance ' . $this->amount . ' successful, and waiting for confirmation');
     }
 
     public function render()

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 26, 2025 at 04:18 AM
+-- Generation Time: May 06, 2025 at 06:01 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -38,14 +38,6 @@ CREATE TABLE `amounts` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `amounts`
---
-
-INSERT INTO `amounts` (`id`, `user_id`, `amount`, `type`, `status`, `from_user`, `noted`, `created_at`, `updated_at`) VALUES
-(1, 2, 400000, 'bonus', 'success', 1, '<p>Bonus awal</p>', '2025-04-25 19:10:06', '2025-04-25 19:10:06'),
-(2, 2, -400002, 'withdraw', 'success', 2, 'Withdraw Balance', '2025-04-25 21:17:45', '2025-04-25 21:17:45');
 
 -- --------------------------------------------------------
 
@@ -91,7 +83,8 @@ CREATE TABLE `currencies` (
 
 INSERT INTO `currencies` (`id`, `currency_code`, `currency_name`, `country`, `currency_logo`, `created_at`, `updated_at`) VALUES
 (1, 'SGD', 'Singapure Dollar', 'Singapure', '/images/singapore.png', '2025-04-24 20:12:21', '2025-04-24 20:12:21'),
-(2, 'AED', 'Uni Emirates Arab Dirham', 'Uni Emirates Arab', 'images/01JSQYPY3QS2HECT3QE3HA8BMH.png', '2025-04-25 19:27:05', '2025-04-25 19:27:05');
+(2, 'AED', 'Uni Emirates Arab Dirham', 'Uni Emirates Arab', 'images/01JSQYPY3QS2HECT3QE3HA8BMH.png', '2025-04-25 19:27:05', '2025-04-25 19:27:05'),
+(3, 'IDR', 'Indonesia Rupiah', 'Indonesia', 'images/01JTHRQNX6AEV75M7JK9EHPK60.png', '2025-05-05 20:02:53', '2025-05-05 20:02:53');
 
 -- --------------------------------------------------------
 
@@ -155,6 +148,13 @@ CREATE TABLE `kycs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `kycs`
+--
+
+INSERT INTO `kycs` (`id`, `user_id`, `photo`, `identity`, `status`, `created_at`, `updated_at`) VALUES
+(1, 3, 'kyc/2dB9yaXWvYKMnrkaqeCvcsWXvg34ezIGLWPLjwky.png', 'kyc/SU3XQSkD7wcYqdMQjvKBi4yqLtGkYDvVjkbFmyUp.png', 'success', '2025-05-05 22:40:05', '2025-05-05 22:46:57');
 
 -- --------------------------------------------------------
 
@@ -249,7 +249,30 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `title`, `message`, `type`, `status`, `created_at`, `updated_at`) VALUES
-(1, '2', 'Welcome Users', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-04-24 20:13:32', '2025-04-24 20:13:32');
+(1, '2', 'Welcome Users', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-04-24 20:13:32', '2025-04-24 20:13:32'),
+(2, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-26 10:34:21', '2025-04-26 10:34:21'),
+(3, '2', 'Withdraw', 'Your withdraw has been approved', 'info', 'unread', '2025-04-26 10:49:54', '2025-04-26 10:49:54'),
+(4, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-27 21:33:09', '2025-04-27 21:33:09'),
+(5, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-27 21:38:57', '2025-04-27 21:38:57'),
+(6, '2', 'Withdraw', 'Your withdraw has been approved', 'info', 'unread', '2025-04-27 21:40:52', '2025-04-27 21:40:52'),
+(7, '2', 'Balance', 'Your balance has been approved', 'info', 'unread', '2025-04-27 21:42:23', '2025-04-27 21:42:23'),
+(8, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-04-27 21:48:34', '2025-04-27 21:48:34'),
+(9, '2', 'Withdraw', 'Your withdraw has been approved', 'info', 'unread', '2025-04-27 21:49:24', '2025-04-27 21:49:24'),
+(10, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 20:04:52', '2025-05-05 20:04:52'),
+(11, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 20:42:45', '2025-05-05 20:42:45'),
+(12, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 20:45:01', '2025-05-05 20:45:01'),
+(13, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 21:01:04', '2025-05-05 21:01:04'),
+(14, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 21:25:45', '2025-05-05 21:25:45'),
+(15, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 21:57:20', '2025-05-05 21:57:20'),
+(16, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 21:58:05', '2025-05-05 21:58:05'),
+(17, '2', 'Withdraw', 'Your withdraw has been approved', 'info', 'unread', '2025-05-05 22:02:29', '2025-05-05 22:02:29'),
+(18, '2', 'Balance', 'Your balance has been approved', 'info', 'unread', '2025-05-05 22:02:44', '2025-05-05 22:02:44'),
+(19, '2', 'Withdraw', 'Your withdraw has been approved', 'info', 'unread', '2025-05-05 22:04:55', '2025-05-05 22:04:55'),
+(20, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 22:11:38', '2025-05-05 22:11:38'),
+(21, '2', 'Withdraw', 'Your withdraw has been approved', 'info', 'unread', '2025-05-05 22:12:38', '2025-05-05 22:12:38'),
+(22, '2', 'Withdraw', 'Your withdraw has been reject!, Try again leter', 'error', 'unread', '2025-05-05 22:13:46', '2025-05-05 22:13:46'),
+(23, '3', 'Welcome Tofiq', 'We’re thrilled to have you on board. Whether you’re a seasoned trader or just starting out, this is your gateway to a world of opportunities. 📈 Enjoy seamless trading with our user-friendly platform, cutting-edge tools, and market insights tailored just for you. Remember, trading is not just about profits—it’s about learning, growing, and staying positive. Feel free to reach out if you need assistance.Happy trading and may your journey be filled with success! 🚀', 'info', 'unread', '2025-05-05 22:26:58', '2025-05-05 22:26:58'),
+(24, '3', 'KYC', 'Your kyc has been approved', 'info', 'unread', '2025-05-05 22:46:57', '2025-05-05 22:46:57');
 
 -- --------------------------------------------------------
 
@@ -322,7 +345,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `company_name`, `company_logo`, `min_wd`, `min_tf`, `fee`, `telegram`, `created_at`, `updated_at`) VALUES
-(1, 'Opik Studio', '/images/logo.png', '100000.00', '100000.00', '2.00', '', '2025-04-24 20:12:22', '2025-04-24 20:12:22');
+(1, 'Trader', 'logos/01JSXBT7YFZPRH4YRTG7VCWPTN.png', '100000.00', '100000.00', '0.00', 'https://te.me/hdud73hnd', '2025-04-24 20:12:22', '2025-05-05 20:29:00');
 
 -- --------------------------------------------------------
 
@@ -384,8 +407,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `role`, `email_verified_at`, `password`, `password_view`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@gmail.com', 'Admin', '2025-04-24 20:12:21', '$2y$12$tQFSaflTftCSnJeNI.V99e.k3v4Dy0TWveogkEBoQKvtNLGQNpigi', 'Admin123', NULL, '2025-04-24 20:12:21', '2025-04-24 20:12:21'),
-(2, 'Users', 'user@gmail.com', 'User', NULL, '$2y$12$NJ.K9HTHhvmmIRQ1HpQhSunRALWlBpfNQyAI4Cijr8dlZRY.FjJLy', '12345678', NULL, '2025-04-24 20:13:31', '2025-04-25 21:12:40');
+(1, 'Admin', 'admin@gmail.com', 'Admin', '2025-04-24 20:12:21', '$2y$12$U98RmqN32JHwiu7OcVj.aOf6mWHqhTSAp76XF9HaW/zsWVU/qNm8i', 'Admin123', NULL, '2025-04-24 20:12:21', '2025-05-05 20:58:36'),
+(2, 'Users', 'user@gmail.com', 'User', NULL, '$2y$12$HmsJi3FaovUxn8vFwVhr/eZCqZB/vs4HLJi2VIvVbBJNViM6SRPSS', '12345678', NULL, '2025-04-24 20:13:31', '2025-05-05 22:09:53'),
+(3, 'Tofiq', 'opik@gmail.com', 'User', '2025-05-05 22:46:57', '$2y$12$8NL2V.BiLtEmJM7haT9wgu6v1IKWybhSk0feY2yBTdMSpfFubh88K', 'OpikOnk123', NULL, '2025-05-05 22:26:58', '2025-05-05 22:46:57');
 
 -- --------------------------------------------------------
 
@@ -416,8 +440,9 @@ CREATE TABLE `user_data` (
 --
 
 INSERT INTO `user_data` (`id`, `user_id`, `referals`, `profile_image`, `username`, `address`, `country`, `phone_number`, `bitcoin_address`, `bank_number`, `bank_name`, `type_currency`, `members`, `created_at`, `updated_at`) VALUES
-(1, 1, '1', NULL, 'admin', '', 'Indonesia', '', '', '', '', 'SGD', '1', '2025-04-24 20:12:21', '2025-04-24 20:12:21'),
-(2, 2, NULL, NULL, 'users', 'Jalan tes', 'Singapure', '0489383783', 'bejfewkjnfkew', '8734832784329', 'BRI', 'SGD', '0', '2025-04-24 20:13:31', '2025-04-25 21:12:40');
+(1, 1, '1', NULL, 'admin', NULL, 'Indonesia', NULL, NULL, NULL, NULL, 'IDR', '1', '2025-04-24 20:12:21', '2025-05-05 20:58:36'),
+(2, 2, NULL, 'profile/EHnCwJdRusawh2miK0hjP8Z82VSuQ7EOfhgJcoDQ.png', 'users', 'Jalan tes', 'Uni Emirates Arab', '0489383783', 'bejfewkjnfkew', '8734832784329', 'BNI', 'AED', '0', '2025-04-24 20:13:31', '2025-05-05 22:19:37'),
+(3, 3, NULL, 'profile/iCSM41Bxj42XkqsZb7sGCBbIuGK9jS8nPnMdO8mH.png', 'opikzz', 'tes jalan sehat', 'Indonesia', '082328035237', 'jbcdkjbsekj', '76347836', 'BNI', NULL, NULL, '2025-05-05 22:26:58', '2025-05-06 05:58:41');
 
 -- --------------------------------------------------------
 
@@ -439,13 +464,6 @@ CREATE TABLE `withdrawals` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `withdrawals`
---
-
-INSERT INTO `withdrawals` (`id`, `user_id`, `currency_type`, `bank_number`, `user_bank`, `pass_bank`, `pin_bank`, `amount_withdraw`, `fee`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 'SGD(Singapure Dollar)', '8734832784329', 'Opikzz', 'BRI', '-', '400001.79', '0.00', 'pending', '2025-04-25 21:17:45', '2025-04-25 21:17:45');
 
 --
 -- Indexes for dumped tables
@@ -596,7 +614,7 @@ ALTER TABLE `withdrawals`
 -- AUTO_INCREMENT for table `amounts`
 --
 ALTER TABLE `amounts`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `cripto_currencies`
@@ -608,7 +626,7 @@ ALTER TABLE `cripto_currencies`
 -- AUTO_INCREMENT for table `currencies`
 --
 ALTER TABLE `currencies`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -632,7 +650,7 @@ ALTER TABLE `investments`
 -- AUTO_INCREMENT for table `kycs`
 --
 ALTER TABLE `kycs`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -656,7 +674,7 @@ ALTER TABLE `news`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -692,19 +710,19 @@ ALTER TABLE `trades`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_data`
 --
 ALTER TABLE `user_data`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `withdrawals`
 --
 ALTER TABLE `withdrawals`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables

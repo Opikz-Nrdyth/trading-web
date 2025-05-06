@@ -18,7 +18,20 @@ class FormTransfer extends Component
 
     public function mount()
     {
-        $this->amount = Auth::user()->userAmount->where("status", "success")->sum("amount");
+        $successAmount = Auth::user()->userAmount
+            ->where('status', 'success')
+            ->sum('amount') ?? 0;
+
+        $pendingNegativeAmount = Auth::user()->userAmount
+            ->where('status', 'pending')
+            ->where('amount', '<', 0)
+            ->sum('amount') ?? 0;
+
+        $this->amount = $successAmount + $pendingNegativeAmount;
+        if ($this->amount < 0 || $this->amount == -0) {
+            $this->amount = 0;
+        }
+
         $this->amount = getCurrency($this->amount);
     }
 
@@ -89,7 +102,7 @@ class FormTransfer extends Component
 
         $this->reset(['username', 'amount_transfer']);
 
-        session()->flash('message', 'Transfer SGD ' . $this->amount_transfer . ' To ' . $this->username . ' Success');
+        session()->flash('message', 'Transfer Balance ' . $this->amount_transfer . ' To ' . $this->username . ' Success');
     }
 
     public function render()

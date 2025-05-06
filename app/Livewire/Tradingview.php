@@ -29,7 +29,20 @@ class Tradingview extends Component
         }
 
         $dataCurrency = Cache::get('data_currency', []);
-        $this->currentPrice = Auth::user()->userAmount->where('status', 'success')->sum('amount');
+        $successAmount = Auth::user()->userAmount
+            ->where('status', 'success')
+            ->sum('amount') ?? 0;
+
+        $pendingNegativeAmount = Auth::user()->userAmount
+            ->where('status', 'pending')
+            ->where('amount', '<', 0)
+            ->sum('amount') ?? 0;
+
+        $this->currentPrice = $successAmount + $pendingNegativeAmount;
+        if ($this->currentPrice < 0 || $this->currentPrice == -0) {
+            $this->currentPrice = 0;
+        }
+
         $currencyType = Auth::user()->userData->type_currency ? Auth::user()->userData->type_currency : "IDR";
         $formatter = new NumberFormatter('id_ID', NumberFormatter::CURRENCY);
 

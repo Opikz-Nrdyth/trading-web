@@ -122,8 +122,6 @@ class FormWidthraw extends Component
             }
         }
 
-
-
         Withdrawal::create([
             'user_id' => Auth::id(),
             'currency_type' => $this->currency_type,
