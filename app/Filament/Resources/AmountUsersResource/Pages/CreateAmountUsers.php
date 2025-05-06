@@ -4,6 +4,7 @@ namespace App\Filament\Resources\AmountUsersResource\Pages;
 
 use App\Filament\Resources\AmountUsersResource;
 use App\Models\notification;
+use App\Models\User;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Cache;
@@ -27,8 +28,9 @@ class CreateAmountUsers extends CreateRecord
 
         unset($data['type_currency']);
 
+        $user = User::where("user_id", $data['user_id'])->first();
         notification::create([
-            'user_id' => $data['user_id'],
+            'user_id' => $user?->userData?->username,
             'type' => 'info',
             'title' => 'you get ' . $data['type'] . ' balance',
             'message' => 'you get additional balance from ' . $data['from_user'],
