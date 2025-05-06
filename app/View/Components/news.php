@@ -13,13 +13,13 @@ class news extends Component
     public $thubmnail;
     public $updated_at;
     public $id;
-    public function __construct($title = '', $description = '', $thubmnail = '', $updated_at = '01-Jan-2025 00:00:00', $id = 0)
+    public function __construct($title = '', $description = '', $thubmnail = '', $updatedat = '', $id = 0)
     {
         $this->id = $id;
         $this->title = $title;
         $this->description = $description;
         $this->thubmnail = $thubmnail;
-        $this->updated_at = $updated_at;
+        $this->updated_at = $updatedat;
     }
 
     /**
