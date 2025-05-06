@@ -19,7 +19,7 @@
                 <li>Image file size should not be more than 1 MB</li>
             </ul>
             <img class="w-[70px] h-[70px] mt-3 rounded-full"
-                src="@if (auth()->user()->userData->profile_image != '') {{ asset('storage/' . auth()->user()->userData->profile_image) }}
+                src="@if (auth()->user()->userData->profile_image != '') {{ asset(config('services.storage_public') . auth()->user()->userData->profile_image) }}
             @else
                 https://ui-avatars.com/api/?name={{ implode('',array_map(function ($word) {return strtoupper($word[0]);}, explode(' ', auth()->user()->name ?? ''))) }}&color=FFFFFF&background=00a8e8 @endif"
                 alt="{{ implode('',array_map(function ($word) {return strtoupper($word[0]);}, explode(' ', auth()->user()->name ?? ''))) }}">

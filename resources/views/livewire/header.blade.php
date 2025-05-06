@@ -16,8 +16,8 @@
                 @foreach (\App\Models\currency::all() as $currency)
                     <div class="hover:bg-primary flex justify-center gap-1 py-2 px-2"
                         wire:click="currencySelected('{{ $currency->currency_code }}')">
-                        <img src="{{ asset('storage/' . $currency->currency_logo) }}" width="25px"
-                            alt="{{ $currency->currency_code }}">
+                        <img src="{{ asset(config('services.storage_public') . $currency->currency_logo) }}"
+                            width="25px" alt="{{ $currency->currency_code }}">
                         <p>{{ $currency->currency_name }}</p>
                     </div>
                 @endforeach
@@ -37,7 +37,7 @@
         <a href="/profile">
             <button class="bg-base-card w-[40px] h-[40px] rounded-full transition-all duration-200">
                 <img class="w-full h-full rounded-full"
-                    src="@if (auth()->user()->userData->profile_image ?? '' != '') {{ asset('storage/' . auth()->user()->userData->profile_image) }}
+                    src="@if (auth()->user()->userData->profile_image ?? '' != '') {{ asset(config('services.storage_public') . auth()->user()->userData->profile_image) }}
                 @else
                     https://ui-avatars.com/api/?name={{ implode('',array_map(function ($word) {return strtoupper($word[0]);}, explode(' ', auth()->user()->name ?? ''))) }}&color=FFFFFF&background=1f1f1f @endif"
                     alt="{{ implode('',array_map(function ($word) {return strtoupper($word[0]);}, explode(' ', auth()->user()->name ?? ''))) }}">

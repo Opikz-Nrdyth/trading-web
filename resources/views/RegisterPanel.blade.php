@@ -6,7 +6,8 @@
         class="mt-48 p-8 rounded-lg shadow-lg w-full max-w-md border-2 border-yellow-500 bg-[linear-gradient(to_bottom_right,rgba(8,145,178,0.35),rgba(110,231,183,0.35))]">
         <div class="text-center mb-6">
             <img alt="Logo of a wolf head with text 'The Systematic Trader'" class="mx-auto mb-4" height="100"
-                src="/storage/{{ \App\Models\setting::first()->company_logo }}" width="100" />
+                src="{{ config('services.storage_public') }}{{ \App\Models\setting::first()->company_logo }}"
+                width="100" />
             <p class="text-2xl font-extrabold bg-gradient-to-r from-blue-900 to-red-500 bg-clip-text text-transparent">
                 {{ \App\Models\setting::first()->comapany_name }}</p>
             <!--<div class="flex justify-center">-->

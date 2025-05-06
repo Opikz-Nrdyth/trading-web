@@ -71,7 +71,7 @@ class NewsResource extends Resource
     {
         return $table
             ->columns([
-                ImageColumn::make('thumbnail')->width(50)->url(fn($record) => asset('storage/' . $record->thumbnail)),
+                ImageColumn::make('thumbnail')->width(50)->url(fn($record) => asset(config('services.storage_public') . $record->thumbnail)),
                 TextColumn::make('title')
                     ->searchable()
                     ->sortable(),

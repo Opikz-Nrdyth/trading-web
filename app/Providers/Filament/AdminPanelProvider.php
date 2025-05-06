@@ -35,7 +35,7 @@ class AdminPanelProvider extends PanelProvider
 
             if ($setting) {
                 $brandName = $setting->company_name ?? $brandName;
-                $brandLogo = $setting->company_logo ? "/storage/{$setting->company_logo}" : "";
+                $brandLogo = $setting->company_logo ? config('services.storage_public') . $setting->company_logo : "";
             }
         }
 
