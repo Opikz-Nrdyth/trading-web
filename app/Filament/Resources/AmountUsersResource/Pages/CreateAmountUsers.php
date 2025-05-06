@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\AmountUsersResource\Pages;
 
 use App\Filament\Resources\AmountUsersResource;
+use App\Models\notification;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Facades\Cache;
@@ -25,6 +26,14 @@ class CreateAmountUsers extends CreateRecord
         $data['amount'] = $this->convertToRupiah($amount, $currency);
 
         unset($data['type_currency']);
+
+        notification::create([
+            'user_id' => $data['user_id'],
+            'type' => 'info',
+            'title' => 'you get ' . $data['type'] . ' balance',
+            'message' => 'you get additional balance from ' . $data['from_user'],
+        ]);
+
         return $data;
     }
 

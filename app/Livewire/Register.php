@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\currency;
 use App\Models\notification as ModelsNotification;
 use App\Models\User;
 use Filament\Notifications\Notification;
@@ -64,7 +65,8 @@ class Register extends Component
             // Update username di userData yang sudah di-create via boot
             $user->userData()->update([
                 'username' => $this->username,
-                'referals' => $this->referals
+                'referals' => $this->referals,
+                'type_currency' => currency::where("currency_code", "IDR")->exists() ? "IDR" : currency::first()?->currency_code
             ]);
 
             ModelsNotification::create([
