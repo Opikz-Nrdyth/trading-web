@@ -21,7 +21,7 @@ class CheckUserRole
             if ($user->role === 'Admin') {
                 return $next($request);
             } else {
-                return redirect()->to("/");
+                return redirect()->to("/auth/users");
             }
         }
         return $next($request);

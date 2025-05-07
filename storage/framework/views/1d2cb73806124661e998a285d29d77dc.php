@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Setting - Profile'); ?>
+<?php $__env->startSection('title', 'Security'); ?>
 <?php $__env->startSection('route', end($route)); ?>
 
 <?php $__env->startSection('content'); ?>

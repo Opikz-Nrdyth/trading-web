@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LandingPage;
 use App\Models\faq;
 use App\Models\news;
 use App\Models\User;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+
+Route::get('/', [LandingPage::class, 'index'])->name("landing.page");
 
 Route::middleware('auth')->group(function () {
     function getCurrency($amount)
@@ -66,9 +69,9 @@ Route::middleware('auth')->group(function () {
         return $parsed !== false ? $parsed : 0;
     }
 
-    Route::get('/', [welcome::class, 'Welcome']);
+    Route::get('/auth/users/', [welcome::class, 'Welcome']);
 
-    Route::get('/profile', function () {
+    Route::get('/auth/users/profile', function () {
         $user = auth()->user();
         $userData = auth()->user()->userData;
         $members = auth()->user()->userMember->sum();
@@ -81,15 +84,15 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/profile-images', function () {
+    Route::get('/auth/users/profile-images', function () {
         return view('SettingFotoProfile', ['route' => ['profile-images'], 'title' => 'Settings']);
     });
 
-    Route::get('/security', function () {
+    Route::get('/auth/users/security', function () {
         return view('security', ['route' => ['security'], 'title' => 'Security']);
     });
 
-    Route::get('/kyc', function () {
+    Route::get('/auth/users/kyc', function () {
         $kycData = auth()->user()->KYCData;
         return view('kyc', [
             'route' => ['kyc'],
@@ -99,7 +102,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/investment', function () {
+    Route::get('/auth/users/investment', function () {
         $investment = auth()->user()->userInvestment;
         $dataInvest = package::all();
 
@@ -134,7 +137,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/trade', function () {
+    Route::get('/auth/users/trade', function () {
         $trade = trade::all();
         $transformedTrade = $trade->map(function ($item) {
             return [
@@ -166,7 +169,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/trade/history', function () {
+    Route::get('/auth/users/trade/history', function () {
         $trade = trade::all();
         $transformedTrade = $trade->map(function ($item) {
             return [
@@ -202,7 +205,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/trade/profits', function () {
+    Route::get('/auth/users/trade/profits', function () {
         $profits = auth()->user()->userAmount->where("type", "profits")->where("status", "success");
         $totalProfits = auth()->user()->userAmount->where("type", "profits")->where("status", "success")->sum("amount");
         $transformedProfits = $profits->map(function ($item) {
@@ -228,7 +231,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/bonus', function () {
+    Route::get('/auth/users/bonus', function () {
         $bonus = auth()->user()->userAmount->where("type", "bonus")->where("status", "success");
         $totalBonus = auth()->user()->userAmount->where("type", "bonus")->where("status", "success")->sum("amount");
         $transformedBonus = $bonus->map(function ($item) {
@@ -256,7 +259,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/referals', function () {
+    Route::get('/auth/users/referals', function () {
         $referals = userData::where("referals", auth()->user()->userData->username)->get() ?? [];
 
         $transformedReferals = $referals->map(function ($item) {
@@ -286,7 +289,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/balance', function () {
+    Route::get('/auth/users/balance', function () {
         $balance = auth()->user()->userAmount;
         $totalBalance = auth()->user()->userAmount->sum("amount");
         $transformedBalance = $balance->map(function ($item) {
@@ -317,7 +320,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/balance/virtual-balance', function () {
+    Route::get('/auth/users/balance/virtual-balance', function () {
         $balance = auth()->user()->userAmount;
         $totalBalance = auth()->user()->userAmount->sum("amount");
 
@@ -348,7 +351,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/balance/add', function () {
+    Route::get('/auth/users/balance/add', function () {
         $amount = auth()->user()->userAmount->where("type", "deposit");
         $transformedAmount = $amount->map(function ($item) {
             return [
@@ -372,7 +375,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/balance/withdrawal', function () {
+    Route::get('/auth/users/balance/withdrawal', function () {
         $amount = Withdrawal::where("user_id", auth()->user()->id)->get();
         $transformedAmount = $amount->map(function ($item) {
             return [
@@ -400,7 +403,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/balance/transfer', function () {
+    Route::get('/auth/users/balance/transfer', function () {
         $amount = amount::where("from_user", auth()->user()->id)->where("type", "transfer")->get();
 
         $transformedAmount = $amount->map(function ($item) {
@@ -432,7 +435,7 @@ Route::middleware('auth')->group(function () {
         return redirect()->to("/admin/register");
     });
 
-    Route::get('/faq', function () {
+    Route::get('/auth/users/faq', function () {
         $faqs = faq::all();
         return view('faq', [
             'route' => ['faq'],
@@ -441,7 +444,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/last-news', function () {
+    Route::get('/auth/users/last-news', function () {
         $news = news::where('status', 'publish')->get();
         return view('LastNews', [
             'route' => ['last-news'],
@@ -450,7 +453,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/testimonials', function () {
+    Route::get('/auth/users/testimonials', function () {
         $testimonial = testimonial::where('status', 'publish')->get();
         return view('testimonials', [
             'route' => ['testimonials'],
@@ -459,7 +462,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/testimonials/add', function () {
+    Route::get('/auth/users/testimonials/add', function () {
         $testimonial = testimonial::where('status', 'publish')->where("user_id", Auth::id())->get();
         $transformedTestimonial = $testimonial->map(function ($item) {
             return [
@@ -481,7 +484,7 @@ Route::middleware('auth')->group(function () {
         ]);
     });
 
-    Route::get('/notification', function () {
+    Route::get('/auth/users/notification', function () {
         $data = notification::where(function ($query) {
             $query->where('user_id', Auth::id())
                 ->orWhere('user_id', 'All');
@@ -510,6 +513,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/register', function () {
     return view('RegisterPanel');
 })->name('filament.admin.auth.regist');
+
 
 Route::get('/admin/register', function () {
     return redirect()->to("/register");

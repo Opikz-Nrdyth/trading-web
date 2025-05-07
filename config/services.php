@@ -32,5 +32,6 @@ return [
     ],
 
     'storage_public' => env("APP_PUBLIC"),
+    'app_name' => env("APP_NAME"),
 
 ];

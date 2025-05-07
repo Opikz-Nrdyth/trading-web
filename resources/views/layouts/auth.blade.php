@@ -3,7 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/public/storage/{{ \App\Models\setting::first()->company_logo }}" type="image/x-icon">
+    @php
+        $logo = \App\Models\Setting::first()?->company_logo;
+    @endphp
+
+    @if ($logo)
+        <link rel="shortcut icon" href="{{ asset(config('services.storage_public') . $logo) }}" type="image/x-icon">
+    @endif
     <title>@yield('title')</title>
 
     <!-- Fonts -->

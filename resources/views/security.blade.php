@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Setting - Profile')
+@section('title', 'Security')
 @section('route', end($route))
 
 @section('content')

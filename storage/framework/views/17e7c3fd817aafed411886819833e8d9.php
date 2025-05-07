@@ -25,7 +25,7 @@
             </div>
         <?php endif; ?><!--[if ENDBLOCK]><![endif]-->
         
-        <a href="/notification">
+        <a href="/auth/users/notification">
             <button class="hover:bg-base-card w-[40px] h-[40px] rounded-md transition-all duration-200 relative">
                 <!--[if BLOCK]><![endif]--><?php if($notif): ?>
                     <div class="rounded-full w-[10px] h-[10px] bg-red-500 absolute right-1 top-1"></div>
@@ -33,7 +33,7 @@
                 <i class="fa-solid fa-bell"></i>
             </button>
         </a>
-        <a href="/profile">
+        <a href="/auth/users/profile">
             <button class="bg-base-card w-[40px] h-[40px] rounded-full transition-all duration-200">
                 <img class="w-full h-full rounded-full"
                     src="<?php if(auth()->user()->userData->profile_image ?? '' != ''): ?> <?php echo e(asset(config('services.storage_public') . auth()->user()->userData->profile_image)); ?>

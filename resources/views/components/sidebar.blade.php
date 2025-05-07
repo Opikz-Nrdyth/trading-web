@@ -18,7 +18,7 @@
     </div>
 
     <div class="text-base-text flex flex-col container-link">
-        <a href="/">
+        <a href="/auth/users">
             <nav
                 class="py-2 px-4 flex gap-5 items-center border-l-2 {{ $route == '' ? 'border-l-primary' : 'border-l-base-side' }} hover:text-white">
                 <span class="w-[40px] h-[40px] flex justify-center items-center bg-base-button rounded-full">
@@ -41,12 +41,12 @@
             </nav>
 
             <div id="link-grup-settings" style="display: none" class="flex flex-col gap-2">
-                <a href="/profile">
+                <a href="/auth/users/profile">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Profile
                     </nav>
                 </a>
-                <a href="/profile-images">
+                <a href="/auth/users/profile-images">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Profile Images
                     </nav>
@@ -55,7 +55,7 @@
 
         </div>
 
-        <a href="/security">
+        <a href="/auth/users/security">
             <nav
                 class="py-2 px-4 flex gap-5 items-center border-l-2 {{ $route == 'security' ? 'border-l-primary' : 'border-l-base-side' }} hover:text-white">
                 <span class="w-[40px] h-[40px] flex justify-center items-center bg-base-button rounded-full">
@@ -65,7 +65,7 @@
             </nav>
         </a>
 
-        <a href="/kyc">
+        <a href="/auth/users/kyc">
             <nav
                 class="py-2 px-4 flex gap-5 items-center border-l-2 {{ $route == 'kyc' ? 'border-l-primary' : 'border-l-base-side' }} hover:text-white">
                 <span class="w-[40px] h-[40px] flex justify-center items-center bg-base-button rounded-full">
@@ -75,7 +75,7 @@
             </nav>
         </a>
 
-        <a href="/investment">
+        <a href="/auth/users/investment">
             <nav
                 class="py-2 px-4 flex gap-5 items-center border-l-2 {{ $route == 'investment' ? 'border-l-primary' : 'border-l-base-side' }} hover:text-white">
                 <span class="w-[40px] h-[40px] flex justify-center items-center bg-base-button rounded-full">
@@ -100,19 +100,19 @@
 
             <div id="link-grup-trade" style="display: none" class="flex flex-col gap-2">
 
-                <a href="/trade">
+                <a href="/auth/users/trade">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Trade
                     </nav>
                 </a>
 
-                <a href="/trade/history">
+                <a href="/auth/users/trade/history">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         History
                     </nav>
                 </a>
 
-                <a href="/trade/profits">
+                <a href="/auth/users/trade/profits">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Profits
                     </nav>
@@ -135,12 +135,12 @@
 
 
             <div id="link-grup-funds" style="display: none" class="flex flex-col gap-2">
-                <a href="/bonus">
+                <a href="/auth/users/bonus">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Bonus
                     </nav>
                 </a>
-                <a href="/trade/profits">
+                <a href="/auth/users/trade/profits">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Profits
                     </nav>
@@ -163,27 +163,27 @@
 
 
             <div id="link-grup-wallet" style="display: none" class="flex flex-col gap-2">
-                <a href="/balance">
+                <a href="/auth/users/balance">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Balance
                     </nav>
                 </a>
-                <a href="/balance/virtual-balance">
+                <a href="/auth/users/balance/virtual-balance">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Virtual Balance
                     </nav>
                 </a>
-                <a href="/balance/add">
+                <a href="/auth/users/balance/add">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Add Balance
                     </nav>
                 </a>
-                <a href="/balance/transfer">
+                <a href="/auth/users/balance/transfer">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Transfer
                     </nav>
                 </a>
-                <a href="/balance/withdrawal">
+                <a href="/auth/users/balance/withdrawal">
                     <nav class="ml-14 py-2 px-3 hover:text-white w-fit rounded-md bg-base-side">
                         Withdrawal
                     </nav>
@@ -212,7 +212,7 @@
         <!--    </nav>-->
         <!--</a>-->
 
-        <a href="/faq">
+        <a href="/auth/users/faq">
             <nav class="py-2 px-4 flex gap-5 items-center border-l-2 border-l-base-side hover:text-white">
                 <span class="w-[40px] h-[40px] flex justify-center items-center bg-base-button rounded-full">
                     <i class="fa-solid fa-circle-question"></i>
@@ -221,7 +221,7 @@
             </nav>
         </a>
 
-        <a href="/last-news">
+        <a href="/auth/users/last-news">
             <nav class="py-2 px-4 flex gap-5 items-center border-l-2 border-l-base-side hover:text-white">
                 <span class="w-[40px] h-[40px] flex justify-center items-center bg-base-button rounded-full">
                     <i class="fa-solid fa-newspaper"></i>

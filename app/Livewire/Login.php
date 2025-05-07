@@ -30,7 +30,7 @@ class Login extends Component
             if ($user->role === 'Admin') {
                 return redirect()->route('filament.admin.pages.dashboard');
             } else {
-                return redirect()->to("/");
+                return redirect()->to("/auth/users");
             }
         }
     }

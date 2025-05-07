@@ -1,4 +1,4 @@
-<?php $__env->startSection('title', 'Referals'); ?>
+<?php $__env->startSection('title', 'Withdrawal'); ?>
 <?php $__env->startSection('route', end($route)); ?>
 
 <?php $__env->startSection('content'); ?>

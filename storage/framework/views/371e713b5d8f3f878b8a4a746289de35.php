@@ -3,7 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/public/storage/<?php echo e(\App\Models\setting::first()->company_logo); ?>" type="image/x-icon">
+    <?php
+        $logo = \App\Models\Setting::first()?->company_logo;
+    ?>
+
+    <?php if($logo): ?>
+        <link rel="shortcut icon" href="<?php echo e(asset(config('services.storage_public') . $logo)); ?>" type="image/x-icon">
+    <?php endif; ?>
     <title><?php echo $__env->yieldContent('title'); ?></title>
 
     <!-- Fonts -->
