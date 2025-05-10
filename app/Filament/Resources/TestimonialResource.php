@@ -36,6 +36,13 @@ class TestimonialResource extends Resource
                             ->required()
                             ->options(User::all()->pluck('name', 'id'))
                             ->searchable(),
+                        TextInput::make('position'),
+                        Select::make('status')
+                            ->required()
+                            ->options([
+                                "publish" => "publish",
+                                "pending" => "pending",
+                            ]),
                         Textarea::make('testimonial'),
                     ])
                     ->columns(1),
@@ -47,6 +54,8 @@ class TestimonialResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('user.name')->sortable()->searchable(),
+                TextColumn::make('position'),
+                TextColumn::make('status'),
                 TextColumn::make('testimonial'),
                 TextColumn::make('created_at')
                     ->dateTime()

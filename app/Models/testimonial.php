@@ -11,7 +11,8 @@ class testimonial extends Model
     protected $fillable = [
         'user_id',
         'testimonial',
-        'status'
+        'status',
+        'position'
     ];
 
     public function user()

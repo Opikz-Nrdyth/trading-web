@@ -125,9 +125,10 @@
             {{-- Desktop Menu --}}
             <nav class="hidden md:flex gap-3">
                 <a href="/" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Home</a>
-                <a href="/" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">About</a>
-                <a href="/" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Support</a>
-                <a href="/" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Blog</a>
+                <a href="/about" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">About</a>
+                <a href="/#support"
+                    class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Support</a>
+                <a href="/news" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Blog</a>
             </nav>
 
             {{-- Desktop Auth Buttons --}}
@@ -151,9 +152,9 @@
         {{-- Mobile Menu (hidden by default) --}}
         <div id="mobile-menu" class="md:hidden hidden flex-col gap-2 pb-4 transition-all duration-200 ease-in-out">
             <a href="/" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Home</a>
-            <a href="/" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">About</a>
-            <a href="/" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Support</a>
-            <a href="/" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Blog</a>
+            <a href="/about" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">About</a>
+            <a href="/#support" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Support</a>
+            <a href="/news" class="px-4 py-2 rounded-md text-gray-300 hover:text-white font-semibold">Blog</a>
             <a href="/login">
                 <button class="px-4 py-2 rounded-md font-bold text-gray-300 hover:text-white">Sign In</button>
             </a>
@@ -289,22 +290,27 @@
             condimentum vel.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 px-20 gap-5 mt-16">
-            <x-card_testimonial
-                profile="https://crypto-tailwind.preview.uideck.com/src/images/testimonials/image-01.jpg"
-                name="Json Keys" position="CEO & Founder @ Dreampeet"
-                testimonials="I believe in lifelong learning and Learn. is a great place to learn from experts. I've learned a lot and recommend it to all my friends and familys." />
-            <x-card_testimonial
-                profile="https://crypto-tailwind.preview.uideck.com/src/images/testimonials/image-01.jpg"
-                name="Json Keys" position="CEO & Founder @ Dreampeet"
-                testimonials="I believe in lifelong learning and Learn. is a great place to learn from experts. I've learned a lot and recommend it to all my friends and familys." />
-            <x-card_testimonial
-                profile="https://crypto-tailwind.preview.uideck.com/src/images/testimonials/image-01.jpg"
-                name="Json Keys" position="CEO & Founder @ Dreampeet"
-                testimonials="I believe in lifelong learning and Learn. is a great place to learn from experts. I've learned a lot and recommend it to all my friends and familys." />
-            <x-card_testimonial
-                profile="https://crypto-tailwind.preview.uideck.com/src/images/testimonials/image-01.jpg"
-                name="Json Keys" position="CEO & Founder @ Dreampeet"
-                testimonials="I believe in lifelong learning and Learn. is a great place to learn from experts. I've learned a lot and recommend it to all my friends and familys." />
+            @foreach ($testimonials as $data)
+                <x-card_testimonial
+                    profile="{{ $data->user->userData->profile_image
+                        ? 'https://ui-avatars.com/api/?name=' .
+                            implode(
+                                '',
+                                array_map(function ($word) {
+                                    return strtoupper($word[0]);
+                                }, explode(' ', $data->user->name ?? '')),
+                            ) .
+                            '&background=0D8ABC&color=fff'
+                        : asset(config('services.storage_public') . $data->user->userData->profile_image) }}"
+                    alt="{{ implode(
+                        '',
+                        array_map(function ($word) {
+                            return strtoupper($word[0]);
+                        }, explode(' ', $data->user->name ?? '')),
+                    ) }}"
+                    name="{{ $data->user->name }}" position="{{ $data->position }}"
+                    testimonials="{{ $data->testimonial }}" />
+            @endforeach
         </div>
     </section>
 
@@ -320,24 +326,11 @@
             condimentum vel.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 px-10 gap-5 mt-16">
-            <x-card_news thumbnail="https://crypto-tailwind.preview.uideck.com/src/images/blogs/image-01.jpg"
-                author="Admin" date="27 April 2025" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed congue arcu, In et dignissim quam condimentum vel." />
-            <x-card_news thumbnail="https://crypto-tailwind.preview.uideck.com/src/images/blogs/image-01.jpg"
-                author="Admin" date="27 April 2025" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed congue arcu, In et dignissim quam condimentum vel." />
-            <x-card_news thumbnail="https://crypto-tailwind.preview.uideck.com/src/images/blogs/image-01.jpg"
-                author="Admin" date="27 April 2025" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed congue arcu, In et dignissim quam condimentum vel." />
-            <x-card_news thumbnail="https://crypto-tailwind.preview.uideck.com/src/images/blogs/image-01.jpg"
-                author="Admin" date="27 April 2025" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed congue arcu, In et dignissim quam condimentum vel." />
-            <x-card_news thumbnail="https://crypto-tailwind.preview.uideck.com/src/images/blogs/image-01.jpg"
-                author="Admin" date="27 April 2025" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed congue arcu, In et dignissim quam condimentum vel." />
-            <x-card_news thumbnail="https://crypto-tailwind.preview.uideck.com/src/images/blogs/image-01.jpg"
-                author="Admin" date="27 April 2025" title="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-                description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed congue arcu, In et dignissim quam condimentum vel." />
+            @foreach ($news as $news)
+                <x-card_news thumbnail="{{ asset(config('services.storage_public') . $news->thumbnail) }}"
+                    author="{{ $news->user->name }}" date="{{ $news->created_at }}" title="{{ $news->title }}"
+                    description="{{ $news->content }}" />
+            @endforeach
         </div>
     </section>
 
@@ -353,52 +346,31 @@
             condimentum vel.</p>
 
         <div id="accordion-open" data-accordion="open" class="w-[90%] md:w-[50%] mt-10">
-            <h2 id="accordion-open-heading-1">
-                <button type="button"
-                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-300 border border-gray-300 focus:ring-gray-200 gap-3"
-                    data-accordion-target="#accordion-open-body-1" aria-expanded="false"
-                    aria-controls="accordion-open-body-1">
-                    <span class="flex items-center gap-1">
-                        <i class="fa-solid fa-circle-question"></i>
-                        What are the differences between Flowbite and Tailwind UI?
-                    </span>
-                    <i class="fa-solid fa-caret-down"></i>
-                </button>
-            </h2>
-            <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
-                <div class="p-5 border border-t-0 border-gray-200">
-                    <p class="mb-2 text-gray-300">The main difference is that the core components
-                        from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product.
-                        Another difference is that Flowbite relies on smaller and standalone components, whereas
-                        Tailwind UI offers sections of pages.</p>
+            @foreach ($faq as $faq)
+                <h2 id="accordion-open-heading-{{ $faq->id }}">
+                    <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-300 border border-gray-300 focus:ring-gray-200 gap-3"
+                        data-accordion-target="#accordion-open-body-{{ $faq->id }}" aria-expanded="false"
+                        aria-controls="accordion-open-body-{{ $faq->id }}">
+                        <span class="flex items-center gap-1">
+                            <i class="fa-solid fa-circle-question"></i>
+                            {{ $faq->title }}
+                        </span>
+                        <i class="fa-solid fa-caret-down"></i>
+                    </button>
+                </h2>
+                <div id="accordion-open-body-{{ $faq->id }}" class="hidden"
+                    aria-labelledby="accordion-open-heading-{{ $faq->id }}">
+                    <div class="p-5 border border-t-0 border-gray-200">
+                        <p class="mb-2 text-gray-300">{{ $faq->description }}</p>
+                    </div>
                 </div>
-            </div>
-
-            <h2 id="accordion-open-heading-2">
-                <button type="button"
-                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-300 border border-gray-300 focus:ring-gray-200 gap-3"
-                    data-accordion-target="#accordion-open-body-2" aria-expanded="false"
-                    aria-controls="accordion-open-body-2">
-                    <span class="flex items-center gap-1">
-                        <i class="fa-solid fa-circle-question"></i>
-                        What are the differences between Flowbite and Tailwind UI?
-                    </span>
-                    <i class="fa-solid fa-caret-down"></i>
-                </button>
-            </h2>
-            <div id="accordion-open-body-2" class="hidden" aria-labelledby="accordion-open-heading-2">
-                <div class="p-5 border border-t-0 border-gray-200">
-                    <p class="mb-2 text-gray-300">The main difference is that the core components
-                        from Flowbite are open source under the MIT license, whereas Tailwind UI is a paid product.
-                        Another difference is that Flowbite relies on smaller and standalone components, whereas
-                        Tailwind UI offers sections of pages.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
 
     {{-- Contack us --}}
-    <section
+    <section id="support"
         class="flex flex-col md:flex-row justify-around items-center w-full text-start px-16 pb-5 relative overflow-hidden">
         <div>
             <p class="title text-2xl md:text-4xl font-bold">Let's talk about your problem.</p>

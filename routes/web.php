@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
 Route::get('/', [LandingPage::class, 'index'])->name("landing.page");
+Route::get('/news/{id?}', [LandingPage::class, 'news'])->name('news.page');
+Route::get('/about', [LandingPage::class, 'about'])->name('about.page');
 
 Route::middleware('auth')->group(function () {
     function getCurrency($amount)
@@ -513,7 +515,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/register', function () {
     return view('RegisterPanel');
 })->name('filament.admin.auth.regist');
-
 
 Route::get('/admin/register', function () {
     return redirect()->to("/register");
