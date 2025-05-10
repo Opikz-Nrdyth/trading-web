@@ -123,7 +123,11 @@
     </section>
 
     {{-- main content --}}
-    <section class="bg-[#0b0f29] text-white py-16 px-6 md:px-20">
+    <section class=" text-white py-16 px-6 md:px-20 relative">
+        <div>
+            <img src="/images/hero-shape-1.svg" alt="hero-shape" class="absolute top-0 left-0 opacity-30 -z-10">
+            <img src="/images/hero-shape-2.svg" alt="hero-shape" class="absolute top-0 right-0 opacity-30 -z-10">
+        </div>
         <div class="max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold mb-6 border-b-4 inline-block border-yellow-400 pb-2">About Us</h2>
 
