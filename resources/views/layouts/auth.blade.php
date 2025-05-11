@@ -82,6 +82,7 @@
     </div>
     <main
         class="flex flex-col justify-center items-center w-[90%] lg:w-[75%] lg:p-5 sm:p-3 transition-all duration-200">
+        <div class="fixed bg-black/50 w-full h-screen left-0 top-0"></div>
         @yield('content')
     </main>
 

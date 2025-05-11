@@ -1,4 +1,4 @@
-<form wire:submit.prevent="authenticate">
+<form wire:submit.prevent="authenticate" class="relative z-10">
     <div class="mb-4">
         <label class="block text-white mb-2" for="username">
             Email

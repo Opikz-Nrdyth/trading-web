@@ -1,4 +1,4 @@
-<form wire:submit.prevent="regist">
+<form wire:submit.prevent="regist" class="relative z-10">
     <div class="mb-4">
         <label class="block text-white mb-2" for="username">
             Username <span class="text-red-500">*</span>
