@@ -13,13 +13,6 @@
     <title>{{ $company_name }}</title>
 
     <style>
-        .orbit-container {
-            position: relative;
-            width: 500px;
-            height: 500px;
-            margin: 0 auto;
-        }
-
         .central-object {
             position: absolute;
             top: 50%;
@@ -246,21 +239,23 @@
     </section>
 
     {{-- Crypto trading at its best --}}
-    <section class="flex flex-col md:flex-row items-center justify-around w-full text-start pb-5 relative">
-        <div class="orbit-container rounded-xl">
+    <section
+        class="flex flex-col md:flex-row items-center justify-around w-full text-start pt-20 lg:pt-0 pb-5 relative overflow-hidden">
+        <div
+            class="orbit-container relative m-auto rounded-xl w-[300px] h-[300px] aspect-square md:w-[500px] md:h-[500px] translate-x-28 lg:translate-x-0">
             <!-- Central Object -->
             <div class="central-object">
                 <img src="/images/crypto2x.png" alt="Central Object" class="object-image w-36 h-36">
             </div>
 
             <!-- Visual orbit path -->
-            <div class="orbit-path w-80 h-80"></div>
+            <div class="orbit-path w-52 h-52 lg:w-80 lg:h-80"></div>
 
             <!-- Orbiting Objects Container -->
             <div id="orbiting-objects" class="w-full h-full"></div>
         </div>
 
-        <div class="px-5 md:px-0">
+        <div class="px-5 md:px-0 mt-10 lg:mt-0">
             <p class="title text-2xl md:text-4xl font-bold">Crypto trading at its best</p>
             <p class="text-gray-300 md:max-w-lg">Trade and manage 70+ cryptoassets on a trusted global platform that
                 offers top-tier security, powerful tools, user-friendly features, and fixed transparent fees.</p>
@@ -289,7 +284,7 @@
             dignissim quam
             condimentum vel.</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 px-20 gap-5 mt-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 px-5 md:px-20 gap-5 mt-16">
             @foreach ($testimonials as $data)
                 <x-card_testimonial
                     profile="{{ $data->user->userData->profile_image
@@ -371,7 +366,7 @@
 
     {{-- Contack us --}}
     <section id="support"
-        class="flex flex-col md:flex-row justify-around items-center w-full text-start px-16 pb-5 relative overflow-hidden">
+        class="flex flex-col md:flex-row justify-around items-center w-full text-start px-5 lg:px-16 pb-5 relative overflow-hidden">
         <div>
             <p class="title text-2xl md:text-4xl font-bold">Let's talk about your problem.</p>
             <p class="text-gray-300 md:max-w-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -413,33 +408,28 @@
         <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
             <nav class="flex flex-wrap justify-center -mx-5 -my-2">
                 <div class="px-5 py-2">
-                    <a href="#" class="text-base leading-6 text-gray-300 hover:text-gray-500">
+                    <a href="/about" class="text-base leading-6 text-gray-300 hover:text-gray-500">
                         About
                     </a>
                 </div>
                 <div class="px-5 py-2">
-                    <a href="#" class="text-base leading-6 text-gray-300 hover:text-gray-500">
+                    <a href="/news" class="text-base leading-6 text-gray-300 hover:text-gray-500">
                         Blog
                     </a>
                 </div>
                 <div class="px-5 py-2">
-                    <a href="#" class="text-base leading-6 text-gray-300 hover:text-gray-500">
-                        Team
+                    <a href="/#support" class="text-base leading-6 text-gray-300 hover:text-gray-500">
+                        Support
                     </a>
                 </div>
                 <div class="px-5 py-2">
-                    <a href="#" class="text-base leading-6 text-gray-300 hover:text-gray-500">
-                        Pricing
+                    <a href="/login" class="text-base leading-6 text-gray-300 hover:text-gray-500">
+                        Sign in
                     </a>
                 </div>
                 <div class="px-5 py-2">
-                    <a href="#" class="text-base leading-6 text-gray-300 hover:text-gray-500">
-                        Contact
-                    </a>
-                </div>
-                <div class="px-5 py-2">
-                    <a href="#" class="text-base leading-6 text-gray-300 hover:text-gray-500">
-                        Terms
+                    <a href="/register" class="text-base leading-6 text-gray-300 hover:text-gray-500">
+                        Sign up
                     </a>
                 </div>
             </nav>
@@ -476,17 +466,9 @@
                             clip-rule="evenodd"></path>
                     </svg>
                 </a>
-                <a href="#" class="text-gray-400 hover:text-gray-300">
-                    <span class="sr-only">Dribbble</span>
-                    <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </a>
             </div>
             <p class="mt-8 text-base leading-6 text-center text-gray-400">
-                © {{ date('Y') }} Opik Studio, Inc. All rights reserved.
+                © {{ date('Y') }} {{ $company_name }}, inc. All rights reserved.
             </p>
         </div>
     </section>
@@ -577,7 +559,7 @@
                 orbitingObj.innerHTML = `
                     <img src="${obj.image}"
                          alt="Orbiting Object ${index + 1}"
-                         class="object-image w-[45px]">
+                         class="object-image w-[25px] lg:w-[45px]">
                 `;
                 orbitingObjectsContainer.appendChild(orbitingObj);
 
