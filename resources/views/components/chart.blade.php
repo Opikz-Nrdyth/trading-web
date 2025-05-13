@@ -10,8 +10,8 @@
             </span>
         </div>
         <div class="justify-around flex mt-3 items-center">
-            <p class="text-xl font-bold text-secondary">{{ $members || $members!=""? $members : 0  }} Members</p>
-            <a href="#" class="text-xs text-primary font-bold">Details</a>
+            <p class="text-xl font-bold text-secondary">{{ $members || $members != '' ? $members : 0 }} Members</p>
+            <a href="/auth/users/profile" class="text-xs text-primary font-bold">Details</a>
         </div>
 
         <div>
@@ -30,7 +30,7 @@
         </div>
         <div class="justify-around flex mt-3 items-center">
             <p class="text-xl font-bold text-secondary">{{ session('currency') }} {{ $bonus }}</p>
-            <a href="#" class="text-xs text-primary font-bold">Details</a>
+            <a href="/auth/users/bonus" class="text-xs text-primary font-bold">Details</a>
         </div>
 
         <div>
@@ -49,7 +49,7 @@
         </div>
         <div class="justify-around flex mt-3 items-center">
             <p class="text-xl font-bold text-secondary">{{ session('currency') }} {{ $profits }}</p>
-            <a href="#" class="text-xs text-primary font-bold">Details</a>
+            <a href="/auth/users/trade/profits" class="text-xs text-primary font-bold">Details</a>
         </div>
 
         <div>
@@ -68,7 +68,7 @@
         </div>
         <div class="justify-around flex mt-3 items-center">
             <p class="text-xl font-bold text-secondary">{{ session('currency') }} {{ $wallet }}</p>
-            <a href="#" class="text-xs text-primary font-bold">Details</a>
+            <a href="/auth/users/balance" class="text-xs text-primary font-bold">Details</a>
         </div>
 
         <div>
