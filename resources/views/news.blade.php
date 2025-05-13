@@ -127,7 +127,7 @@
         <main class="mt-[70px] px-5 flex gap-20 lg:gap-0 flex-col lg:flex-row">
             <div class="{{ count($news) == 0 ? 'w-[100%]' : 'w-[100%] lg:w-[75%]' }}">
                 <p class="text-4xl font-bold">{{ $newsSearch->title }}</p>
-                <div class="flex gap-10">
+                <div class="flex gap-10 mb-3">
                     <p>
                         <i class="fa-solid fa-user"></i>
                         <span>{{ $newsSearch->user->name }}</span>
@@ -148,23 +148,27 @@
                 </div>
             </div>
             <div
-                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 {{ count($news) > 0 ? 'w-[100%] lg:w-[25%]' : 'w-[0%]' }}">
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 h-fit {{ count($news) > 0 ? 'w-[100%] lg:w-[25%]' : 'w-[0%]' }}">
                 @foreach ($news as $news)
-                    <div class="hover:bg-[#16206b] cursor-pointer p-2">
-                        <img src="{{ asset(config('services.storage_public') . $news->thumbnail) }}" alt="thumbnail">
-                        <div class="flex gap-3">
-                            <p class="text-xs opacity-60">
-                                <i class="fa-solid fa-user"></i>
-                                <span>{{ $news->user->name }}</span>
-                            </p>
-                            <p class="text-xs opacity-60">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                <span>{{ $news->created_at }}</span>
-                            </p>
+                    <a href="/news/{{ $news->id }}">
+                        <div class="hover:bg-[#16206b] cursor-pointer p-2">
+                            <img class="w-full h-[200px] object-cover object-center"
+                                src="{{ asset(config('services.storage_public') . $news->thumbnail) }}"
+                                alt="thumbnail">
+                            <div class="flex gap-3">
+                                <p class="text-xs opacity-60">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>{{ $news->user->name }}</span>
+                                </p>
+                                <p class="text-xs opacity-60">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <span>{{ \Carbon\Carbon::parse($news->created_at)->translatedFormat('d F Y H:i:s') }}</span>
+                                </p>
+                            </div>
+                            <p class="text-xl font-bold">{{ $news->title }}</p>
+                            <p class="text-gray-300 text-sm">{!! \Illuminate\Support\Str::words(strip_tags($news->content), 20, '...') !!}</p>
                         </div>
-                        <p class="text-xl font-bold hover:text-blue-600">{{ $news->title }}</p>
-                        <p class="text-gray-300 text-sm">{!! \Illuminate\Support\Str::words(strip_tags($news->content), 20, '...') !!}</p>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </main>

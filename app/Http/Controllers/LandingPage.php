@@ -15,8 +15,8 @@ class LandingPage extends Controller
         $company_logo = setting::first()?->company_logo;
         $company_name = setting::first()?->company_name;
 
-        $testimonials = testimonial::all();
-        $news = news::where('status', 'publish')->orderBy('created_at', 'desc')->take(10)->get();
+        $testimonials = testimonial::where('status', 'publish')->orderBy('created_at', 'desc')->take(10)->get();
+        $news = news::where('status', 'publish')->orderBy('created_at', 'desc')->take(12)->get();
         $faq = faq::all();
 
         return view('Landing', [

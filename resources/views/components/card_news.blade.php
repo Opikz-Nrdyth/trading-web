@@ -1,6 +1,6 @@
 <a href="/news/{{ $id }}">
-    <div class="bg-blue-600/20 rounded-md pb-3 hover:scale-[102%] cursor-pointer">
-        <img class="w-full rounded-t-md" src="{{ $thumbnail }}" alt="img">
+    <div class="bg-blue-600/20 rounded-md pb-3 hover:scale-[102%] cursor-pointer h-full">
+        <img class="w-full rounded-t-md h-[200px] object-cover object-center" src="{{ $thumbnail }}" alt="img">
         <div class="flex justify-around my-3">
             <p><i class="fa-solid fa-user"></i> {{ $author }}</p>
             <p><i class="fa-solid fa-calendar-days"></i>
