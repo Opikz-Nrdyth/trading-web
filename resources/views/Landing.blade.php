@@ -291,7 +291,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 px-5 md:px-20 gap-5 mt-16">
             @foreach ($testimonials as $data)
                 <x-card_testimonial
-                    profile="{{ $data->user->userData->profile_image
+                    profile="{{ empty($data->user->userData->profile_image)
                         ? 'https://ui-avatars.com/api/?name=' .
                             implode(
                                 '',
