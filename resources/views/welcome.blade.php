@@ -27,7 +27,7 @@
             <div class="py-3">
 
                 @foreach ($news as $news)
-                    <a href="#">
+                    <a href="/news/{{ $news->id }}">
                         <div class="py-2 px-3 hover:bg-white flex justify-start gap-3 items-center">
                             <div
                                 class="text-white bg-secondary w-[30px] h-[30px] rounded-md flex justify-center items-center">
