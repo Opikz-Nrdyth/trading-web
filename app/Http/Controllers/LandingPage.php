@@ -16,7 +16,7 @@ class LandingPage extends Controller
         $company_name = setting::first()?->company_name;
 
         $testimonials = testimonial::all();
-        $news = news::orderBy('created_at', 'desc')->take(10)->get();
+        $news = news::where('status', 'publish')->orderBy('created_at', 'desc')->take(10)->get();
         $faq = faq::all();
 
         return view('Landing', [
@@ -33,7 +33,7 @@ class LandingPage extends Controller
         $company_logo = setting::first()?->company_logo;
         $company_name = setting::first()?->company_name;
         $newsSearch = null;
-        $newsAll = News::where('id', '!=', $id)->get();
+        $newsAll = News::where('id', '!=', $id)->where('status', 'publish')->orderBy('created_at', 'desc')->get();
 
 
         if ($id) {

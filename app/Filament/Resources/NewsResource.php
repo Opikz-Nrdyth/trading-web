@@ -50,8 +50,12 @@ class NewsResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Select::make('author')
+                            ->label('Author')
                             ->required()
                             ->options(User::all()->pluck('name', 'id'))
+                            ->default(function () {
+                                return User::where('id', 1)->orWhere('name', 'Admin')->value('id');
+                            })
                             ->searchable(),
 
                         Select::make('status')

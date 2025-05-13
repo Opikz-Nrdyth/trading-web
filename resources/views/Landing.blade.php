@@ -322,7 +322,8 @@
 
         <div class="grid grid-cols-1 md:grid-cols-3 px-10 gap-5 mt-16">
             @foreach ($news as $news)
-                <x-card_news thumbnail="{{ asset(config('services.storage_public') . $news->thumbnail) }}"
+                <x-card_news id="{{ $news->id }}"
+                    thumbnail="{{ asset(config('services.storage_public') . $news->thumbnail) }}"
                     author="{{ $news->user->name }}" date="{{ $news->created_at }}" title="{{ $news->title }}"
                     description="{{ $news->content }}" />
             @endforeach

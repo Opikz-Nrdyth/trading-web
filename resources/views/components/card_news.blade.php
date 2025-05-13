@@ -1,4 +1,4 @@
-<a href="/news/1">
+<a href="/news/{{ $id }}">
     <div class="bg-blue-600/20 rounded-md pb-3 hover:scale-[102%] cursor-pointer">
         <img class="w-full rounded-t-md" src="{{ $thumbnail }}" alt="img">
         <div class="flex justify-around my-3">

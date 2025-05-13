@@ -13,8 +13,10 @@ class card_news extends Component
     public $date;
     public $title;
     public $description;
-    public function __construct($thumbnail, $author, $date, $title, $description)
+    public $id;
+    public function __construct($id, $thumbnail, $author, $date, $title, $description)
     {
+        $this->id->$id;
         $this->thumbnail = $thumbnail;
         $this->author = $author;
         $this->date = $date;
