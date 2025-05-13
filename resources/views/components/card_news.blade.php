@@ -9,9 +9,15 @@
             <p class="text-2xl font-bold hover:text-blue-600 mb-1">
                 {{ $title }}
             </p>
+            @php
+                $decodedText = html_entity_decode($description); // ubah dari &lt;p&gt; jadi <p>
+                $cleanText = strip_tags($decodedText); // hapus tag HTML seperti <p>, <b>, dll.
+            @endphp
+
             <p class="text-gray-300">
-                {!! \Illuminate\Support\Str::words(strip_tags($description), 20, '...') !!}
+                {{ \Illuminate\Support\Str::words($cleanText, 20, '...') }}
             </p>
+
         </div>
     </div>
 </a>
