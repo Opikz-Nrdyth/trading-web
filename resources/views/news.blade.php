@@ -127,7 +127,7 @@
         <main class="mt-[70px] px-5 flex gap-20 lg:gap-0 flex-col lg:flex-row">
             <div class="{{ count($news) == 0 ? 'w-[100%]' : 'w-[100%] lg:w-[75%]' }}">
                 <p class="text-4xl font-bold">{{ $newsSearch->title }}</p>
-                <div class="flex gap-10 mb-3">
+                <div class="flex justify-between mb-3 text-sm text-nowrap whitespace-nowrap">
                     <p>
                         <i class="fa-solid fa-user"></i>
                         <span>{{ $newsSearch->user->name }}</span>
