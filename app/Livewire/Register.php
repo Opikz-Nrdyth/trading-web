@@ -69,6 +69,23 @@ class Register extends Component
                 'type_currency' => currency::where("currency_code", "IDR")->exists() ? "IDR" : currency::first()?->currency_code
             ]);
 
+            $referalUserData = \App\Models\UserData::where('username', $this->referals)->first();
+            $referalsUser = \App\Models\User::where('id', $this->referals)->first();
+
+            if (!$referalsUser && $referalUserData) {
+                // Tambah member ke userData yang ditemukan via username
+                $referalUserData->update([
+                    'members' => ($referalUserData->members ?? 0) + 1
+                ]);
+            }
+
+            if (!$referalUserData && $referalsUser && $referalsUser->userData) {
+                // Tambah member ke userData milik user yang ditemukan via ID
+                $referalsUser->userData->update([
+                    'members' => ($referalsUser->userData->members ?? 0) + 1
+                ]);
+            }
+
             ModelsNotification::create([
                 'user_id' => $user->id,
                 'type' => 'info',

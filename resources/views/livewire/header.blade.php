@@ -37,7 +37,7 @@
         <a href="/auth/users/profile">
             <button class="bg-base-card w-[40px] h-[40px] rounded-full transition-all duration-200">
                 <img class="w-full h-full rounded-full"
-                    src="@if (empty(auth()->user()->userData->profile_image) ?? '' != '') {{ asset(config('services.storage_public') . auth()->user()->userData->profile_image) }}
+                    src="@if (auth()->user()->userData->profile_image ?? '' != '') {{ asset(config('services.storage_public') . auth()->user()->userData->profile_image) }}
                 @else
                     https://ui-avatars.com/api/?name={{ implode('',array_map(function ($word) {return strtoupper($word[0]);}, explode(' ', auth()->user()->name ?? ''))) }}&color=FFFFFF&background=1f1f1f @endif"
                     alt="{{ implode('',array_map(function ($word) {return strtoupper($word[0]);}, explode(' ', auth()->user()->name ?? ''))) }}">
