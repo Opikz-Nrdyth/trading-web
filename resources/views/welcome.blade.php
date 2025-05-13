@@ -30,12 +30,18 @@
                     <a href="/news/{{ $news->id }}">
                         <div class="py-2 px-3 hover:bg-white flex justify-start gap-3 items-center">
                             <div
-                                class="text-white bg-secondary w-[30px] h-[30px] rounded-md flex justify-center items-center">
-                                <i class="fa-solid fa-newspaper"></i>
+                                class="text-white bg-secondary w-[70px] aspect-square rounded-md flex justify-center items-center">
+                                @if (empty($news->thumbnail))
+                                    <i class="fa-solid fa-newspaper"></i>
+                                @else
+                                    <img class="w-full h-full object-cover object-center rounded-md"
+                                        src="{{ asset(config('services.storage_public') . $news->thumbnail) }}"
+                                        alt="">
+                                @endif
                             </div>
-                            <div>
+                            <div class="w-[calc(100% - 70px)]">
                                 <p class="text-primary">{{ $news['title'] }}</p>
-                                <p>{{ \Carbon\Carbon::parse($news['created_at'])->format('d-M-Y, H:i:s') }}</p>
+                                <p>{{ \Carbon\Carbon::parse($news['created_at'])->format('d M Y, H:i:s') }}</p>
                             </div>
                         </div>
                     </a>
