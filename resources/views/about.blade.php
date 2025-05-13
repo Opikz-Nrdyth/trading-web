@@ -134,10 +134,10 @@
             <div class="grid md:grid-cols-2 gap-10 items-center">
                 <div>
                     <p class="text-lg leading-7 mb-4">
-                        <span class="font-semibold text-yellow-400">Trader</span> is a platform built for traders by
-                        traders.
-                        We provide real-time financial news, market insights, and educational content to help you make
-                        informed trading decisions.
+                        <span class="font-semibold text-yellow-400">The Sistematic Trader</span> is a platform built for
+                        traders by
+                        traders. We provide real-time financial news, market insights, and educational content to help
+                        you make informed trading decisions.
                     </p>
                     <p class="text-lg leading-7">
                         Our team consists of financial analysts, developers, and market experts dedicated to empowering
@@ -153,15 +153,24 @@
             <div class="mt-12 grid md:grid-cols-3 gap-6">
                 <div class="bg-[#141b3a] p-6 rounded-xl shadow-md hover:shadow-lg transition">
                     <h3 class="text-xl font-bold text-yellow-400 mb-2">🚀 Our Mission</h3>
-                    <p>Democratize trading insights for everyone, everywhere — beginner to pro.</p>
+                    <p>Democratize trading insights for everyone, everywhere — beginner to pro. We believe that access
+                        to high-quality trading tools and information shouldn't be limited to institutional investors.
+                        Our platform bridges this gap by providing professional-grade resources that help individual
+                        traders compete effectively in today's complex markets.</p>
                 </div>
                 <div class="bg-[#141b3a] p-6 rounded-xl shadow-md hover:shadow-lg transition">
                     <h3 class="text-xl font-bold text-yellow-400 mb-2">👥 Our Team</h3>
-                    <p>Experienced traders, developers, and fintech experts behind every feature we offer.</p>
+                    <p>Experienced traders, developers, and fintech experts behind every feature we offer. Our diverse
+                        team brings together decades of experience from traditional finance, cryptocurrency markets, and
+                        software development. This unique combination of expertise allows us to create innovative
+                        solutions that address the real challenges traders face daily.</p>
                 </div>
                 <div class="bg-[#141b3a] p-6 rounded-xl shadow-md hover:shadow-lg transition">
                     <h3 class="text-xl font-bold text-yellow-400 mb-2">🌍 Our Vision</h3>
-                    <p>Make financial knowledge accessible and practical for a global community.</p>
+                    <p>Make financial knowledge accessible and practical for a global community. We're building more
+                        than just a trading platform—we're creating an ecosystem where traders can learn, grow, and
+                        succeed together. By removing barriers to quality information and providing intuitive tools, we
+                        aim to transform how individuals participate in financial markets worldwide.</p>
                 </div>
             </div>
         </div>

@@ -171,12 +171,14 @@
         </div>
 
         <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full md:max-w-xl md:px-4">
-            <p class="text-3xl md:text-4xl font-bold mb-2 text-white">Tailwind CSS Template for Crypto, ICO and Web3</p>
+            <p class="text-3xl md:text-4xl font-bold mb-2 text-white">The Sistematic Trader is website for Crypto, ICO
+                and Web3</p>
             <p class="text-gray-300 mt-3">
-                Crypto Currency, Blockchain, ICO, Web3 related website template crafted with Tailwind CSS. Comes with
-                all
-                essential UI components and pages to launch complete website or landing page for anything that related
-                to Crypto, Blockchain and Web3.
+                The Systematic Trader provides a powerful, secure trading platform designed specifically for
+                cryptocurrency markets. Our intuitive interface combines advanced technical analysis tools with
+                real-time market data, allowing traders to make informed decisions and execute trades with precision.
+                Whether you're a beginner or experienced trader, our platform offers the essential features you need to
+                succeed in crypto.
             </p>
 
             <div class="flex gap-3 justify-center mt-5">
@@ -216,25 +218,28 @@
     {{-- Feature --}}
     <section class="flex flex-col items-center w-full text-center pb-5">
         <p class="title text-2xl md:text-4xl font-bold">Best Features</p>
-        <p class="text-gray-300 md:max-w-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            sed congue
-            arcu, In et
-            dignissim quam
-            condimentum vel.</p>
+        <p class="text-gray-300 md:max-w-lg">Our platform offers cutting-edge tools and technologies designed
+            specifically for crypto traders at all experience levels. We prioritize security, ease of use, and
+            profitable trading opportunities</p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 px-10 gap-5 gap-y-10 mt-16">
             <x-card src="/images/shield-svgrepo-com.svg" title="Safe & Secure"
-                description="Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod tempor labore labore labore et dolor" />
+                description="Your investments deserve maximum protection. Our platform utilizes multi-layer encryption, cold storage solutions, and regular security audits to keep your assets safe." />
+
             <x-card src="/images/gift-svgrepo-com.svg" title="Early Bonus"
-                description="Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod tempor labore labore labore et dolor" />
+                description="New traders receive welcome bonuses and incentives. Start your trading journey with extra capital to explore opportunities while learning our platform's capabilities." />
+
             <x-card src="/images/access-internet-online-svgrepo-com.svg" title="Universal Access"
-                description="Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod tempor labore labore labore et dolor" />
+                description="Trade anytime, anywhere with our responsive platform. Available across all devices with synchronized accounts for seamless transition between desktop and mobile." />
+
             <x-card src="/images/data-storage-lock-solid-svgrepo-com.svg" title="Secure Storage"
-                description="Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod tempor labore labore labore et dolor" />
+                description="We implement cold wallet technology and distributed storage solutions to ensure your crypto assets remain safe from potential threats and unauthorized access." />
+
             <x-card src="/images/wallet-svgrepo-com.svg" title="Low Cost"
-                description="Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod tempor labore labore labore et dolor" />
+                description="Enjoy competitive transaction fees and no hidden charges. Our transparent fee structure ensures you keep more of your profits while trading on our platform." />
+
             <x-card src="/images/focus-svgrepo-com.svg" title="Several Profit"
-                description="Lorem ipsum dolor sit amet consectetur elit, sed do eiusmod tempor labore labore labore et dolor" />
+                description="Diversify your trading portfolio with multiple profit streams. Our platform supports various trading strategies, from day trading to long-term investments." />
         </div>
     </section>
 
@@ -257,8 +262,9 @@
 
         <div class="px-5 md:px-0 mt-10 lg:mt-0">
             <p class="title text-2xl md:text-4xl font-bold">Crypto trading at its best</p>
-            <p class="text-gray-300 md:max-w-lg">Trade and manage 70+ cryptoassets on a trusted global platform that
-                offers top-tier security, powerful tools, user-friendly features, and fixed transparent fees.</p>
+            <p class="text-gray-300 md:max-w-lg">The Systematic Trader platform delivers a premium trading experience
+                with advanced charting tools, real-time market data, and AI-powered insights. Our platform offers
+                top-tier security, powerful tools, user-friendly features, and fixed spreads from 0.1 pips.</p>
             <p class="mt-5">*Other fees apply</p>
             <a href="/login">
                 <button
@@ -278,11 +284,9 @@
     {{-- Testimonials --}}
     <section class="flex flex-col items-center w-full text-start pb-5">
         <p class="title text-2xl md:text-4xl font-bold">What Our Client Say's</p>
-        <p class="text-gray-300 md:max-w-lg text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            sed congue
-            arcu, In et
-            dignissim quam
-            condimentum vel.</p>
+        <p class="text-gray-300 md:max-w-lg text-center">Our traders consistently achieve their financial goals through
+            our advanced platform. See what our community has to say about their experience with The Systematic Trader.
+        </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 px-5 md:px-20 gap-5 mt-16">
             @foreach ($testimonials as $data)
@@ -314,11 +318,9 @@
     {{-- Last News --}}
     <section class="flex flex-col items-center w-full text-start pb-5">
         <p class="title text-2xl md:text-4xl font-bold">Recent News & Blogs</p>
-        <p class="text-gray-300 md:max-w-lg text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            sed congue
-            arcu, In et
-            dignissim quam
-            condimentum vel.</p>
+        <p class="text-gray-300 md:max-w-lg text-center">Stay informed with the latest cryptocurrency market insights,
+            trading strategies, and industry developments. Our expert analysts provide timely updates to help you make
+            informed trading decisions.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 px-10 gap-5 mt-16">
             @foreach ($news as $news)
@@ -335,11 +337,9 @@
     {{-- FAQ --}}
     <section class="flex flex-col items-center w-full text-start pb-5">
         <p class="title text-2xl md:text-4xl font-bold">Frequently Asked Questions</p>
-        <p class="text-gray-300 md:max-w-lg text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-            sed congue
-            arcu, In et
-            dignissim quam
-            condimentum vel.</p>
+        <p class="text-gray-300 md:max-w-lg text-center">Find answers to common questions about our platform, trading
+            processes, and account management. If you can't find what you're looking for, our support team is always
+            available to assist.</p>
 
         <div id="accordion-open" data-accordion="open" class="w-[90%] md:w-[50%] mt-10">
             @foreach ($faq as $faq)
@@ -370,22 +370,23 @@
         class="flex flex-col md:flex-row justify-around items-center w-full text-start px-5 lg:px-16 pb-5 relative overflow-hidden">
         <div>
             <p class="title text-2xl md:text-4xl font-bold">Let's talk about your problem.</p>
-            <p class="text-gray-300 md:max-w-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Nunc sed congue arcu, In et dignissim quam condimentum vel.</p>
+            <p class="text-gray-300 md:max-w-lg">Every trader faces unique challenges. Our dedicated support team is
+                ready to help you overcome obstacles and optimize your trading experience for maximum profitability.</p>
             <div class="grid grid-cols-2 gap-5 mt-5">
                 <div>
                     <p class="font-bold text-xl">Our Location</p>
-                    <p class="text-gray-300">401 Broadway, 24th Floor, Orchard Cloud View, London</p>
+                    <p class="text-gray-300">Jl. Suropati, Losari, Kec. Singosari, Kabupaten Malang, Jawa Timur 65153
+                    </p>
                 </div>
                 <div>
                     <p class="font-bold text-xl">Email Address</p>
-                    <p class="text-gray-300">info@yourdomain.com</p>
+                    <p class="text-gray-300">opikzstudio@gmail.com</p>
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-5 mt-5">
                 <div>
                     <p class="font-bold text-xl">Phone Number</p>
-                    <p class="text-gray-300">+990 846 73644</p>
+                    <p class="text-gray-300">+6282328035237</p>
                 </div>
                 <div>
                     <p class="font-bold text-xl">How Can We Help?</p>
