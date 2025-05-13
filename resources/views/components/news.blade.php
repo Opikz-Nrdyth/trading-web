@@ -1,5 +1,6 @@
 <a href="/news/{{ $id }}">
-    <div class="flex justify-start items-center gap-3 p-2 bg-base-card hover:bg-base-text group-odd:">
+    <div
+        class="flex flex-col md:flex-row justify-start items-center gap-3 p-2 bg-base-card hover:bg-base-text group-odd:">
         <div class="w-[150px] h-[150px]">
             <img src="{{ asset(config('services.storage_public') . $thubmnail) }}" alt="{{ $title }}"
                 class="w-full h-full">
