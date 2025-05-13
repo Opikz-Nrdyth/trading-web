@@ -3,7 +3,8 @@
         <img class="w-full rounded-t-md" src="{{ $thumbnail }}" alt="img">
         <div class="flex justify-around my-3">
             <p><i class="fa-solid fa-user"></i> {{ $author }}</p>
-            <p><i class="fa-solid fa-calendar-days"></i> {{ $date }}</p>
+            <p><i class="fa-solid fa-calendar-days"></i>
+                {{ \Carbon\Carbon::parse($date)->translatedFormat('d F Y H:i:s') }}</p>
         </div>
         <div class="px-3">
             <p class="text-2xl font-bold hover:text-blue-600 mb-1">

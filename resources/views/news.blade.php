@@ -126,13 +126,7 @@
     @if ($id)
         <main class="mt-[70px] px-5 flex gap-20 lg:gap-0 flex-col lg:flex-row">
             <div class="{{ count($news) == 0 ? 'w-[100%]' : 'w-[100%] lg:w-[75%]' }}">
-                <div class="flex items-center justify-center">
-                    <img src="{{ asset(config('services.storage_public') . $newsSearch->thumbnail) }}" class="w-[512px]"
-                        alt="news">
-                </div>
-
                 <p class="text-4xl font-bold">{{ $newsSearch->title }}</p>
-
                 <div class="flex gap-10">
                     <p>
                         <i class="fa-solid fa-user"></i>
@@ -140,8 +134,13 @@
                     </p>
                     <p>
                         <i class="fa-solid fa-calendar-days"></i>
-                        <span>{{ $newsSearch->created_at }}</span>
+                        <span>{{ \Carbon\Carbon::parse($newsSearch->created_at)->translatedFormat('l, d F Y H:i:s') }}
+                        </span>
                     </p>
+                </div>
+                <div class="flex items-center justify-center">
+                    <img src="{{ asset(config('services.storage_public') . $newsSearch->thumbnail) }}" class="w-[512px]"
+                        alt="news">
                 </div>
 
                 <div class="mt-5">
