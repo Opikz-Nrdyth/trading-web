@@ -178,7 +178,7 @@
             <p class="text-3xl md:text-4xl font-bold mb-2 text-white" data-aos="zoom-in"> Your Gateway to the Future of
                 Digital Assets.</p>
             <p class="text-gray-300 mt-3" data-aos="zoom-in" data-aos-duration="500">
-                Vonda Crypto is the advanced platform for trading Crypto, ICOs, and Tokens. We merge cutting-edge
+                {{ $company_name }} is the advanced platform for trading Crypto, ICOs, and Tokens. We merge cutting-edge
                 technology with systematic strategies to help you navigate the digital asset market with confidence.
             </p>
 
@@ -219,7 +219,7 @@
     {{-- Feature --}}
     <section class="flex flex-col items-center w-full text-center pb-5">
         <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">Why
-            Choose Vonda Crypto?</p>
+            Choose {{ $company_name }}?</p>
         <p class="text-gray-300 md:max-w-lg" data-aos="fade-up" data-aos-anchor-placement="top-bottom">Engineered to
             Give You a Market Edge.</p>
 
@@ -228,7 +228,7 @@
                 description="The security of your digital assets is our absolute priority. With multi-layered encryption, two-factor authentication (2FA), and industry-leading security protocols, your funds are always protected." />
 
             <x-card src="/images/gift-svgrepo-com.svg" title="Early Bonus"
-                description="Get ahead of the curve. Gain exclusive access to promising new ICO and token projects before they go public. Enjoy special sign-up bonuses and loyalty rewards as a valued member of Vonda Crypto." />
+                description="Get ahead of the curve. Gain exclusive access to promising new ICO and token projects before they go public. Enjoy special sign-up bonuses and loyalty rewards as a valued member of {{ $company_name }}." />
 
             <x-card src="/images/access-internet-online-svgrepo-com.svg" title="Universal Access"
                 description="Trade anytime, anywhere. Our platform is fully responsive and optimized for peak performance on your desktop, tablet, and smartphone. Never miss a market opportunity." />
@@ -266,7 +266,8 @@
             <p class="text-gray-300 md:max-w-lg">We believe that sustained success in crypto trading comes from a
                 systematic strategy, not just speculation. Our expert team has built a powerful ecosystem that combines
                 real-time market data, deep analysis, and an intuitive user interface. Whether you're a novice investor
-                or an experienced trader, Vonda Crypto empowers you to make smarter decisions and achieve your financial
+                or an experienced trader, {{ $company_name }} empowers you to make smarter decisions and achieve your
+                financial
                 goals.</p>
             <p class="mt-5">*Other fees apply</p>
             <a href="/login">
