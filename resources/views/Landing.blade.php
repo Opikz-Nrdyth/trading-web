@@ -97,6 +97,10 @@
     </script>
 
     <script async src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
+
+    {{-- Aos --}}
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 </head>
 
 <body class="bg-[#090e34] min-h-screen text-white font-sans pb-3">
@@ -171,14 +175,11 @@
         </div>
 
         <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center w-full md:max-w-xl md:px-4">
-            <p class="text-3xl md:text-4xl font-bold mb-2 text-white">The Sistematic Trader is website for Crypto, ICO
-                and Web3</p>
-            <p class="text-gray-300 mt-3">
-                The Systematic Trader provides a powerful, secure trading platform designed specifically for
-                cryptocurrency markets. Our intuitive interface combines advanced technical analysis tools with
-                real-time market data, allowing traders to make informed decisions and execute trades with precision.
-                Whether you're a beginner or experienced trader, our platform offers the essential features you need to
-                succeed in crypto.
+            <p class="text-3xl md:text-4xl font-bold mb-2 text-white" data-aos="zoom-in"> Your Gateway to the Future of
+                Digital Assets.</p>
+            <p class="text-gray-300 mt-3" data-aos="zoom-in" data-aos-duration="500">
+                Vonda Crypto is the advanced platform for trading Crypto, ICOs, and Tokens. We merge cutting-edge
+                technology with systematic strategies to help you navigate the digital asset market with confidence.
             </p>
 
             <div class="flex gap-3 justify-center mt-5">
@@ -217,29 +218,29 @@
 
     {{-- Feature --}}
     <section class="flex flex-col items-center w-full text-center pb-5">
-        <p class="title text-2xl md:text-4xl font-bold">Best Features</p>
-        <p class="text-gray-300 md:max-w-lg">Our platform offers cutting-edge tools and technologies designed
-            specifically for crypto traders at all experience levels. We prioritize security, ease of use, and
-            profitable trading opportunities</p>
+        <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">Why
+            Choose Vonda Crypto?</p>
+        <p class="text-gray-300 md:max-w-lg" data-aos="fade-up" data-aos-anchor-placement="top-bottom">Engineered to
+            Give You a Market Edge.</p>
 
         <div class="grid grid-cols-1 md:grid-cols-3 px-10 gap-5 gap-y-10 mt-16">
             <x-card src="/images/shield-svgrepo-com.svg" title="Safe & Secure"
-                description="Your investments deserve maximum protection. Our platform utilizes multi-layer encryption, cold storage solutions, and regular security audits to keep your assets safe." />
+                description="The security of your digital assets is our absolute priority. With multi-layered encryption, two-factor authentication (2FA), and industry-leading security protocols, your funds are always protected." />
 
             <x-card src="/images/gift-svgrepo-com.svg" title="Early Bonus"
-                description="New traders receive welcome bonuses and incentives. Start your trading journey with extra capital to explore opportunities while learning our platform's capabilities." />
+                description="Get ahead of the curve. Gain exclusive access to promising new ICO and token projects before they go public. Enjoy special sign-up bonuses and loyalty rewards as a valued member of Vonda Crypto." />
 
             <x-card src="/images/access-internet-online-svgrepo-com.svg" title="Universal Access"
-                description="Trade anytime, anywhere with our responsive platform. Available across all devices with synchronized accounts for seamless transition between desktop and mobile." />
+                description="Trade anytime, anywhere. Our platform is fully responsive and optimized for peak performance on your desktop, tablet, and smartphone. Never miss a market opportunity." />
 
             <x-card src="/images/data-storage-lock-solid-svgrepo-com.svg" title="Secure Storage"
-                description="We implement cold wallet technology and distributed storage solutions to ensure your crypto assets remain safe from potential threats and unauthorized access." />
+                description="Our integrated digital wallet utilizes state-of-the-art cold storage technology, ensuring your crypto assets are shielded from all forms of online threats." />
 
             <x-card src="/images/wallet-svgrepo-com.svg" title="Low Cost"
-                description="Enjoy competitive transaction fees and no hidden charges. Our transparent fee structure ensures you keep more of your profits while trading on our platform." />
+                description="Maximize your profitability with our transparent and highly competitive fee structure. We believe in straightforward trading with no hidden charges." />
 
             <x-card src="/images/focus-svgrepo-com.svg" title="Several Profit"
-                description="Diversify your trading portfolio with multiple profit streams. Our platform supports various trading strategies, from day trading to long-term investments." />
+                description="Diversify your portfolio with ease. We offer hundreds of crypto assets, starting from major coins like Bitcoin & the rising Ethereum." />
         </div>
     </section>
 
@@ -260,11 +261,13 @@
             <div id="orbiting-objects" class="w-full h-full"></div>
         </div>
 
-        <div class="px-5 md:px-0 mt-10 lg:mt-0">
-            <p class="title text-2xl md:text-4xl font-bold">Crypto trading at its best</p>
-            <p class="text-gray-300 md:max-w-lg">The Systematic Trader platform delivers a premium trading experience
-                with advanced charting tools, real-time market data, and AI-powered insights. Our platform offers
-                top-tier security, powerful tools, user-friendly features, and fixed spreads from 0.1 pips.</p>
+        <div class="px-5 md:px-0 mt-10 lg:mt-0" data-aos="fade-left">
+            <p class="title text-2xl md:text-4xl font-bold">Crypto Trading at Its Finest</p>
+            <p class="text-gray-300 md:max-w-lg">We believe that sustained success in crypto trading comes from a
+                systematic strategy, not just speculation. Our expert team has built a powerful ecosystem that combines
+                real-time market data, deep analysis, and an intuitive user interface. Whether you're a novice investor
+                or an experienced trader, Vonda Crypto empowers you to make smarter decisions and achieve your financial
+                goals.</p>
             <p class="mt-5">*Other fees apply</p>
             <a href="/login">
                 <button
@@ -283,8 +286,10 @@
 
     {{-- Testimonials --}}
     <section class="flex flex-col items-center w-full text-start pb-5">
-        <p class="title text-2xl md:text-4xl font-bold">What Our Client Say's</p>
-        <p class="text-gray-300 md:max-w-lg text-center">Our traders consistently achieve their financial goals through
+        <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            What Our Clients Say</p>
+        <p class="text-gray-300 md:max-w-lg text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            Our traders consistently achieve their financial goals through
             our advanced platform. See what our community has to say about their experience with The Systematic Trader.
         </p>
 
@@ -317,8 +322,10 @@
 
     {{-- Last News --}}
     <section class="flex flex-col items-center w-full text-start pb-5">
-        <p class="title text-2xl md:text-4xl font-bold">Recent News & Blogs</p>
-        <p class="text-gray-300 md:max-w-lg text-center">Stay informed with the latest cryptocurrency market insights,
+        <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            The Latest Insights from the Crypto World</p>
+        <p class="text-gray-300 md:max-w-lg text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            Stay informed with the latest cryptocurrency market insights,
             trading strategies, and industry developments. Our expert analysts provide timely updates to help you make
             informed trading decisions.</p>
 
@@ -336,8 +343,10 @@
 
     {{-- FAQ --}}
     <section class="flex flex-col items-center w-full text-start pb-5">
-        <p class="title text-2xl md:text-4xl font-bold">Frequently Asked Questions</p>
-        <p class="text-gray-300 md:max-w-lg text-center">Find answers to common questions about our platform, trading
+        <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            Frequently Asked Questions</p>
+        <p class="text-gray-300 md:max-w-lg text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            Find answers to common questions about our platform, trading
             processes, and account management. If you can't find what you're looking for, our support team is always
             available to assist.</p>
 
@@ -369,25 +378,31 @@
     <section id="support"
         class="flex flex-col md:flex-row justify-around items-center w-full text-start px-5 lg:px-16 pb-5 relative overflow-hidden">
         <div>
-            <p class="title text-2xl md:text-4xl font-bold">Let's talk about your problem.</p>
-            <p class="text-gray-300 md:max-w-lg">Every trader faces unique challenges. Our dedicated support team is
-                ready to help you overcome obstacles and optimize your trading experience for maximum profitability.</p>
+            <p class="title text-2xl md:text-4xl font-bold">Ready to Take the Next Step?</p>
+            <p class="text-gray-300 md:max-w-lg">Have a question, need technical support, or are you interested in a
+                partnership? Contact our team. We're here to help you succeed in the world of digital assets.</p>
             <div class="grid grid-cols-2 gap-5 mt-5">
-                <div>
-                    <p class="font-bold text-xl">Our Location</p>
-                    <p class="text-gray-300">Jl. Suropati, Losari, Kec. Singosari, Kabupaten Malang, Jawa Timur 65153
-                    </p>
-                </div>
-                <div>
-                    <p class="font-bold text-xl">Email Address</p>
-                    <p class="text-gray-300">opikzstudio@gmail.com</p>
-                </div>
+                @if ($address)
+                    <div>
+                        <p class="font-bold text-xl">Our Location</p>
+                        <p class="text-gray-300">{{ $address }}
+                        </p>
+                    </div>
+                @endif
+                @if ($email)
+                    <div>
+                        <p class="font-bold text-xl">Email Address</p>
+                        <p class="text-gray-300">{{ $email }}</p>
+                    </div>
+                @endif
             </div>
             <div class="grid grid-cols-2 gap-5 mt-5">
-                <div>
-                    <p class="font-bold text-xl">Phone Number</p>
-                    <p class="text-gray-300">+6282328035237</p>
-                </div>
+                @if ($phone_number)
+                    <div>
+                        <p class="font-bold text-xl">Phone Number</p>
+                        <p class="text-gray-300">{{ $phone_number }}</p>
+                    </div>
+                @endif
                 <div>
                     <p class="font-bold text-xl">How Can We Help?</p>
                     <p class="text-gray-300">Tell us your problem we will get back to you ASAP.</p>
@@ -479,6 +494,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            AOS.init();
             const orbitContainer = document.querySelector('.orbit-container');
             const orbitingObjectsContainer = document.getElementById('orbiting-objects');
             const centerX = orbitContainer.offsetWidth / 2;

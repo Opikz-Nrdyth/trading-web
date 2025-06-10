@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\setting as ModelsSetting;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
@@ -23,6 +24,9 @@ class setting extends Page implements HasForms
     public $min_tf;
     public $fee;
     public $telegram;
+    public $phone_number;
+    public $email;
+    public $address;
 
     public $images;
 
@@ -38,6 +42,9 @@ class setting extends Page implements HasForms
         $this->min_tf = $settings->min_tf ?? '';
         $this->fee = $settings->fee ?? '';
         $this->telegram = $settings->telegram ?? '';
+        $this->address = $settings->address ?? '';
+        $this->email = $settings->email ?? '';
+        $this->phone_number = $settings->phone_number ?? '';
     }
 
     protected function getFormSchema(): array
@@ -54,6 +61,9 @@ class setting extends Page implements HasForms
             TextInput::make('min_tf')->numeric()->required(),
             TextInput::make('fee')->numeric()->required(),
             TextInput::make('telegram')->required()->rules(['max:255']),
+            Textarea::make('address'),
+            TextInput::make('email')->rules(['max:255']),
+            TextInput::make('phone_number')->rules(['max:13']),
         ];
     }
 
@@ -83,6 +93,9 @@ class setting extends Page implements HasForms
                     'min_tf' => $data['min_tf'],
                     'fee' => $data['fee'],
                     'telegram' => $data['telegram'],
+                    'address' => $data['address'],
+                    'email' => $data['email'],
+                    'phone_number' => $data['phone_number'],
                 ]
             );
 

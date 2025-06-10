@@ -21,6 +21,9 @@ return new class extends Migration
             $table->decimal('min_tf', 15, 2);
             $table->decimal('fee', 15, 2);
             $table->string("telegram");
+            $table->string("phone_number")->nullable();
+            $table->string("email")->nullable();
+            $table->text("address")->nullable();
             $table->timestamps();
         });
 

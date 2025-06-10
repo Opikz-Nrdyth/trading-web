@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center items-center w-full">
+<div class="flex flex-col justify-center items-center w-full" data-aos="zoom-in">
     <div class="bg-[#121a4d] w-[80px] h-[80px] flex justify-center items-center rounded-full">
         <img class="w-[60%]" src="{{ asset($src) }}" alt="shild">
     </div>

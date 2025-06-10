@@ -14,6 +14,9 @@ class LandingPage extends Controller
     {
         $company_logo = setting::first()?->company_logo;
         $company_name = setting::first()?->company_name;
+        $email = setting::first()?->email;
+        $phone_number = setting::first()?->phone_number;
+        $address = setting::first()?->address;
 
         $testimonials = testimonial::where('status', 'publish')->orderBy('created_at', 'desc')->take(10)->get();
         $news = news::where('status', 'publish')->orderBy('created_at', 'desc')->take(12)->get();
@@ -23,6 +26,9 @@ class LandingPage extends Controller
             'company_logo' => $company_logo,
             'company_name' => $company_name,
             'testimonials' => $testimonials,
+            'phone_number' => $phone_number,
+            'email' => $email,
+            'address' => $address,
             'news' => $news,
             'faq' => $faq
         ]);

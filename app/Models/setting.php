@@ -15,5 +15,8 @@ class setting extends Model
         'min_tf',
         'fee',
         'telegram',
+        'email',
+        'address',
+        'phone_number'
     ];
 }
