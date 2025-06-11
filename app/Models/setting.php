@@ -9,6 +9,7 @@ class setting extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'id',
         'company_name',
         'company_logo',
         'min_wd',

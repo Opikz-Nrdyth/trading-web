@@ -7,5 +7,5 @@
             <p class="text-gray-400">{{ $position }}.</p>
         </div>
     </div>
-    <p class="w-[90%] text-justify mt-5 text-gray-300">“{{ $testimonials }}”</p>
+    <p class="w-[90%] text-justify hyphens-auto mt-5 text-gray-300">“{{ $testimonials }}”</p>
 </div>

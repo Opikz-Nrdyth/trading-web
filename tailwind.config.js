@@ -32,5 +32,14 @@ export default withMT({
             },
         },
     },
-    plugins: [require("@tailwindcss/aspect-ratio")],
+    plugins: [
+        require("@tailwindcss/aspect-ratio"),
+        plugin(function ({ addUtilities }) {
+            addUtilities({
+                ".hyphens-auto": { hyphens: "auto" },
+                ".hyphens-manual": { hyphens: "manual" },
+                ".hyphens-none": { hyphens: "none" },
+            });
+        }),
+    ],
 });

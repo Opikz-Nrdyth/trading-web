@@ -48,7 +48,7 @@
     </style>
 
 
-    <!-- Fonts -->
+    {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
@@ -111,7 +111,7 @@
             {{-- Logo & Company --}}
             <div class="flex gap-3 items-center">
                 @if ($company_logo)
-                    <img class="w-[40px]" src="{{ asset(config('services.storage_public') . $company_logo) }}"
+                    <img class="w-[75px]" src="{{ asset(config('services.storage_public') . $company_logo) }}"
                         alt="Logo">
                 @endif
                 @if ($company_name)
@@ -249,15 +249,15 @@
         class="flex flex-col md:flex-row items-center justify-around w-full text-start pt-20 lg:pt-0 pb-5 relative overflow-hidden">
         <div
             class="orbit-container relative m-auto rounded-xl w-[300px] h-[300px] aspect-square md:w-[500px] md:h-[500px] translate-x-28 lg:translate-x-0">
-            <!-- Central Object -->
+            {{-- Central Object --}}
             <div class="central-object">
                 <img src="/images/crypto2x.png" alt="Central Object" class="object-image w-36 h-36">
             </div>
 
-            <!-- Visual orbit path -->
+            {{-- Visual orbit path --}}
             <div class="orbit-path w-52 h-52 lg:w-80 lg:h-80"></div>
 
-            <!-- Orbiting Objects Container -->
+            {{-- Orbiting Objects Container --}}
             <div id="orbiting-objects" class="w-full h-full"></div>
         </div>
 
@@ -286,7 +286,7 @@
     <x-line />
 
     {{-- Testimonials --}}
-    <section class="flex flex-col items-center w-full text-start pb-5">
+    {{-- <section class="flex flex-col items-center w-full text-start pb-5">
         <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
             What Our Clients Say</p>
         <p class="text-gray-300 md:max-w-lg text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
@@ -317,12 +317,26 @@
                     testimonials="{{ $data->testimonial }}" />
             @endforeach
         </div>
+    </section> --}}
+
+    {{-- Crypto Pick --}}
+    <section class="flex flex-col items-center w-full max-w-full text-start pb-5">
+        <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            Our Top Market Picks</p>
+        <p class="text-gray-300 md:max-w-lg text-center px-5" data-aos="fade-up"
+            data-aos-anchor-placement="top-bottom">
+            Discover the assets our team is watching closely. This selection reflects our commitment to providing
+            insightful data to empower your investment decisions in a dynamic market.
+        </p>
+        <div id="top-market" class="w-fit max-w-full flex items-center justify-center">
+
+        </div>
     </section>
 
     <x-line />
 
     {{-- Last News --}}
-    <section class="flex flex-col items-center w-full text-start pb-5">
+    {{-- <section class="flex flex-col items-center w-full text-start pb-5">
         <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
             The Latest Insights from the Crypto World</p>
         <p class="text-gray-300 md:max-w-lg text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
@@ -338,12 +352,40 @@
                     description="{{ $news->content }}" />
             @endforeach
         </div>
+    </section> --}}
+
+    {{-- Crypto List --}}
+    <section class="px-5 lg:px-16 h-fit pb-5 flex flex-col items-center w-full">
+        <p class="title text-2xl md:text-4xl font-bold text-center" data-aos="fade-up"
+            data-aos-anchor-placement="top-bottom">
+            The {{ date('Y') }} Crypto Watchlist</p>
+        <p class="text-gray-300 md:max-w-lg text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+            Gain a strategic advantage with our expert picks. We've analyzed the market to highlight assets with strong
+            fundamentals and the most promising growth narratives for the year ahead.
+        </p>
+        <!-- TradingView Widget BEGIN -->
+        <div class="tradingview-widget-container mt-10">
+            <div class="tradingview-widget-container__widget"></div>
+            <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-screener.js" async>
+                {
+                    "width": "100%",
+                    "height": "600",
+                    "defaultColumn": "overview",
+                    "screener_type": "crypto_mkt",
+                    "displayCurrency": "USD",
+                    "colorTheme": "dark",
+                    "locale": "en",
+                    "isTransparent": true
+                }
+            </script>
+        </div>
+        <!-- TradingView Widget END -->
     </section>
 
     <x-line />
 
     {{-- FAQ --}}
-    <section class="flex flex-col items-center w-full text-start pb-5">
+    <section class="flex flex-col items-center w-full text-start pb-5 mt-16">
         <p class="title text-2xl md:text-4xl font-bold" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
             Frequently Asked Questions</p>
         <p class="text-gray-300 md:max-w-lg text-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
@@ -421,7 +463,7 @@
 
     <x-line />
 
-    <!-- Foooter -->
+    {{-- Foooter --}}
     <section>
         <div class="max-w-screen-xl px-4 py-12 mx-auto space-y-8 overflow-hidden sm:px-6 lg:px-8">
             <nav class="flex flex-wrap justify-center -mx-5 -my-2">
@@ -607,6 +649,83 @@
                     this.classList.toggle('border-yellow-400');
                 });
             });
+
+            const mainContainer = document.getElementById("top-market");
+
+            function display_widget(symbol) {
+                if (!mainContainer) return;
+
+                mainContainer.innerHTML = '';
+
+                const widgetContainer = document.createElement("div");
+                widgetContainer.className =
+                    "tradingview-widget-container w-full overflow-auto min-h-[320px] h-fit mt-10 bg-[#0e1f59] md:rounded-md p-4 max-w-full";
+
+                const widgetInnerDiv = document.createElement("div");
+                widgetInnerDiv.className = "tradingview-widget-container__widget";
+
+                const scriptElement = document.createElement("script");
+                scriptElement.type = "text/javascript";
+                scriptElement.src = "https://s3.tradingview.com/external-embedding/embed-widget-symbol-info.js";
+                scriptElement.async = true;
+                scriptElement.innerHTML = JSON.stringify({
+                    "symbol": symbol,
+                    "width": 550,
+                    "locale": "en",
+                    "colorTheme": "dark",
+                    "isTransparent": true
+                });
+
+                widgetContainer.appendChild(widgetInnerDiv);
+                widgetContainer.appendChild(scriptElement);
+                mainContainer.appendChild(widgetContainer);
+
+                currentSymbol = symbol;
+            }
+
+            const symbols = ["COINBASE:BTCUSD", "COINBASE:ETHUSD", "COINBASE:SOLUSD", "BINANCE:DOGEUSD",
+                "BINANCE:XRPUSD", "BINANCE:SUIUSD", "BINANCE:DOGEUSD", "BINANCE:LINKUSD", "BINANCE:LTCUSD"
+            ];
+            const ROTATION_INTERVAL = 15000;
+            let currentSymbol = '';
+            let initialSymbol = '';
+            const storedDataString = localStorage.getItem('randomSymbolSession');
+            if (storedDataString) {
+                const storedData = JSON.parse(storedDataString);
+                const timeSinceStored = Date.now() - storedData.timestamp;
+
+                if (timeSinceStored < ROTATION_INTERVAL) {
+                    console.log("REFRESH < 5 detik: Menampilkan simbol yang sama dari session.");
+                    initialSymbol = storedData.symbol;
+                }
+            }
+            if (!initialSymbol) {
+                console.log("REFRESH > 5 detik atau sesi baru: Membuat acakan baru.");
+                const randomIndex = Math.floor(Math.random() * symbols.length);
+                initialSymbol = symbols[randomIndex];
+
+                localStorage.setItem('randomSymbolSession', JSON.stringify({
+                    symbol: initialSymbol,
+                    timestamp: Date.now()
+                }));
+            }
+            display_widget(initialSymbol);
+
+            setInterval(() => {
+                let newSymbol;
+
+                do {
+                    const randomIndex = Math.floor(Math.random() * symbols.length);
+                    newSymbol = symbols[randomIndex];
+                } while (newSymbol === currentSymbol);
+
+                console.log("ROTASI OTOMATIS: Mengganti ke", newSymbol);
+
+                display_widget(newSymbol);
+
+            }, ROTATION_INTERVAL);
+
+
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
