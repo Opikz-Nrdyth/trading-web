@@ -205,7 +205,7 @@
                 </div>
             </div>
 
-            <a href="">
+            <a href="/login">
                 <button
                     class="bg-blue-600 hover:bg-blue-700 rounded-md font-bold w-[120px] translate-y-5 text-center py-2 mt-5">Get
                     Started</button>
